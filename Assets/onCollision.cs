@@ -36,17 +36,15 @@ public class onCollision : MonoBehaviour
   {
     if (shouldCreateObjOnCollide)
     {
-      other.gameObject.GetComponent<Renderer>().enabled = false;
-
       GameObject newObj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
       newObj.GetComponent<Renderer>().material.color = Color.green;
-      newObj.transform.position = new Vector3(0.1f, 0, 0);
       newObj.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
 
       shouldCreateObjOnCollide = false;
       otherShouldApproximate = true;
 
-      objToSpawn = Instantiate(newObj, GameObject.FindWithTag("OxigenioTarget").transform);
+      other.gameObject.GetComponent<Renderer>().enabled = false;
+      objToSpawn = Instantiate(newObj, other.transform.position, transform.rotation, GameObject.FindWithTag("OxigenioTarget").transform);
     }
   }
 
