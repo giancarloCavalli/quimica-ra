@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
-public class onCollision : MonoBehaviour
+public class OnCollision : MonoBehaviour
 {
   private Transform mainCameraTransform;
 
-  private GameObject objToSpawn;
+  private GameObject newAtomObj;
 
   private bool shouldCreateObjOnCollide = true;
 
   private bool otherShouldApproximate;
+
+  private bool otherShouldReturnToOriginalPosition;
   void Start()
   {
     mainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
@@ -19,15 +21,28 @@ public class onCollision : MonoBehaviour
 
   void Update()
   {
-    if (objToSpawn != null && otherShouldApproximate)
+    if (newAtomObj != null && otherShouldApproximate)
     {
       //https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html
       var step = 0.08f * Time.deltaTime;
-      objToSpawn.transform.position = Vector3.MoveTowards(objToSpawn.transform.position, transform.position, step);
+      newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, transform.position, step);
 
-      if (Vector3.Distance(objToSpawn.transform.position, transform.position) <= 0.0225)
+      if (Vector3.Distance(newAtomObj.transform.position, transform.position) <= 0.0225)
       {
         otherShouldApproximate = false;
+      }
+    }
+    else if (newAtomObj != null && otherShouldReturnToOriginalPosition)
+    {
+      var step = 0.1f * Time.deltaTime;
+      newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position, step);
+
+      if (Vector3.Distance(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position) <= 0)
+      {
+        otherShouldReturnToOriginalPosition = false;
+        GameObject.FindWithTag("HidrogenObj").GetComponent<Renderer>().enabled = true;
+        GameObject.Destroy(newAtomObj, 0f);
+        shouldCreateObjOnCollide = true;
       }
     }
   }
@@ -44,15 +59,13 @@ public class onCollision : MonoBehaviour
       otherShouldApproximate = true;
 
       other.gameObject.GetComponent<Renderer>().enabled = false;
-      objToSpawn = Instantiate(newObj, other.transform.position, transform.rotation, GameObject.FindWithTag("OxigenioTarget").transform);
+      newAtomObj = Instantiate(newObj, other.transform.position, transform.rotation, GameObject.FindWithTag("OxigenioTarget").transform);
+      GameObject.Destroy(newObj, 0f);
     }
   }
 
   private void OnTriggerExit(Collider other)
   {
-    GameObject.Destroy(objToSpawn, 0f);
-    shouldCreateObjOnCollide = true;
-
-    other.gameObject.GetComponent<Renderer>().enabled = true;
+    otherShouldReturnToOriginalPosition = true;
   }
 }
