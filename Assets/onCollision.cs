@@ -7,6 +7,8 @@ public class OnCollision : MonoBehaviour
 {
   private Transform mainCameraTransform;
 
+  private readonly float ProximityTriggerDistance = 0.3f;
+
   private GameObject newAtomObj;
 
   private bool shouldCreateObjOnCollide = true;
@@ -21,28 +23,42 @@ public class OnCollision : MonoBehaviour
 
   void Update()
   {
-    if (newAtomObj != null && otherShouldApproximate)
+    if (newAtomObj != null)
     {
-      //https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html
-      var step = 0.08f * Time.deltaTime;
-      newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, transform.position, step);
-
-      if (Vector3.Distance(newAtomObj.transform.position, transform.position) <= 0.0225)
+      if (otherShouldApproximate)
       {
-        otherShouldApproximate = false;
+        //https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html
+        var step = 0.08f * Time.deltaTime;
+        newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, transform.position, step);
+
+        if (Vector3.Distance(newAtomObj.transform.position, transform.position) <= 0.0225)
+        {
+          otherShouldApproximate = false;
+        }
       }
-    }
-    else if (newAtomObj != null && otherShouldReturnToOriginalPosition)
-    {
-      var step = 0.1f * Time.deltaTime;
-      newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position, step);
-
-      if (Vector3.Distance(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position) <= 0)
+      else if (otherShouldReturnToOriginalPosition)
       {
-        otherShouldReturnToOriginalPosition = false;
-        GameObject.FindWithTag("HidrogenObj").GetComponent<Renderer>().enabled = true;
-        GameObject.Destroy(newAtomObj, 0f);
-        shouldCreateObjOnCollide = true;
+        var step = 0.1f * Time.deltaTime;
+        newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position, step);
+
+        if (Vector3.Distance(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position) <= 0)
+        {
+          otherShouldReturnToOriginalPosition = false;
+          GameObject.FindWithTag("HidrogenObj").GetComponent<Renderer>().enabled = true;
+          GameObject.Destroy(newAtomObj, 0f);
+          shouldCreateObjOnCollide = true;
+        }
+      }
+      else if (mainCameraTransform && otherShouldReturnToOriginalPosition == false)
+      {
+        if (Vector3.Distance(this.transform.position, mainCameraTransform.position) <= ProximityTriggerDistance)
+        {
+          this.GetComponent<Renderer>().material.color = Color.blue;
+        }
+        else
+        {
+          this.GetComponent<Renderer>().material.color = Color.white;
+        }
       }
     }
   }
