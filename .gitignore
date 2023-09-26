@@ -74,3 +74,9 @@ crashlytics-build.properties
 # Ignore manually added packages
 com.*
 upm-xr*
+
+# https://github.com/microsoft/vscode-dotnettools/issues/271
+# https://github.com/Chizaruu/com.tsk.ide.vscode
+# https://github.com/Chizaruu/com.tsk.ide.vscode/issues/77
+# TSK VSCode
+/CSharpProjFolders/*
