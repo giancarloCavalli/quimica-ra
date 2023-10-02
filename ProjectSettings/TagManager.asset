@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - OxigenioTarget
-  - HidrogenObj
+  - Hidrogen1
+  - Hidrogen2
   layers:
   - Default
   - TransparentFX

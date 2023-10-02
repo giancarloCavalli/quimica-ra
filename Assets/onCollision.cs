@@ -1,87 +1,133 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class OnCollision : MonoBehaviour
 {
-  private Transform mainCameraTransform;
+  private Transform MainCameraTransform;
 
   private readonly float ProximityTriggerDistance = 0.3f;
 
-  private GameObject newAtomObj;
+  private readonly Dictionary<string, GameObject> HidrogensByName = new();
 
-  private bool shouldCreateObjOnCollide = true;
+  private readonly Dictionary<string, string> CommandByHidrogenName = new();
 
-  private bool otherShouldApproximate;
-
-  private bool otherShouldReturnToOriginalPosition;
+  private readonly Queue DestroyHidrogenQueue = new();
   void Start()
   {
-    mainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
+    MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
   }
 
+  // TODO - feat -  on camera proximity
+  // TODO - fix - better handling of hidrogens that are already in the molecule (molecule breaks when getting far from untracked Target)
+  // TODO - refactor - create command ENUM
+  // TODO - refactor - utils
+  // TODO - style - easy-out transition when approximating
+  // TODO - style - change border when forming molecule
+  // TODO - style - make atoms go to opposite poles when forming molecules
   void Update()
   {
-    if (newAtomObj != null)
+    lock (HidrogensByName)
     {
-      if (otherShouldApproximate)
+      // refactor - make a queue of Maps (string hidrogenName, Commmand command) for commands and iterate through it
+      foreach (GameObject hidrogen in HidrogensByName.Values)
       {
-        //https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html
-        var step = 0.08f * Time.deltaTime;
-        newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, transform.position, step);
-
-        if (Vector3.Distance(newAtomObj.transform.position, transform.position) <= 0.0225)
-        {
-          otherShouldApproximate = false;
-        }
+        // Debug.Log($"Executing {CommandByHidrogenName[hidrogen.name]} for hidrogen {hidrogen.name}");
+        ExecuteCommand(CommandByHidrogenName[hidrogen.name], hidrogen);
       }
-      else if (otherShouldReturnToOriginalPosition)
-      {
-        var step = 0.1f * Time.deltaTime;
-        newAtomObj.transform.position = Vector3.MoveTowards(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position, step);
 
-        if (Vector3.Distance(newAtomObj.transform.position, GameObject.FindWithTag("HidrogenObj").transform.position) <= 0)
-        {
-          otherShouldReturnToOriginalPosition = false;
-          GameObject.FindWithTag("HidrogenObj").GetComponent<Renderer>().enabled = true;
-          GameObject.Destroy(newAtomObj, 0f);
-          shouldCreateObjOnCollide = true;
-        }
-      }
-      else if (mainCameraTransform && otherShouldReturnToOriginalPosition == false)
+      while (DestroyHidrogenQueue.Count > 0)
       {
-        if (Vector3.Distance(this.transform.position, mainCameraTransform.position) <= ProximityTriggerDistance)
-        {
-          this.GetComponent<Renderer>().material.color = Color.blue;
-        }
-        else
-        {
-          this.GetComponent<Renderer>().material.color = Color.white;
-        }
+        string hidrogenName = (string)DestroyHidrogenQueue.Dequeue();
+        GameObject.FindWithTag(hidrogenName).GetComponent<Renderer>().enabled = true;
+        GameObject hidrogen = HidrogensByName[hidrogenName];
+        HidrogensByName.Remove(hidrogenName);
+        Destroy(hidrogen, 0f);
       }
     }
+
+    // if (mainCameraTransform && otherShouldReturnToOriginalPosition == false)
+    // {
+    //   if (Vector3.Distance(transform.position, mainCameraTransform.position) <= ProximityTriggerDistance)
+    //   {
+    //     GetComponent<Renderer>().material.color = Color.blue;
+    //   }
+    //   else
+    //   {
+    //     GetComponent<Renderer>().material.color = Color.white;
+    //   }
+    // }
   }
 
   private void OnTriggerEnter(Collider other)
   {
-    if (shouldCreateObjOnCollide)
+    if (other != null && !other.gameObject.CompareTag("Untagged") && !HidrogensByName.ContainsKey(other.gameObject.tag))
     {
-      GameObject newObj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-      newObj.GetComponent<Renderer>().material.color = Color.green;
-      newObj.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-
-      shouldCreateObjOnCollide = false;
-      otherShouldApproximate = true;
-
-      other.gameObject.GetComponent<Renderer>().enabled = false;
-      newAtomObj = Instantiate(newObj, other.transform.position, transform.rotation, GameObject.FindWithTag("OxigenioTarget").transform);
-      GameObject.Destroy(newObj, 0f);
+      HidrogensByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform.position, other.gameObject.tag, GameObject.FindWithTag("OxigenioTarget").transform));
+      other.GetComponent<Renderer>().enabled = false;
+      CommandByHidrogenName[other.gameObject.tag] = "approximate";
     }
   }
 
   private void OnTriggerExit(Collider other)
   {
-    otherShouldReturnToOriginalPosition = true;
+    CommandByHidrogenName[other.gameObject.tag] = "returnToOriginalPosition";
+  }
+
+  private GameObject IntantiateNewSphere(Vector3 position, string name, Transform parent)
+  {
+    GameObject sphereModel = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+    sphereModel.GetComponent<Renderer>().material.color = Color.green;
+    sphereModel.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
+    GameObject sphere = Instantiate(sphereModel, position, transform.rotation, parent);
+    sphere.name = name;
+
+    Destroy(sphereModel, 0f);
+
+    return sphere;
+  }
+
+  private bool ShouldApproximateCustomHidrogen(GameObject customHidrogen)
+  {
+    return Vector3.Distance(customHidrogen.transform.position, transform.position) >= 0.0225;
+  }
+
+  private void ApproximateTo(GameObject @object, Vector3 toPosition)
+  {
+    var step = 0.08f * Time.deltaTime;
+    @object.transform.position = Vector3.MoveTowards(@object.transform.position, toPosition, step);
+  }
+
+  private bool HasCustomHidrogenReachedImageTarget(GameObject @object)
+  {
+    return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0;
+  }
+
+  private void ExecuteCommand(string command, GameObject hidrogen)
+  {
+    switch (command)
+    {
+      case "approximate":
+        ApproximateTo(hidrogen, transform.position);
+        if (!ShouldApproximateCustomHidrogen(hidrogen))
+        {
+          CommandByHidrogenName[hidrogen.name] = "stay";
+        }
+        break;
+      case "returnToOriginalPosition":
+        Vector3 imageTargetObjectPosition = GameObject.FindWithTag(hidrogen.name).transform.position;
+        ApproximateTo(hidrogen, imageTargetObjectPosition);
+        if (HasCustomHidrogenReachedImageTarget(hidrogen))
+        {
+          CommandByHidrogenName[hidrogen.name] = "queueToDestroy";
+        }
+        break;
+      case "queueToDestroy":
+        DestroyHidrogenQueue.Enqueue(hidrogen.name);
+        break;
+    }
   }
 }
