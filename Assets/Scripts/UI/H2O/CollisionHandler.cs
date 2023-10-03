@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
-public class OnCollision : MonoBehaviour
+public class CollisionHandler : MonoBehaviour
 {
   private Transform MainCameraTransform;
 
