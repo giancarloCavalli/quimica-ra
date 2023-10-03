@@ -16,6 +16,7 @@ public class OnCollision : MonoBehaviour
   private readonly Dictionary<string, AtomCommand> CommandByHidrogenName = new();
 
   private readonly Queue DestroyHidrogenQueue = new();
+
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
@@ -23,7 +24,6 @@ public class OnCollision : MonoBehaviour
 
   // TODO - feat -  on camera proximity
   // TODO - fix - better handling of hidrogens that are already in the molecule (molecule breaks when getting far from untracked Target)
-  // TODO - refactor - create command ENUM
   // TODO - style - easy-out transition when approximating
   // TODO - style - change border when forming molecule
   // TODO - style - make atoms go to opposite poles when forming molecules
