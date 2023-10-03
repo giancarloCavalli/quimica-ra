@@ -13,7 +13,7 @@ public class OnCollision : MonoBehaviour
 
   private readonly Dictionary<string, GameObject> HidrogensByName = new();
 
-  private readonly Dictionary<string, string> CommandByHidrogenName = new();
+  private readonly Dictionary<string, AtomCommand> CommandByHidrogenName = new();
 
   private readonly Queue DestroyHidrogenQueue = new();
   void Start()
@@ -24,7 +24,6 @@ public class OnCollision : MonoBehaviour
   // TODO - feat -  on camera proximity
   // TODO - fix - better handling of hidrogens that are already in the molecule (molecule breaks when getting far from untracked Target)
   // TODO - refactor - create command ENUM
-  // TODO - refactor - utils
   // TODO - style - easy-out transition when approximating
   // TODO - style - change border when forming molecule
   // TODO - style - make atoms go to opposite poles when forming molecules
@@ -36,7 +35,7 @@ public class OnCollision : MonoBehaviour
       foreach (GameObject hidrogen in HidrogensByName.Values)
       {
         // Debug.Log($"Executing {CommandByHidrogenName[hidrogen.name]} for hidrogen {hidrogen.name}");
-        ExecuteCommand(CommandByHidrogenName[hidrogen.name], hidrogen);
+        HandleCommand(CommandByHidrogenName[hidrogen.name], hidrogen);
       }
 
       while (DestroyHidrogenQueue.Count > 0)
@@ -68,13 +67,13 @@ public class OnCollision : MonoBehaviour
     {
       HidrogensByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform.position, other.gameObject.tag, GameObject.FindWithTag("OxigenioTarget").transform));
       other.GetComponent<Renderer>().enabled = false;
-      CommandByHidrogenName[other.gameObject.tag] = "approximate";
+      CommandByHidrogenName[other.gameObject.tag] = AtomCommand.MoveToBond;
     }
   }
 
   private void OnTriggerExit(Collider other)
   {
-    CommandByHidrogenName[other.gameObject.tag] = "returnToOriginalPosition";
+    CommandByHidrogenName[other.gameObject.tag] = AtomCommand.MoveToTarget;
   }
 
   private GameObject IntantiateNewSphere(Vector3 position, string name, Transform parent)
@@ -106,26 +105,26 @@ public class OnCollision : MonoBehaviour
     return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0;
   }
 
-  private void ExecuteCommand(string command, GameObject hidrogen)
+  private void HandleCommand(AtomCommand command, GameObject hidrogen)
   {
     switch (command)
     {
-      case "approximate":
+      case AtomCommand.MoveToBond:
         ApproximateTo(hidrogen, transform.position);
         if (!ShouldApproximateCustomHidrogen(hidrogen))
         {
-          CommandByHidrogenName[hidrogen.name] = "stay";
+          CommandByHidrogenName[hidrogen.name] = AtomCommand.Steady;
         }
         break;
-      case "returnToOriginalPosition":
+      case AtomCommand.MoveToTarget:
         Vector3 imageTargetObjectPosition = GameObject.FindWithTag(hidrogen.name).transform.position;
         ApproximateTo(hidrogen, imageTargetObjectPosition);
         if (HasCustomHidrogenReachedImageTarget(hidrogen))
         {
-          CommandByHidrogenName[hidrogen.name] = "queueToDestroy";
+          CommandByHidrogenName[hidrogen.name] = AtomCommand.QueueToDestroy;
         }
         break;
-      case "queueToDestroy":
+      case AtomCommand.QueueToDestroy:
         DestroyHidrogenQueue.Enqueue(hidrogen.name);
         break;
     }
