@@ -37,17 +37,11 @@ public class CollisionHandler : MonoBehaviour
       foreach (GameObject hidrogen in HidrogensByName.Values)
       {
         // Debug.Log($"Executing {CommandByHidrogenName[hidrogen.name]} for hidrogen {hidrogen.name}");
-        HandleCommand(CommandByHidrogenName[hidrogen.name], hidrogen);
+        HandleAtomCommand(CommandByHidrogenName[hidrogen.name], hidrogen);
       }
 
-      if (ShouldShowElement())
-      {
-        GetComponent<Renderer>().material.color = Color.blue;
-      }
-      else
-      {
-        GetComponent<Renderer>().material.color = Color.white;
-      }
+      Action renderAction = ShouldShowElement() ? new Action(HandleElementRendering) : new Action(HandleMoleculeRendering);
+      renderAction.Invoke();
 
       while (DestroyHidrogenQueue.Count > 0)
       {
@@ -104,7 +98,7 @@ public class CollisionHandler : MonoBehaviour
     return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0;
   }
 
-  private void HandleCommand(AtomCommand command, GameObject hidrogen)
+  private void HandleAtomCommand(AtomCommand command, GameObject hidrogen)
   {
     switch (command)
     {
@@ -154,5 +148,15 @@ public class CollisionHandler : MonoBehaviour
     bool hasReachedTriggerDistance = Vector3.Distance(transform.position, MainCameraTransform.position) <= PROXIMITY_TRIGGER_DISTANCE;
 
     return hasReachedTriggerDistance && IsMoleculeFormed();
+  }
+
+  private void HandleElementRendering()
+  {
+    GetComponent<Renderer>().material.color = Color.blue;
+  }
+
+  private void HandleMoleculeRendering()
+  {
+    GetComponent<Renderer>().material.color = Color.white;
   }
 }
