@@ -19,12 +19,12 @@ public class TrackingInterceptor : MonoBehaviour
     GameObject imageTargetChild = HidrogenioTarget.transform.GetChild(0).gameObject;
     if (status.Status == Status.TRACKED)
     {
-      Debug.Log($"MY TAG IS {imageTargetChild.tag}");
+      // Debug.Log($"MY TAG IS {imageTargetChild.tag}");
       foreach (Transform child in GameObject.FindWithTag("OxigenioTarget").transform)
       {
         if (imageTargetChild.tag == child.name)
         {
-          Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
+          // Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
           imageTargetChild.GetComponent<Renderer>().enabled = false;
         }
       }

@@ -7,9 +7,11 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-  private Transform MainCameraTransform;
+  private const float PROXIMITY_TRIGGER_DISTANCE = 0.3f;
 
-  private readonly float ProximityTriggerDistance = 0.3f;
+  private const int ATOMS_NECESSARY_TO_FORM_MOLECULE = 2;
+
+  private Transform MainCameraTransform;
 
   private readonly Dictionary<string, GameObject> HidrogensByName = new();
 
@@ -22,8 +24,8 @@ public class CollisionHandler : MonoBehaviour
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
   }
 
-  // TODO - feat -  on camera proximity
-  // TODO - fix - better handling of hidrogens that are already in the molecule (molecule breaks when getting far from untracked Target)
+  // TODO - style - on camera proximity
+  // TODO - fix - create unique marcador for each atom and render its image target on the card
   // TODO - style - easy-out transition when approximating
   // TODO - style - change border when forming molecule
   // TODO - style - make atoms go to opposite poles when forming molecules
@@ -38,6 +40,15 @@ public class CollisionHandler : MonoBehaviour
         HandleCommand(CommandByHidrogenName[hidrogen.name], hidrogen);
       }
 
+      if (ShouldShowElement())
+      {
+        GetComponent<Renderer>().material.color = Color.blue;
+      }
+      else
+      {
+        GetComponent<Renderer>().material.color = Color.white;
+      }
+
       while (DestroyHidrogenQueue.Count > 0)
       {
         string hidrogenName = (string)DestroyHidrogenQueue.Dequeue();
@@ -47,18 +58,6 @@ public class CollisionHandler : MonoBehaviour
         Destroy(hidrogen, 0f);
       }
     }
-
-    // if (mainCameraTransform && otherShouldReturnToOriginalPosition == false)
-    // {
-    //   if (Vector3.Distance(transform.position, mainCameraTransform.position) <= ProximityTriggerDistance)
-    //   {
-    //     GetComponent<Renderer>().material.color = Color.blue;
-    //   }
-    //   else
-    //   {
-    //     GetComponent<Renderer>().material.color = Color.white;
-    //   }
-    // }
   }
 
   private void OnTriggerEnter(Collider other)
@@ -113,7 +112,7 @@ public class CollisionHandler : MonoBehaviour
         ApproximateTo(hidrogen, transform.position);
         if (!ShouldApproximateCustomHidrogen(hidrogen))
         {
-          CommandByHidrogenName[hidrogen.name] = AtomCommand.Steady;
+          CommandByHidrogenName[hidrogen.name] = AtomCommand.KeepBonded;
         }
         break;
       case AtomCommand.MoveToTarget:
@@ -128,5 +127,32 @@ public class CollisionHandler : MonoBehaviour
         DestroyHidrogenQueue.Enqueue(hidrogen.name);
         break;
     }
+  }
+
+  private bool IsMoleculeFormed()
+  {
+    int atomsBonded = 0;
+
+    foreach (GameObject hidrogenBonded in HidrogensByName.Values)
+    {
+      if (CommandByHidrogenName[hidrogenBonded.name] == AtomCommand.KeepBonded)
+      {
+        atomsBonded++;
+      }
+    }
+
+    return atomsBonded >= ATOMS_NECESSARY_TO_FORM_MOLECULE;
+  }
+
+  private bool ShouldShowElement()
+  {
+    if (MainCameraTransform == null)
+    {
+      return false;
+    }
+
+    bool hasReachedTriggerDistance = Vector3.Distance(transform.position, MainCameraTransform.position) <= PROXIMITY_TRIGGER_DISTANCE;
+
+    return hasReachedTriggerDistance && IsMoleculeFormed();
   }
 }
