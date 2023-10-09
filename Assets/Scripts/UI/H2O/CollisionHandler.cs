@@ -19,6 +19,14 @@ public class CollisionHandler : MonoBehaviour
 
   private readonly Queue DestroyHidrogenQueue = new();
 
+  private readonly Dictionary<string, float> ElapsedTimeByHidrogenName = new();
+
+  private const float MIN_SPEED = 0.03f;
+
+  private const float MAX_SPEED = 1f;
+
+  private const float TRANSITION_DURATION = 2f;
+
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
@@ -89,8 +97,20 @@ public class CollisionHandler : MonoBehaviour
 
   private void ApproximateTo(GameObject @object, Vector3 toPosition)
   {
-    var step = 0.08f * Time.deltaTime;
-    @object.transform.position = Vector3.MoveTowards(@object.transform.position, toPosition, step);
+    if (ElapsedTimeByHidrogenName.ContainsKey(@object.name) == false)
+    {
+      ElapsedTimeByHidrogenName.Add(@object.name, 0f);
+    }
+    else if (ElapsedTimeByHidrogenName[@object.name] >= TRANSITION_DURATION)
+    {
+      ElapsedTimeByHidrogenName[@object.name] = 0f;
+    }
+
+    ElapsedTimeByHidrogenName[@object.name] += Time.deltaTime;
+    float t = Mathf.SmoothStep(0f, 1f, ElapsedTimeByHidrogenName[@object.name] / TRANSITION_DURATION);
+    float easedValue = Mathf.Lerp(MIN_SPEED, MAX_SPEED, t) * Time.deltaTime;
+
+    @object.transform.position = Vector3.MoveTowards(@object.transform.position, toPosition, easedValue);
   }
 
   private bool HasCustomHidrogenReachedImageTarget(GameObject @object)
