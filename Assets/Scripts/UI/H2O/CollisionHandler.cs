@@ -21,12 +21,6 @@ public class CollisionHandler : MonoBehaviour
 
   private readonly Dictionary<string, float> ElapsedTimeByHidrogenName = new();
 
-  private const float MIN_SPEED = 0.03f;
-
-  private const float MAX_SPEED = 1f;
-
-  private const float TRANSITION_DURATION = 2f;
-
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
@@ -34,7 +28,6 @@ public class CollisionHandler : MonoBehaviour
 
   // TODO - style - on camera proximity
   // TODO - fix - create unique marcador for each atom and render its image target on the card
-  // TODO - style - easy-out transition when approximating
   // TODO - style - change border when forming molecule
   // TODO - style - make atoms go to opposite poles when forming molecules
   void Update()
@@ -101,21 +94,22 @@ public class CollisionHandler : MonoBehaviour
     {
       ElapsedTimeByHidrogenName.Add(@object.name, 0f);
     }
-    else if (ElapsedTimeByHidrogenName[@object.name] >= TRANSITION_DURATION)
+    else if (ElapsedTimeByHidrogenName[@object.name] >= Transition.DurationInSeconds)
     {
       ElapsedTimeByHidrogenName[@object.name] = 0f;
     }
 
-    ElapsedTimeByHidrogenName[@object.name] += Time.deltaTime;
-    float t = Mathf.SmoothStep(0f, 1f, ElapsedTimeByHidrogenName[@object.name] / TRANSITION_DURATION);
-    float easedValue = Mathf.Lerp(MIN_SPEED, MAX_SPEED, t) * Time.deltaTime;
+    float easedValue = Transition.GetEasedValue(ElapsedTimeByHidrogenName[@object.name], Time.deltaTime);
 
     @object.transform.position = Vector3.MoveTowards(@object.transform.position, toPosition, easedValue);
+
+    ElapsedTimeByHidrogenName[@object.name] += Time.deltaTime;
   }
 
   private bool HasCustomHidrogenReachedImageTarget(GameObject @object)
   {
-    return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0;
+    Debug.Log($"Distance: {Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position)}");
+    return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0.001;
   }
 
   private void HandleAtomCommand(AtomCommand command, GameObject hidrogen)
@@ -126,6 +120,7 @@ public class CollisionHandler : MonoBehaviour
         ApproximateTo(hidrogen, transform.position);
         if (!ShouldApproximateCustomHidrogen(hidrogen))
         {
+          ElapsedTimeByHidrogenName[hidrogen.name] = 0f;
           CommandByHidrogenName[hidrogen.name] = AtomCommand.KeepBonded;
         }
         break;
@@ -134,6 +129,7 @@ public class CollisionHandler : MonoBehaviour
         ApproximateTo(hidrogen, imageTargetObjectPosition);
         if (HasCustomHidrogenReachedImageTarget(hidrogen))
         {
+          ElapsedTimeByHidrogenName[hidrogen.name] = 0f;
           CommandByHidrogenName[hidrogen.name] = AtomCommand.QueueToDestroy;
         }
         break;
