@@ -21,6 +21,8 @@ public class CollisionHandler : MonoBehaviour
 
   private readonly Dictionary<string, float> ElapsedTimeByHidrogenName = new();
 
+  public Material OnBondMaterial;
+
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
@@ -47,10 +49,7 @@ public class CollisionHandler : MonoBehaviour
       while (DestroyHidrogenQueue.Count > 0)
       {
         string hidrogenName = (string)DestroyHidrogenQueue.Dequeue();
-        GameObject.FindWithTag(hidrogenName).GetComponent<Renderer>().enabled = true;
-        GameObject hidrogen = HidrogensByName[hidrogenName];
-        HidrogensByName.Remove(hidrogenName);
-        Destroy(hidrogen, 0f);
+        DestroyAtom(hidrogenName);
       }
     }
   }
@@ -60,7 +59,7 @@ public class CollisionHandler : MonoBehaviour
     if (other != null && !other.gameObject.CompareTag("Untagged") && !HidrogensByName.ContainsKey(other.gameObject.tag))
     {
       HidrogensByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform.position, other.gameObject.tag, GameObject.FindWithTag("OxigenioTarget").transform));
-      other.GetComponent<Renderer>().enabled = false;
+      RenderHandler.ChangeIncludingChildren(other.transform, false);
       CommandByHidrogenName[other.gameObject.tag] = AtomCommand.MoveToBond;
     }
   }
@@ -73,7 +72,7 @@ public class CollisionHandler : MonoBehaviour
   private GameObject IntantiateNewSphere(Vector3 position, string name, Transform parent)
   {
     GameObject sphereModel = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-    sphereModel.GetComponent<Renderer>().material.color = Color.green;
+    sphereModel.GetComponent<Renderer>().material = OnBondMaterial;
     sphereModel.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
     GameObject sphere = Instantiate(sphereModel, position, transform.rotation, parent);
     sphere.name = name;
@@ -81,6 +80,14 @@ public class CollisionHandler : MonoBehaviour
     Destroy(sphereModel, 0f);
 
     return sphere;
+  }
+
+  private void DestroyAtom(string atomName)
+  {
+    RenderHandler.ChangeIncludingChildren(GameObject.FindWithTag(atomName).transform, true);
+    GameObject hidrogen = HidrogensByName[atomName];
+    HidrogensByName.Remove(atomName);
+    Destroy(hidrogen, 0f);
   }
 
   private bool ShouldApproximateCustomHidrogen(GameObject customHidrogen)
@@ -108,7 +115,6 @@ public class CollisionHandler : MonoBehaviour
 
   private bool HasCustomHidrogenReachedImageTarget(GameObject @object)
   {
-    Debug.Log($"Distance: {Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position)}");
     return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0.001;
   }
 

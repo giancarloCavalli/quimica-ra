@@ -5,7 +5,6 @@ public class TrackingInterceptor : MonoBehaviour
 {
   public ImageTargetBehaviour HidrogenioTarget;
 
-  // Start is called before the first frame update
   void Start()
   {
     if (HidrogenioTarget != null)
@@ -25,13 +24,11 @@ public class TrackingInterceptor : MonoBehaviour
         if (imageTargetChild.tag == child.name)
         {
           // Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
-          imageTargetChild.GetComponent<Renderer>().enabled = false;
+          RenderHandler.ChangeIncludingChildren(imageTargetChild.transform, false);
         }
       }
     }
   }
-
-  // Update is called once per frame
 
   void Update()
   { }
