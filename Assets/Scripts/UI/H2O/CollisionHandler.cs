@@ -61,6 +61,8 @@ public class CollisionHandler : MonoBehaviour
       HidrogensByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform.position, other.gameObject.tag, GameObject.FindWithTag("OxigenioTarget").transform));
       RenderHandler.ChangeIncludingChildren(other.transform, false);
       CommandByHidrogenName[other.gameObject.tag] = AtomCommand.MoveToBond;
+
+      ChangeRenderOfChildrenTo(false);
     }
   }
 
@@ -133,15 +135,26 @@ public class CollisionHandler : MonoBehaviour
       case AtomCommand.MoveToTarget:
         Vector3 imageTargetObjectPosition = GameObject.FindWithTag(hidrogen.name).transform.position;
         ApproximateTo(hidrogen, imageTargetObjectPosition);
+
         if (HasCustomHidrogenReachedImageTarget(hidrogen))
         {
           ElapsedTimeByHidrogenName[hidrogen.name] = 0f;
           CommandByHidrogenName[hidrogen.name] = AtomCommand.QueueToDestroy;
+
+          if (!HasAnyAtomBonded()) ChangeRenderOfChildrenTo(true);
         }
         break;
       case AtomCommand.QueueToDestroy:
         DestroyHidrogenQueue.Enqueue(hidrogen.name);
         break;
+    }
+  }
+
+  private void ChangeRenderOfChildrenTo(bool shouldRender)
+  {
+    foreach (Transform child in transform)
+    {
+      RenderHandler.ChangeIncludingChildren(child, shouldRender);
     }
   }
 
@@ -158,6 +171,11 @@ public class CollisionHandler : MonoBehaviour
     }
 
     return atomsBonded >= ATOMS_NECESSARY_TO_FORM_MOLECULE;
+  }
+
+  private bool HasAnyAtomBonded()
+  {
+    return CommandByHidrogenName.ContainsValue(AtomCommand.KeepBonded);
   }
 
   private bool ShouldShowElement()

@@ -4,7 +4,6 @@ public class RotationStarter : MonoBehaviour
 {
   void Start()
   {
-
   }
 
   void Update()
