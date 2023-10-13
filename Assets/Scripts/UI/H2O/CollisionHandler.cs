@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
@@ -21,11 +19,16 @@ public class CollisionHandler : MonoBehaviour
 
   private readonly Dictionary<string, float> ElapsedTimeByHidrogenName = new();
 
-  public Material OnBondMaterial;
+  public Material ElementMaterial;
+
+  private Material OriginalMaterial;
+
+  public Material AtomOnBondMaterial;
 
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
+    OriginalMaterial = GetComponent<Renderer>().material;
   }
 
   // TODO - style - on camera proximity
@@ -74,7 +77,7 @@ public class CollisionHandler : MonoBehaviour
   private GameObject IntantiateNewSphere(Vector3 position, string name, Transform parent)
   {
     GameObject sphereModel = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-    sphereModel.GetComponent<Renderer>().material = OnBondMaterial;
+    sphereModel.GetComponent<Renderer>().material = AtomOnBondMaterial;
     sphereModel.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
     GameObject sphere = Instantiate(sphereModel, position, transform.rotation, parent);
     sphere.name = name;
@@ -192,11 +195,15 @@ public class CollisionHandler : MonoBehaviour
 
   private void HandleElementRendering()
   {
-    GetComponent<Renderer>().material.color = Color.blue;
+    GetComponent<Renderer>().material = ElementMaterial;
+
+    RenderHandler.ChangeSiblingsIncludingChildren(transform, false);
   }
 
   private void HandleMoleculeRendering()
   {
-    GetComponent<Renderer>().material.color = Color.white;
+    GetComponent<Renderer>().material = OriginalMaterial;
+
+    RenderHandler.ChangeSiblingsIncludingChildren(transform, true);
   }
 }

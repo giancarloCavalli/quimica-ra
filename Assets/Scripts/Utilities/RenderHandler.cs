@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -20,6 +18,22 @@ public static class RenderHandler
     foreach (Transform child in objectTransform)
     {
       ChangeIncludingChildren(child, shouldRender);
+    }
+  }
+
+  public static void ChangeSiblingsIncludingChildren(Transform objectTransform, bool shouldRender)
+  {
+    if (objectTransform.parent == null)
+    {
+      return;
+    }
+
+    foreach (Transform child in objectTransform.parent)
+    {
+      if (child != objectTransform)
+      {
+        ChangeIncludingChildren(child, shouldRender);
+      }
     }
   }
 }
