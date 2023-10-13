@@ -2027,7 +2027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7402713cd6613428aebea968ff0aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBondMaterial: {fileID: 2100000, guid: 90352b5d4ff68ee4f8e9b8b55b525b28, type: 2}
+  ElementMaterial: {fileID: 2100000, guid: c6d38711520119c4e89ddf1ea6adc007, type: 2}
+  AtomOnBondMaterial: {fileID: 2100000, guid: 90352b5d4ff68ee4f8e9b8b55b525b28, type: 2}
 --- !u!1 &1549204148
 GameObject:
   m_ObjectHideFlags: 0
