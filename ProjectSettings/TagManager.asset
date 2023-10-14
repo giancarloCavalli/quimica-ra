@@ -7,6 +7,7 @@ TagManager:
   - OxigenioTarget
   - Hidrogen1
   - Hidrogen2
+  - WaterAnimation
   layers:
   - Default
   - TransparentFX

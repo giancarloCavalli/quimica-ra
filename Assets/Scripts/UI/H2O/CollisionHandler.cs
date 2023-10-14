@@ -19,16 +19,16 @@ public class CollisionHandler : MonoBehaviour
 
   private readonly Dictionary<string, float> ElapsedTimeByHidrogenName = new();
 
-  public Material ElementMaterial;
-
-  private Material OriginalMaterial;
+  private GameObject Animation;
 
   public Material AtomOnBondMaterial;
 
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
-    OriginalMaterial = GetComponent<Renderer>().material;
+
+    Animation = GameObject.FindWithTag("WaterAnimation");
+    Animation.GetComponent<Renderer>().enabled = false;
   }
 
   // TODO - style - on camera proximity
@@ -195,15 +195,19 @@ public class CollisionHandler : MonoBehaviour
 
   private void HandleElementRendering()
   {
-    GetComponent<Renderer>().material = ElementMaterial;
+    GetComponent<Renderer>().enabled = false;
 
     RenderHandler.ChangeSiblingsIncludingChildren(transform, false);
+
+    Animation.GetComponent<Renderer>().enabled = true;
   }
 
   private void HandleMoleculeRendering()
   {
-    GetComponent<Renderer>().material = OriginalMaterial;
+    GetComponent<Renderer>().enabled = true;
 
     RenderHandler.ChangeSiblingsIncludingChildren(transform, true);
+
+    Animation.GetComponent<Renderer>().enabled = false;
   }
 }

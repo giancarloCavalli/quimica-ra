@@ -1,0 +1,1548 @@
+fileFormatVersion: 2
+guid: 3f41e9a91f2b2014eaf940519cb2d3f0
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 915
+        width: 91
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39c349f6017d47c4bbe166db1a7277a4
+      internalID: -1895677663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 916
+        width: 91
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2e1aa481e93c7d4a9f8ec26df09569c
+      internalID: -2097398432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_2
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 917
+        width: 91
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d51c0f2fa48d734d9c0a1f06c781aa8
+      internalID: -1319427866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_3
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 917
+        width: 92
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2ecfc5214f9f8445862806e4ca9e5a7
+      internalID: -1343530904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_4
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 917
+        width: 92
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62449726309bb7f449d0afa0d1049c6a
+      internalID: -1856595996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_5
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 917
+        width: 92
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebe78538ece64e3478918a1a3e3d37a9
+      internalID: -1023112992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_6
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 917
+        width: 94
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f806f07eaf5ca094a91d9f360012a6e2
+      internalID: -1407313549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_7
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 916
+        width: 94
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a3be431b37611449c6b49b34629cf5
+      internalID: -548937356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_8
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 788
+        width: 94
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e782f29d54de5d54f97477890d2b2c23
+      internalID: 2007000872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_9
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 787
+        width: 94
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a729272090592e24895394cf246d2a18
+      internalID: 1969332345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_10
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 786
+        width: 94
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e85708f6a62200e44b4765abddcb9f7c
+      internalID: -1882973467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_11
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 786
+        width: 94
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83dea1f7903dd242a9c9074dfe10e8c
+      internalID: -478060983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_12
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 786
+        width: 95
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592efbebcf433e54a979bb18466fcb6f
+      internalID: -632390125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_13
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 786
+        width: 95
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b83f0bad5e21d946b4a7e3666f41399
+      internalID: -1825202707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_14
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 786
+        width: 96
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e7fcb189350044b80d221705a2fd60
+      internalID: 2069036373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_15
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 785
+        width: 96
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af636e2f74f817043be1c2ab686e76ae
+      internalID: 889647068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 658
+        width: 96
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97b782100974d8242bc3347e4b40e5c4
+      internalID: -1853148525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_17
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 658
+        width: 96
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad6388eac6d1a2b448256eac51f18681
+      internalID: 1850022767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_18
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 658
+        width: 95
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 932edb3212897b442b4e83dc724a458b
+      internalID: 1678086697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_19
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 658
+        width: 94
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a25eb4f96a0c5034e81a699803a81c1b
+      internalID: 1231150786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_20
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 659
+        width: 94
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414a3b1dee784ba41adcad2c4b107612
+      internalID: -1364717741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_21
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 659
+        width: 94
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099179c75e21aa441bf92a4958685370
+      internalID: -375311483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_22
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 660
+        width: 94
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86ff34d15a057e4ba03cfd6f7fcce73
+      internalID: -1833369098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_23
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 660
+        width: 95
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf9a8743d43be04d99621431165f6a1
+      internalID: -1167119063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_24
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 533
+        width: 95
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414a70902b851124e800d00e6ebcdbbd
+      internalID: -1797583338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_25
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 533
+        width: 95
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21cd7d552d8bc99408d0c09398a4c386
+      internalID: -1349306639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_26
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 533
+        width: 95
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2ad6f3dbc904740b03a83cd44127a4
+      internalID: 1183766067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_27
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 534
+        width: 95
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c034b4d4a172840b55302b39df5dff
+      internalID: -1498867653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_28
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 534
+        width: 95
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ada764dfbe2f0e439c1a3040385945a
+      internalID: 1688753864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_29
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 533
+        width: 95
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d195c34d22ea9746995bc119ca6969c
+      internalID: -575196662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_30
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 533
+        width: 94
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6209907f611c27d4aa289c09e67b8864
+      internalID: -737082908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_31
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 533
+        width: 95
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad6a220b808c5b45b9d2ba994b86215
+      internalID: 1380226338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_32
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 405
+        width: 94
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8ddf9fd82adc74ab0ff0c2b58a6cdb
+      internalID: 557594147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_33
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 404
+        width: 93
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f43fb791df7c94e80cb3511d319bff
+      internalID: 1841709073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_34
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 404
+        width: 93
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f7f014d647ed144a3fb19aa3c65e30
+      internalID: -1465702156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_35
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 404
+        width: 93
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de52c024c87ccc4e8055922ebe2daba
+      internalID: 531804306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_36
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 404
+        width: 93
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a559d2eb89ddd64f975e9878c335c45
+      internalID: 1872588533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_37
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 404
+        width: 93
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9d311286078e6742bfb56dc21da4f4e
+      internalID: -2132049451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_38
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 404
+        width: 93
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f702daa17d31d84e93d5634dfe74f46
+      internalID: 572924539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_39
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 403
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a72291f52025a488bca2c839dbf537
+      internalID: 326506343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_40
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 274
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135885fcc706d7044ab08dba8e0d0fe4
+      internalID: -2071733763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_41
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 274
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da971db76220fb4fb93f726ec4112ca
+      internalID: -1971663374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_42
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 273
+        width: 97
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc352bc0c02c8a443918f1c2c0121b51
+      internalID: 128470888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_43
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 273
+        width: 99
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d310e73f4d14946a9ed768927b0f17
+      internalID: 1602628109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_44
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 274
+        width: 100
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a138bde0c91bf34e849b0e9fb9d1008
+      internalID: 1327367997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_45
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 274
+        width: 100
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3a3aba61807e564f99dd78eb22533f0
+      internalID: 936166805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_46
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 275
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c62abe101d89c33439ce008f51599b7a
+      internalID: -1202053625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_47
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 276
+        width: 102
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d773e20b91fdc3849ad9ba74d323b11a
+      internalID: 1971636712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_48
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 148
+        width: 101
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3763f1232fd2f3341b26675ce04d838e
+      internalID: 1548212766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_49
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 149
+        width: 100
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19405e1c118ca9a47acad934acf71657
+      internalID: 1223362293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_50
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 149
+        width: 100
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f62a4a1654ba1f46af846ca450cd6fb
+      internalID: -1468402579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_51
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 149
+        width: 99
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10e669c3e792a64bb53208a10ef6b77
+      internalID: -1542064242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_52
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 149
+        width: 98
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401682b8ffa534b47bf92013568da9dc
+      internalID: -618589571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_53
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 149
+        width: 97
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18397b58f04e8e148802b6e71560599b
+      internalID: 1006631483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_54
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 149
+        width: 96
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 993c598e0aa27ad438ef7459752f4bed
+      internalID: -518343571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_55
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 149
+        width: 95
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c88f7895842d4349886b42125cf25cd
+      internalID: -1139572964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_56
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 21
+        width: 94
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d857db88f3d00c84499dda26a2fb6fa6
+      internalID: 184470952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_57
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 21
+        width: 93
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329a371a49ac5e046a477bb71173bc57
+      internalID: 471578572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_58
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 21
+        width: 92
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3dd8ea2eb802940896d218d4584064
+      internalID: -1272412294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_59
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 21
+        width: 92
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76aee53458da1c64997ba15494ea474d
+      internalID: -5408390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_60
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 20
+        width: 92
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163f23b97f0c625439ebd35bd100530b
+      internalID: 1572788688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_61
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 19
+        width: 92
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02009892441244f4faa3395bd61c6c91
+      internalID: -1778144494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_62
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 19
+        width: 92
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9bdcfbd1b7fd27448e63a16f5b520dd
+      internalID: 1568687669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleStdAtlas_1024_63
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 19
+        width: 91
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77614e07ef33f2b499ba2af1a3ba4420
+      internalID: -1593709582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      BubbleStdAtlas_1024_0: -1895677663
+      BubbleStdAtlas_1024_1: -2097398432
+      BubbleStdAtlas_1024_10: -1882973467
+      BubbleStdAtlas_1024_11: -478060983
+      BubbleStdAtlas_1024_12: -632390125
+      BubbleStdAtlas_1024_13: -1825202707
+      BubbleStdAtlas_1024_14: 2069036373
+      BubbleStdAtlas_1024_15: 889647068
+      BubbleStdAtlas_1024_16: -1853148525
+      BubbleStdAtlas_1024_17: 1850022767
+      BubbleStdAtlas_1024_18: 1678086697
+      BubbleStdAtlas_1024_19: 1231150786
+      BubbleStdAtlas_1024_2: -1319427866
+      BubbleStdAtlas_1024_20: -1364717741
+      BubbleStdAtlas_1024_21: -375311483
+      BubbleStdAtlas_1024_22: -1833369098
+      BubbleStdAtlas_1024_23: -1167119063
+      BubbleStdAtlas_1024_24: -1797583338
+      BubbleStdAtlas_1024_25: -1349306639
+      BubbleStdAtlas_1024_26: 1183766067
+      BubbleStdAtlas_1024_27: -1498867653
+      BubbleStdAtlas_1024_28: 1688753864
+      BubbleStdAtlas_1024_29: -575196662
+      BubbleStdAtlas_1024_3: -1343530904
+      BubbleStdAtlas_1024_30: -737082908
+      BubbleStdAtlas_1024_31: 1380226338
+      BubbleStdAtlas_1024_32: 557594147
+      BubbleStdAtlas_1024_33: 1841709073
+      BubbleStdAtlas_1024_34: -1465702156
+      BubbleStdAtlas_1024_35: 531804306
+      BubbleStdAtlas_1024_36: 1872588533
+      BubbleStdAtlas_1024_37: -2132049451
+      BubbleStdAtlas_1024_38: 572924539
+      BubbleStdAtlas_1024_39: 326506343
+      BubbleStdAtlas_1024_4: -1856595996
+      BubbleStdAtlas_1024_40: -2071733763
+      BubbleStdAtlas_1024_41: -1971663374
+      BubbleStdAtlas_1024_42: 128470888
+      BubbleStdAtlas_1024_43: 1602628109
+      BubbleStdAtlas_1024_44: 1327367997
+      BubbleStdAtlas_1024_45: 936166805
+      BubbleStdAtlas_1024_46: -1202053625
+      BubbleStdAtlas_1024_47: 1971636712
+      BubbleStdAtlas_1024_48: 1548212766
+      BubbleStdAtlas_1024_49: 1223362293
+      BubbleStdAtlas_1024_5: -1023112992
+      BubbleStdAtlas_1024_50: -1468402579
+      BubbleStdAtlas_1024_51: -1542064242
+      BubbleStdAtlas_1024_52: -618589571
+      BubbleStdAtlas_1024_53: 1006631483
+      BubbleStdAtlas_1024_54: -518343571
+      BubbleStdAtlas_1024_55: -1139572964
+      BubbleStdAtlas_1024_56: 184470952
+      BubbleStdAtlas_1024_57: 471578572
+      BubbleStdAtlas_1024_58: -1272412294
+      BubbleStdAtlas_1024_59: -5408390
+      BubbleStdAtlas_1024_6: -1407313549
+      BubbleStdAtlas_1024_60: 1572788688
+      BubbleStdAtlas_1024_61: -1778144494
+      BubbleStdAtlas_1024_62: 1568687669
+      BubbleStdAtlas_1024_63: -1593709582
+      BubbleStdAtlas_1024_7: -548937356
+      BubbleStdAtlas_1024_8: 2007000872
+      BubbleStdAtlas_1024_9: 1969332345
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
