@@ -9,6 +9,8 @@ public class CollisionHandler : MonoBehaviour
 
   private const int ATOMS_NECESSARY_TO_FORM_MOLECULE = 2;
 
+  private const float ATOMS_DISTANCE_TO_FORM_MOLECULE = 0.0225f;
+
   private Transform MainCameraTransform;
 
   private readonly Dictionary<string, GameObject> HidrogensByName = new();
@@ -97,10 +99,10 @@ public class CollisionHandler : MonoBehaviour
 
   private bool ShouldApproximateCustomHidrogen(GameObject customHidrogen)
   {
-    return Vector3.Distance(customHidrogen.transform.position, transform.position) >= 0.0225;
+    return Vector3.Distance(customHidrogen.transform.position, transform.position) >= ATOMS_DISTANCE_TO_FORM_MOLECULE;
   }
 
-  private void ApproximateTo(GameObject @object, Vector3 toPosition)
+  private void ApproximateTo(GameObject @object, Vector3 toPosition, float maxDistanceToGetClose = 0f)
   {
     if (ElapsedTimeByHidrogenName.ContainsKey(@object.name) == false)
     {
@@ -113,7 +115,14 @@ public class CollisionHandler : MonoBehaviour
 
     float easedValue = Transition.GetEasedValue(ElapsedTimeByHidrogenName[@object.name], Time.deltaTime);
 
-    @object.transform.position = Vector3.MoveTowards(@object.transform.position, toPosition, easedValue);
+    Vector3 currentPosition = @object.transform.position;
+    float distanceToTarget = Vector3.Distance(currentPosition, toPosition);
+
+    // Ensure the distance moved is no closer than max units from the target
+    float maxDistanceToMove = Mathf.Min(easedValue, distanceToTarget - maxDistanceToGetClose);
+    Vector3 newPosition = Vector3.MoveTowards(currentPosition, toPosition, maxDistanceToMove);
+
+    @object.transform.position = newPosition;
 
     ElapsedTimeByHidrogenName[@object.name] += Time.deltaTime;
   }
@@ -128,7 +137,7 @@ public class CollisionHandler : MonoBehaviour
     switch (command)
     {
       case AtomCommand.MoveToBond:
-        ApproximateTo(hidrogen, transform.position);
+        ApproximateTo(hidrogen, transform.position, ATOMS_DISTANCE_TO_FORM_MOLECULE);
         if (!ShouldApproximateCustomHidrogen(hidrogen))
         {
           ElapsedTimeByHidrogenName[hidrogen.name] = 0f;
