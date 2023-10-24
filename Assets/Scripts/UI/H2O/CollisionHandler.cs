@@ -9,8 +9,6 @@ public class CollisionHandler : MonoBehaviour
 
   private const int ATOMS_NECESSARY_TO_FORM_MOLECULE = 2;
 
-  private const float ATOMS_DISTANCE_TO_FORM_MOLECULE = 0.0225f;
-
   private Transform MainCameraTransform;
 
   private readonly Dictionary<string, GameObject> AtomsByName = new();
@@ -23,7 +21,9 @@ public class CollisionHandler : MonoBehaviour
 
   private GameObject Animation;
 
-  public Material AtomOnBondMaterial;
+  public Material HidrogenOnBondMaterial;
+
+  public Material SodiumOnBondMaterial;
 
   void Start()
   {
@@ -63,7 +63,7 @@ public class CollisionHandler : MonoBehaviour
   {
     if (other != null && !other.gameObject.CompareTag("Untagged") && !AtomsByName.ContainsKey(other.gameObject.tag))
     {
-      AtomsByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform.position, other.gameObject.tag, transform.parent.transform));
+      AtomsByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform, other.gameObject.tag, transform.parent.transform));
       RenderHandler.ChangeIncludingChildren(other.transform, false);
       CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToBond;
 
@@ -76,12 +76,15 @@ public class CollisionHandler : MonoBehaviour
     CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
   }
 
-  private GameObject IntantiateNewSphere(Vector3 position, string name, Transform parent)
+  private GameObject IntantiateNewSphere(Transform original, string name, Transform parent)
   {
     GameObject sphereModel = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-    sphereModel.GetComponent<Renderer>().material = AtomOnBondMaterial;
-    sphereModel.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-    GameObject sphere = Instantiate(sphereModel, position, transform.rotation, parent);
+    sphereModel.transform.localScale = new Vector3(original.localScale.x, original.localScale.y, original.localScale.z);
+
+    if (name.StartsWith("Hidrogen")) sphereModel.GetComponent<Renderer>().material = HidrogenOnBondMaterial;
+    else if (name.StartsWith("Sodium")) sphereModel.GetComponent<Renderer>().material = SodiumOnBondMaterial;
+
+    GameObject sphere = Instantiate(sphereModel, original.position, transform.rotation, parent);
     sphere.name = name;
 
     Destroy(sphereModel, 0f);
@@ -99,7 +102,7 @@ public class CollisionHandler : MonoBehaviour
 
   private bool ShouldApproximateCustomAtom(GameObject customAtom)
   {
-    return Vector3.Distance(customAtom.transform.position, transform.position) >= ATOMS_DISTANCE_TO_FORM_MOLECULE;
+    return Vector3.Distance(customAtom.transform.position, transform.position) >= Transition.GetAtomsDistanceToFormMolecule(customAtom.transform, transform);
   }
 
   private void ApproximateTo(GameObject @object, Vector3 toPosition, float maxDistanceToGetClose = 0f)
@@ -132,32 +135,32 @@ public class CollisionHandler : MonoBehaviour
     return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0.001;
   }
 
-  private void HandleAtomCommand(AtomCommand command, GameObject hidrogen)
+  private void HandleAtomCommand(AtomCommand command, GameObject atom)
   {
     switch (command)
     {
       case AtomCommand.MoveToBond:
-        ApproximateTo(hidrogen, transform.position, ATOMS_DISTANCE_TO_FORM_MOLECULE);
-        if (!ShouldApproximateCustomAtom(hidrogen))
+        ApproximateTo(atom, transform.position, Transition.GetAtomsDistanceToFormMolecule(atom.transform, transform));
+        if (!ShouldApproximateCustomAtom(atom))
         {
-          ElapsedTimeByAtomName[hidrogen.name] = 0f;
-          CommandByAtomName[hidrogen.name] = AtomCommand.KeepBonded;
+          ElapsedTimeByAtomName[atom.name] = 0f;
+          CommandByAtomName[atom.name] = AtomCommand.KeepBonded;
         }
         break;
       case AtomCommand.MoveToTarget:
-        Vector3 imageTargetObjectPosition = GameObject.FindWithTag(hidrogen.name).transform.position;
-        ApproximateTo(hidrogen, imageTargetObjectPosition);
+        Vector3 imageTargetObjectPosition = GameObject.FindWithTag(atom.name).transform.position;
+        ApproximateTo(atom, imageTargetObjectPosition);
 
-        if (HasCustomAtomReachedImageTarget(hidrogen))
+        if (HasCustomAtomReachedImageTarget(atom))
         {
-          ElapsedTimeByAtomName[hidrogen.name] = 0f;
-          CommandByAtomName[hidrogen.name] = AtomCommand.QueueToDestroy;
+          ElapsedTimeByAtomName[atom.name] = 0f;
+          CommandByAtomName[atom.name] = AtomCommand.QueueToDestroy;
 
           if (!HasAnyAtomBonded()) ChangeRenderOfChildrenTo(true);
         }
         break;
       case AtomCommand.QueueToDestroy:
-        DestroyBondedAtomsQueue.Enqueue(hidrogen.name);
+        DestroyBondedAtomsQueue.Enqueue(atom.name);
         break;
     }
   }
