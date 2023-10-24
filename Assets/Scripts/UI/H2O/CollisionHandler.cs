@@ -7,7 +7,7 @@ public class CollisionHandler : MonoBehaviour
 {
   private const float PROXIMITY_TRIGGER_DISTANCE = 0.3f;
 
-  private const int ATOMS_NECESSARY_TO_FORM_MOLECULE = 2;
+  public int ATOMS_NECESSARY_TO_FORM_MOLECULE;
 
   private Transform MainCameraTransform;
 
@@ -19,18 +19,20 @@ public class CollisionHandler : MonoBehaviour
 
   private readonly Dictionary<string, float> ElapsedTimeByAtomName = new();
 
-  private GameObject Animation;
+  private GameObject WaterAnimation;
 
   public Material HidrogenOnBondMaterial;
 
   public Material SodiumOnBondMaterial;
 
+  private Molecule Molecule;
+
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
 
-    Animation = GameObject.FindWithTag("WaterAnimation");
-    Animation.GetComponent<Renderer>().enabled = false;
+    WaterAnimation = GameObject.FindWithTag("WaterAnimation");
+    WaterAnimation.GetComponent<Renderer>().enabled = false;
   }
 
   // TODO - style - on camera proximity
@@ -61,7 +63,11 @@ public class CollisionHandler : MonoBehaviour
 
   private void OnTriggerEnter(Collider other)
   {
-    if (other != null && !other.gameObject.CompareTag("Untagged") && !AtomsByName.ContainsKey(other.gameObject.tag))
+    if (IsMoleculeFormed()) return;
+
+    if (other.gameObject.CompareTag("Untagged")) return;
+
+    if (other != null && !AtomsByName.ContainsKey(other.gameObject.tag))
     {
       AtomsByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform, other.gameObject.tag, transform.parent.transform));
       RenderHandler.ChangeIncludingChildren(other.transform, false);
@@ -145,6 +151,11 @@ public class CollisionHandler : MonoBehaviour
         {
           ElapsedTimeByAtomName[atom.name] = 0f;
           CommandByAtomName[atom.name] = AtomCommand.KeepBonded;
+
+          if (IsMoleculeFormed())
+          {
+            SetMoleculeType();
+          }
         }
         break;
       case AtomCommand.MoveToTarget:
@@ -179,7 +190,7 @@ public class CollisionHandler : MonoBehaviour
 
     foreach (GameObject hidrogenBonded in AtomsByName.Values)
     {
-      if (CommandByAtomName[hidrogenBonded.name] == AtomCommand.KeepBonded)
+      if (CommandByAtomName[hidrogenBonded.name] == AtomCommand.KeepBonded || CommandByAtomName[hidrogenBonded.name] == AtomCommand.MoveToBond)
       {
         atomsBonded++;
       }
@@ -207,11 +218,25 @@ public class CollisionHandler : MonoBehaviour
 
   private void HandleElementRendering()
   {
-    GetComponent<Renderer>().enabled = false;
-
     RenderHandler.ChangeSiblingsIncludingChildren(transform, false);
 
-    Animation.GetComponent<Renderer>().enabled = true;
+    if (Molecule == Molecule.H2O)
+    {
+      GetComponent<Renderer>().enabled = false;
+      WaterAnimation.GetComponent<Renderer>().enabled = true;
+    }
+    else if (Molecule == Molecule.NaCl)
+    {
+      GetComponent<Renderer>().material.color = Color.white;
+    }
+    else if (Molecule == Molecule.NaOH)
+    {
+      GetComponent<Renderer>().material.color = Color.blue;
+    }
+    else if (Molecule == Molecule.HCl)
+    {
+      GetComponent<Renderer>().material.color = Color.black;
+    }
   }
 
   private void HandleMoleculeRendering()
@@ -220,6 +245,37 @@ public class CollisionHandler : MonoBehaviour
 
     RenderHandler.ChangeSiblingsIncludingChildren(transform, true);
 
-    Animation.GetComponent<Renderer>().enabled = false;
+    WaterAnimation.GetComponent<Renderer>().enabled = false;
+  }
+
+  private void SetMoleculeType()
+  {
+    if (transform.name.StartsWith("Oxigen"))
+    {
+      if (AtomsByName.ContainsKey("Hidrogen1") && AtomsByName.ContainsKey("Hidrogen2"))
+      {
+        Molecule = Molecule.H2O;
+      }
+      else if (AtomsByName.ContainsKey("Sodium") && (AtomsByName.ContainsKey("Hidrogen1") || AtomsByName.ContainsKey("Hidrogen2")))
+      {
+        Molecule = Molecule.NaOH;
+      }
+    }
+    else if (transform.name.StartsWith("Chlorine"))
+    {
+      if (AtomsByName.ContainsKey("Sodium"))
+      {
+        Molecule = Molecule.NaCl;
+      }
+      else if (AtomsByName.ContainsKey("Hidrogen1") || AtomsByName.ContainsKey("Hidrogen2"))
+      {
+        Molecule = Molecule.HCl;
+      }
+    }
+  }
+
+  private void SetMoleculeType(Molecule moleculeType)
+  {
+    Molecule = moleculeType;
   }
 }
