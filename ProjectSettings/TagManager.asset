@@ -8,6 +8,7 @@ TagManager:
   - Hidrogen1
   - Hidrogen2
   - WaterAnimation
+  - Sodium
   layers:
   - Default
   - TransparentFX

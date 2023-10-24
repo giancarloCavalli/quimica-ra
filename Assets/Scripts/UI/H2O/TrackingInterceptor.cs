@@ -3,23 +3,25 @@ using Vuforia;
 
 public class TrackingInterceptor : MonoBehaviour
 {
-  public ImageTargetBehaviour HidrogenioTarget;
+  public ImageTargetBehaviour ImageTarget;
+
+  public GameObject ParentTargetWhenBonded;
 
   void Start()
   {
-    if (HidrogenioTarget != null)
+    if (ImageTarget != null)
     {
-      HidrogenioTarget.OnTargetStatusChanged += OnTargetStatusChanged;
+      ImageTarget.OnTargetStatusChanged += OnTargetStatusChanged;
     }
   }
 
   private void OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
   {
-    GameObject imageTargetChild = HidrogenioTarget.transform.GetChild(0).gameObject;
+    GameObject imageTargetChild = ImageTarget.transform.GetChild(0).gameObject;
     if (status.Status == Status.TRACKED)
     {
       // Debug.Log($"MY TAG IS {imageTargetChild.tag}");
-      foreach (Transform child in GameObject.FindWithTag("OxigenioTarget").transform)
+      foreach (Transform child in ParentTargetWhenBonded.transform)
       {
         if (imageTargetChild.tag == child.name)
         {

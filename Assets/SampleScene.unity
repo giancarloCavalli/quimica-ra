@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 84351104}
   m_Layer: 0
   m_Name: Sodium
-  m_TagString: Untagged
+  m_TagString: Sodium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 147803602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &147803605
@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 484200445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &484200448
@@ -2256,7 +2256,7 @@ GameObject:
   - component: {fileID: 788045410}
   - component: {fileID: 788045409}
   - component: {fileID: 788045408}
-  - component: {fileID: 788045407}
+  - component: {fileID: 788045411}
   m_Layer: 0
   m_Name: Eletron
   m_TagString: Untagged
@@ -2279,18 +2279,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1493626477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &788045407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788045405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &788045408
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2362,6 +2350,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788045405}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &788045411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788045405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &797169733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2778,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043351529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &1043351532
@@ -2896,7 +2896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050818340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &1050818343
@@ -2982,6 +2982,7 @@ GameObject:
   - component: {fileID: 1097953285}
   - component: {fileID: 1097953284}
   - component: {fileID: 1097953283}
+  - component: {fileID: 1097953286}
   m_Layer: 0
   m_Name: Chlorine
   m_TagString: Untagged
@@ -3027,7 +3028,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3083,6 +3084,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097953281}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1097953286
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097953281}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1133316753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,7 +3585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7207bbf6c47d0944bb66f86e8d7583a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HidrogenioTarget: {fileID: 87010831}
+  ImageTarget: {fileID: 87010831}
+  ParentTargetWhenBonded: {fileID: 672929160}
 --- !u!1 &1540883866
 GameObject:
   m_ObjectHideFlags: 0
@@ -3778,7 +3807,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1549204148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &1549204151
@@ -4418,7 +4447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7207bbf6c47d0944bb66f86e8d7583a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HidrogenioTarget: {fileID: 1746815424}
+  ImageTarget: {fileID: 1746815424}
+  ParentTargetWhenBonded: {fileID: 672929160}
 --- !u!1 &1966865077
 GameObject:
   m_ObjectHideFlags: 0
@@ -4463,7 +4493,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966865077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &1966865080
@@ -4581,7 +4611,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1980909713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e753fc186dc53fc4baa2a796b67a750a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b807c5413e6cd441b39a19b9e0f1d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &1980909716

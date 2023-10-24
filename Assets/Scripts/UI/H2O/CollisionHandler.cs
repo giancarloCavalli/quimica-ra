@@ -13,13 +13,13 @@ public class CollisionHandler : MonoBehaviour
 
   private Transform MainCameraTransform;
 
-  private readonly Dictionary<string, GameObject> HidrogensByName = new();
+  private readonly Dictionary<string, GameObject> AtomsByName = new();
 
-  private readonly Dictionary<string, AtomCommand> CommandByHidrogenName = new();
+  private readonly Dictionary<string, AtomCommand> CommandByAtomName = new();
 
-  private readonly Queue DestroyHidrogenQueue = new();
+  private readonly Queue DestroyBondedAtomsQueue = new();
 
-  private readonly Dictionary<string, float> ElapsedTimeByHidrogenName = new();
+  private readonly Dictionary<string, float> ElapsedTimeByAtomName = new();
 
   private GameObject Animation;
 
@@ -39,33 +39,33 @@ public class CollisionHandler : MonoBehaviour
   // TODO - style - make atoms go to opposite poles when forming molecules
   void Update()
   {
-    lock (HidrogensByName)
+    lock (AtomsByName)
     {
       // refactor - make a queue of Maps (string hidrogenName, Commmand command) for commands and iterate through it
-      foreach (GameObject hidrogen in HidrogensByName.Values)
+      foreach (GameObject atom in AtomsByName.Values)
       {
         // Debug.Log($"Executing {CommandByHidrogenName[hidrogen.name]} for hidrogen {hidrogen.name}");
-        HandleAtomCommand(CommandByHidrogenName[hidrogen.name], hidrogen);
+        HandleAtomCommand(CommandByAtomName[atom.name], atom);
       }
 
       Action renderAction = ShouldShowElement() ? new Action(HandleElementRendering) : new Action(HandleMoleculeRendering);
       renderAction.Invoke();
 
-      while (DestroyHidrogenQueue.Count > 0)
+      while (DestroyBondedAtomsQueue.Count > 0)
       {
-        string hidrogenName = (string)DestroyHidrogenQueue.Dequeue();
-        DestroyAtom(hidrogenName);
+        string atomName = (string)DestroyBondedAtomsQueue.Dequeue();
+        DestroyAtom(atomName);
       }
     }
   }
 
   private void OnTriggerEnter(Collider other)
   {
-    if (other != null && !other.gameObject.CompareTag("Untagged") && !HidrogensByName.ContainsKey(other.gameObject.tag))
+    if (other != null && !other.gameObject.CompareTag("Untagged") && !AtomsByName.ContainsKey(other.gameObject.tag))
     {
-      HidrogensByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform.position, other.gameObject.tag, GameObject.FindWithTag("OxigenioTarget").transform));
+      AtomsByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform.position, other.gameObject.tag, transform.parent.transform));
       RenderHandler.ChangeIncludingChildren(other.transform, false);
-      CommandByHidrogenName[other.gameObject.tag] = AtomCommand.MoveToBond;
+      CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToBond;
 
       ChangeRenderOfChildrenTo(false);
     }
@@ -73,7 +73,7 @@ public class CollisionHandler : MonoBehaviour
 
   private void OnTriggerExit(Collider other)
   {
-    CommandByHidrogenName[other.gameObject.tag] = AtomCommand.MoveToTarget;
+    CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
   }
 
   private GameObject IntantiateNewSphere(Vector3 position, string name, Transform parent)
@@ -92,28 +92,28 @@ public class CollisionHandler : MonoBehaviour
   private void DestroyAtom(string atomName)
   {
     RenderHandler.ChangeIncludingChildren(GameObject.FindWithTag(atomName).transform, true);
-    GameObject hidrogen = HidrogensByName[atomName];
-    HidrogensByName.Remove(atomName);
-    Destroy(hidrogen, 0f);
+    GameObject atom = AtomsByName[atomName];
+    AtomsByName.Remove(atomName);
+    Destroy(atom, 0f);
   }
 
-  private bool ShouldApproximateCustomHidrogen(GameObject customHidrogen)
+  private bool ShouldApproximateCustomAtom(GameObject customAtom)
   {
-    return Vector3.Distance(customHidrogen.transform.position, transform.position) >= ATOMS_DISTANCE_TO_FORM_MOLECULE;
+    return Vector3.Distance(customAtom.transform.position, transform.position) >= ATOMS_DISTANCE_TO_FORM_MOLECULE;
   }
 
   private void ApproximateTo(GameObject @object, Vector3 toPosition, float maxDistanceToGetClose = 0f)
   {
-    if (ElapsedTimeByHidrogenName.ContainsKey(@object.name) == false)
+    if (ElapsedTimeByAtomName.ContainsKey(@object.name) == false)
     {
-      ElapsedTimeByHidrogenName.Add(@object.name, 0f);
+      ElapsedTimeByAtomName.Add(@object.name, 0f);
     }
-    else if (ElapsedTimeByHidrogenName[@object.name] >= Transition.DurationInSeconds)
+    else if (ElapsedTimeByAtomName[@object.name] >= Transition.DurationInSeconds)
     {
-      ElapsedTimeByHidrogenName[@object.name] = 0f;
+      ElapsedTimeByAtomName[@object.name] = 0f;
     }
 
-    float easedValue = Transition.GetEasedValue(ElapsedTimeByHidrogenName[@object.name], Time.deltaTime);
+    float easedValue = Transition.GetEasedValue(ElapsedTimeByAtomName[@object.name], Time.deltaTime);
 
     Vector3 currentPosition = @object.transform.position;
     float distanceToTarget = Vector3.Distance(currentPosition, toPosition);
@@ -124,10 +124,10 @@ public class CollisionHandler : MonoBehaviour
 
     @object.transform.position = newPosition;
 
-    ElapsedTimeByHidrogenName[@object.name] += Time.deltaTime;
+    ElapsedTimeByAtomName[@object.name] += Time.deltaTime;
   }
 
-  private bool HasCustomHidrogenReachedImageTarget(GameObject @object)
+  private bool HasCustomAtomReachedImageTarget(GameObject @object)
   {
     return Vector3.Distance(@object.transform.position, GameObject.FindWithTag(@object.name).transform.position) <= 0.001;
   }
@@ -138,26 +138,26 @@ public class CollisionHandler : MonoBehaviour
     {
       case AtomCommand.MoveToBond:
         ApproximateTo(hidrogen, transform.position, ATOMS_DISTANCE_TO_FORM_MOLECULE);
-        if (!ShouldApproximateCustomHidrogen(hidrogen))
+        if (!ShouldApproximateCustomAtom(hidrogen))
         {
-          ElapsedTimeByHidrogenName[hidrogen.name] = 0f;
-          CommandByHidrogenName[hidrogen.name] = AtomCommand.KeepBonded;
+          ElapsedTimeByAtomName[hidrogen.name] = 0f;
+          CommandByAtomName[hidrogen.name] = AtomCommand.KeepBonded;
         }
         break;
       case AtomCommand.MoveToTarget:
         Vector3 imageTargetObjectPosition = GameObject.FindWithTag(hidrogen.name).transform.position;
         ApproximateTo(hidrogen, imageTargetObjectPosition);
 
-        if (HasCustomHidrogenReachedImageTarget(hidrogen))
+        if (HasCustomAtomReachedImageTarget(hidrogen))
         {
-          ElapsedTimeByHidrogenName[hidrogen.name] = 0f;
-          CommandByHidrogenName[hidrogen.name] = AtomCommand.QueueToDestroy;
+          ElapsedTimeByAtomName[hidrogen.name] = 0f;
+          CommandByAtomName[hidrogen.name] = AtomCommand.QueueToDestroy;
 
           if (!HasAnyAtomBonded()) ChangeRenderOfChildrenTo(true);
         }
         break;
       case AtomCommand.QueueToDestroy:
-        DestroyHidrogenQueue.Enqueue(hidrogen.name);
+        DestroyBondedAtomsQueue.Enqueue(hidrogen.name);
         break;
     }
   }
@@ -174,9 +174,9 @@ public class CollisionHandler : MonoBehaviour
   {
     int atomsBonded = 0;
 
-    foreach (GameObject hidrogenBonded in HidrogensByName.Values)
+    foreach (GameObject hidrogenBonded in AtomsByName.Values)
     {
-      if (CommandByHidrogenName[hidrogenBonded.name] == AtomCommand.KeepBonded)
+      if (CommandByAtomName[hidrogenBonded.name] == AtomCommand.KeepBonded)
       {
         atomsBonded++;
       }
@@ -187,7 +187,7 @@ public class CollisionHandler : MonoBehaviour
 
   private bool HasAnyAtomBonded()
   {
-    return CommandByHidrogenName.ContainsValue(AtomCommand.KeepBonded);
+    return CommandByAtomName.ContainsValue(AtomCommand.KeepBonded);
   }
 
   private bool ShouldShowElement()
