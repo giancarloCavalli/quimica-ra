@@ -27,6 +27,8 @@ public class CollisionHandler : MonoBehaviour
 
   private Molecule Molecule;
 
+  private bool IsShowingElement;
+
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
@@ -50,8 +52,17 @@ public class CollisionHandler : MonoBehaviour
         HandleAtomCommand(CommandByAtomName[atom.name], atom);
       }
 
-      Action renderAction = ShouldShowElement() ? new Action(HandleElementRendering) : new Action(HandleMoleculeRendering);
-      renderAction.Invoke();
+      if (ShouldShowElement())
+      {
+        HandleElementRendering();
+        IsShowingElement = true;
+      }
+      else
+      {
+        HandleMoleculeRendering();
+        IsShowingElement = false;
+      }
+
 
       while (DestroyBondedAtomsQueue.Count > 0)
       {
@@ -188,9 +199,9 @@ public class CollisionHandler : MonoBehaviour
   {
     int atomsBonded = 0;
 
-    foreach (GameObject hidrogenBonded in AtomsByName.Values)
+    foreach (GameObject atomBonded in AtomsByName.Values)
     {
-      if (CommandByAtomName[hidrogenBonded.name] == AtomCommand.KeepBonded || CommandByAtomName[hidrogenBonded.name] == AtomCommand.MoveToBond)
+      if (CommandByAtomName[atomBonded.name] == AtomCommand.KeepBonded || CommandByAtomName[atomBonded.name] == AtomCommand.MoveToBond)
       {
         atomsBonded++;
       }
@@ -241,11 +252,13 @@ public class CollisionHandler : MonoBehaviour
 
   private void HandleMoleculeRendering()
   {
-    GetComponent<Renderer>().enabled = true;
-
-    RenderHandler.ChangeSiblingsIncludingChildren(transform, true);
-
     WaterAnimation.GetComponent<Renderer>().enabled = false;
+
+    if (IsShowingElement)
+    {
+      GetComponent<Renderer>().enabled = true;
+      RenderHandler.ChangeSiblingsIncludingChildren(transform, true);
+    }
   }
 
   private void SetMoleculeType()
