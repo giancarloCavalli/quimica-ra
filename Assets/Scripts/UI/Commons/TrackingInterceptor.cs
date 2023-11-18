@@ -5,7 +5,9 @@ public class TrackingInterceptor : MonoBehaviour
 {
   public ImageTargetBehaviour ImageTarget;
 
-  public GameObject ParentTargetWhenBonded;
+  public GameObject OxigenTarget;
+
+  public GameObject ChlorineTarget;
 
   void Start()
   {
@@ -21,7 +23,17 @@ public class TrackingInterceptor : MonoBehaviour
     if (status.Status == Status.TRACKED)
     {
       // Debug.Log($"MY TAG IS {imageTargetChild.tag}");
-      foreach (Transform child in ParentTargetWhenBonded.transform)
+
+      foreach (Transform child in OxigenTarget.transform)
+      {
+        if (imageTargetChild.tag == child.name)
+        {
+          // Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
+          RenderHandler.ChangeIncludingChildren(imageTargetChild.transform, false);
+        }
+      }
+
+      foreach (Transform child in ChlorineTarget.transform)
       {
         if (imageTargetChild.tag == child.name)
         {
@@ -31,7 +43,4 @@ public class TrackingInterceptor : MonoBehaviour
       }
     }
   }
-
-  void Update()
-  { }
 }

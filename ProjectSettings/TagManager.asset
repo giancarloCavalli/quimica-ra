@@ -9,6 +9,7 @@ TagManager:
   - Hidrogen2
   - WaterAnimation
   - Sodium
+  - CardPlane
   layers:
   - Default
   - TransparentFX

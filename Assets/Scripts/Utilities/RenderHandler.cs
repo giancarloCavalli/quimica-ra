@@ -21,7 +21,7 @@ public static class RenderHandler
     }
   }
 
-  public static void ChangeSiblingsIncludingChildren(Transform objectTransform, bool shouldRender)
+  public static void ChangeSiblingsIncludingChildren(Transform objectTransform, bool shouldRender, string tagToBeIgnored = "")
   {
     if (objectTransform.parent == null)
     {
@@ -30,7 +30,7 @@ public static class RenderHandler
 
     foreach (Transform child in objectTransform.parent)
     {
-      if (child != objectTransform)
+      if (child != objectTransform && !child.CompareTag(tagToBeIgnored))
       {
         ChangeIncludingChildren(child, shouldRender);
       }

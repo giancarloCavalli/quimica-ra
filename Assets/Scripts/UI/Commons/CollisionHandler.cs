@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,7 +75,7 @@ public class CollisionHandler : MonoBehaviour
   {
     if (IsMoleculeFormed()) return;
 
-    if (other.gameObject.CompareTag("Untagged")) return;
+    if (other.gameObject.CompareTag("Untagged") || other.gameObject.CompareTag("CardPlane")) return;
 
     if (other != null && !AtomsByName.ContainsKey(other.gameObject.tag))
     {
@@ -229,7 +228,7 @@ public class CollisionHandler : MonoBehaviour
 
   private void HandleElementRendering()
   {
-    RenderHandler.ChangeSiblingsIncludingChildren(transform, false);
+    RenderHandler.ChangeSiblingsIncludingChildren(transform, false, "CardPlane");
 
     if (Molecule == Molecule.H2O)
     {
@@ -238,15 +237,15 @@ public class CollisionHandler : MonoBehaviour
     }
     else if (Molecule == Molecule.NaCl)
     {
-      GetComponent<Renderer>().material.color = Color.white;
+      // GetComponent<Renderer>().material.color = Color.white;
     }
     else if (Molecule == Molecule.NaOH)
     {
-      GetComponent<Renderer>().material.color = Color.blue;
+      // GetComponent<Renderer>().material.color = Color.blue;
     }
     else if (Molecule == Molecule.HCl)
     {
-      GetComponent<Renderer>().material.color = Color.black;
+      // GetComponent<Renderer>().material.color = Color.black;
     }
   }
 
