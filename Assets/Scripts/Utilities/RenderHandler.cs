@@ -46,4 +46,12 @@ public static class RenderHandler
     ChangeSelfIncludingChildren(objectTransform, shouldRender);
     ChangeSiblingsIncludingChildren(objectTransform, shouldRender);
   }
+
+  public static void ChangeChildrenIncludingChildren(Transform objectTransform, bool shouldRender)
+  {
+    foreach (Transform child in objectTransform)
+    {
+      ChangeSelfIncludingChildren(child, shouldRender);
+    }
+  }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vuforia;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -28,16 +29,21 @@ public class CollisionHandler : MonoBehaviour
 
   private bool IsShowingElement;
 
+  private ObserverBehaviour mObserverBehaviour;
+
   void Start()
   {
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
 
     WaterAnimation = GameObject.FindWithTag("WaterAnimation");
     WaterAnimation.GetComponent<Renderer>().enabled = false;
+
+    mObserverBehaviour = transform.parent.GetComponent<ObserverBehaviour>();
+    mObserverBehaviour.OnTargetStatusChanged += OnTargetStatusChanged;
   }
 
   // TODO - style - on camera proximity
-  // TODO - fix - create unique marcador for each atom and render its image target on the card
+  // TODO - style - keep eletrons rotating in a fixed axis
   // TODO - style - change border when forming molecule
   // TODO - style - make atoms go to opposite poles when forming molecules
   void Update()
@@ -83,7 +89,7 @@ public class CollisionHandler : MonoBehaviour
       RenderHandler.ChangeSelfIncludingChildren(other.transform, false);
       CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToBond;
 
-      ChangeRenderOfChildrenTo(false);
+      RenderHandler.ChangeChildrenIncludingChildren(transform, false);
     }
   }
 
@@ -177,20 +183,12 @@ public class CollisionHandler : MonoBehaviour
           ElapsedTimeByAtomName[atom.name] = 0f;
           CommandByAtomName[atom.name] = AtomCommand.QueueToDestroy;
 
-          if (!HasAnyAtomBonded()) ChangeRenderOfChildrenTo(true);
+          if (!HasAnyAtomBonded()) RenderHandler.ChangeChildrenIncludingChildren(transform, true);
         }
         break;
       case AtomCommand.QueueToDestroy:
         DestroyBondedAtomsQueue.Enqueue(atom.name);
         break;
-    }
-  }
-
-  private void ChangeRenderOfChildrenTo(bool shouldRender)
-  {
-    foreach (Transform child in transform)
-    {
-      RenderHandler.ChangeSelfIncludingChildren(child, shouldRender);
     }
   }
 
@@ -286,8 +284,14 @@ public class CollisionHandler : MonoBehaviour
     }
   }
 
-  private void SetMoleculeType(Molecule moleculeType)
+  private void OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
   {
-    Molecule = moleculeType;
+    if (status.Status == Status.TRACKED)
+    {
+      if (AtomsByName.Count > 0)
+      {
+        RenderHandler.ChangeChildrenIncludingChildren(transform, false);
+      }
+    }
   }
 }
