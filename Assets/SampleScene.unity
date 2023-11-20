@@ -237,7 +237,6 @@ GameObject:
   - component: {fileID: 84351106}
   - component: {fileID: 84351105}
   - component: {fileID: 84351104}
-  - component: {fileID: 84351107}
   m_Layer: 0
   m_Name: Sodium
   m_TagString: Sodium
@@ -333,21 +332,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84351102}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &84351107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84351102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7207bbf6c47d0944bb66f86e8d7583a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ImageTarget: {fileID: 1848406488}
-  OxigenTarget: {fileID: 672929160}
-  ChlorineTarget: {fileID: 2053292045}
 --- !u!1 &87010829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4680,6 +4664,7 @@ GameObject:
   - component: {fileID: 1848406488}
   - component: {fileID: 1848406487}
   - component: {fileID: 1848406490}
+  - component: {fileID: 1848406491}
   m_Layer: 0
   m_Name: SodiumTarget
   m_TagString: Untagged
@@ -4694,7 +4679,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848406486}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
@@ -4757,7 +4742,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1848406490}
+  mPreview: {fileID: 1848406491}
 --- !u!4 &1848406489
 Transform:
   m_ObjectHideFlags: 0
@@ -4776,6 +4761,20 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1848406490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848406486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c592c8193b9db984387c7d7d3a203894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OxigenTarget: {fileID: 672929160}
+  ChlorineTarget: {fileID: 2053292045}
+--- !u!114 &1848406491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

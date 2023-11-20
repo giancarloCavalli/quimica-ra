@@ -80,7 +80,7 @@ public class CollisionHandler : MonoBehaviour
     if (other != null && !AtomsByName.ContainsKey(other.gameObject.tag))
     {
       AtomsByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform, other.gameObject.tag, transform.parent.transform));
-      RenderHandler.ChangeIncludingChildren(other.transform, false);
+      RenderHandler.ChangeSelfIncludingChildren(other.transform, false);
       CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToBond;
 
       ChangeRenderOfChildrenTo(false);
@@ -110,7 +110,7 @@ public class CollisionHandler : MonoBehaviour
 
   private void DestroyAtom(string atomName)
   {
-    RenderHandler.ChangeIncludingChildren(GameObject.FindWithTag(atomName).transform, true);
+    RenderHandler.ChangeSelfIncludingChildren(GameObject.FindWithTag(atomName).transform, true);
     GameObject atom = AtomsByName[atomName];
     AtomsByName.Remove(atomName);
     Destroy(atom, 0f);
@@ -190,7 +190,7 @@ public class CollisionHandler : MonoBehaviour
   {
     foreach (Transform child in transform)
     {
-      RenderHandler.ChangeIncludingChildren(child, shouldRender);
+      RenderHandler.ChangeSelfIncludingChildren(child, shouldRender);
     }
   }
 

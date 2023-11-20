@@ -29,7 +29,7 @@ public class TrackingInterceptor : MonoBehaviour
         if (imageTargetChild.tag == child.name)
         {
           // Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
-          RenderHandler.ChangeIncludingChildren(imageTargetChild.transform, false);
+          RenderHandler.ChangeSelfIncludingChildren(imageTargetChild.transform, false);
         }
       }
 
@@ -38,7 +38,7 @@ public class TrackingInterceptor : MonoBehaviour
         if (imageTargetChild.tag == child.name)
         {
           // Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
-          RenderHandler.ChangeIncludingChildren(imageTargetChild.transform, false);
+          RenderHandler.ChangeSelfIncludingChildren(imageTargetChild.transform, false);
         }
       }
     }

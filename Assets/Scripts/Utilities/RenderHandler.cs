@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class RenderHandler
 {
-  public static void ChangeIncludingChildren(Transform objectTransform, bool shouldRender)
+  public static void ChangeSelfIncludingChildren(Transform objectTransform, bool shouldRender)
   {
     if (objectTransform.TryGetComponent<Renderer>(out var renderer))
     {
@@ -17,7 +17,7 @@ public static class RenderHandler
 
     foreach (Transform child in objectTransform)
     {
-      ChangeIncludingChildren(child, shouldRender);
+      ChangeSelfIncludingChildren(child, shouldRender);
     }
   }
 
@@ -30,10 +30,20 @@ public static class RenderHandler
 
     foreach (Transform child in objectTransform.parent)
     {
-      if (child != objectTransform && !child.CompareTag(tagToBeIgnored))
+      if (child != objectTransform)
       {
-        ChangeIncludingChildren(child, shouldRender);
+        if (tagToBeIgnored != "" && child.CompareTag(tagToBeIgnored))
+        {
+          continue;
+        }
+        ChangeSelfIncludingChildren(child, shouldRender);
       }
     }
+  }
+
+  public static void ChangeSelfAndSiblingsIncludingChildren(Transform objectTransform, bool shouldRender)
+  {
+    ChangeSelfIncludingChildren(objectTransform, shouldRender);
+    ChangeSiblingsIncludingChildren(objectTransform, shouldRender);
   }
 }
