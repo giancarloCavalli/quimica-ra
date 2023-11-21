@@ -27,13 +27,15 @@ public class StatusEventHandler : MonoBehaviour
     {
       // Debug.Log($"MY TAG IS {imageTargetChild.tag}");
       RenderHandler.ChangeSiblingsIncludingChildren(imageTargetChild.transform, true);
+      bool shouldRender = true;
 
       foreach (Transform child in OxigenTarget.transform)
       {
         if (imageTargetChild.tag == child.name)
         {
           // Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
-          RenderHandler.ChangeSelfIncludingChildren(imageTargetChild.transform, false);
+          shouldRender = false;
+          continue;
         }
       }
 
@@ -42,9 +44,12 @@ public class StatusEventHandler : MonoBehaviour
         if (imageTargetChild.tag == child.name)
         {
           // Debug.Log($"Found clone. Hiding {imageTargetChild.tag}");
-          RenderHandler.ChangeSelfIncludingChildren(imageTargetChild.transform, false);
+          shouldRender = false;
+          continue;
         }
       }
+
+      RenderHandler.ChangeSelfIncludingChildren(imageTargetChild.transform, shouldRender);
     }
 
     else

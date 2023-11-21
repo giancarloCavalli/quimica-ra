@@ -253,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 84351102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0.0017}
+  m_LocalPosition: {x: 0, y: 0.025, z: -0.035}
   m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 87010831}
   - component: {fileID: 87010830}
   - component: {fileID: 87010833}
+  - component: {fileID: 87010834}
   m_Layer: 0
   m_Name: HidrogenTarget2
   m_TagString: Untagged
@@ -358,7 +359,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87010829}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
@@ -421,7 +422,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 87010833}
+  mPreview: {fileID: 87010834}
 --- !u!4 &87010832
 Transform:
   m_ObjectHideFlags: 0
@@ -435,11 +436,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1347669261}
   - {fileID: 1493626477}
+  - {fileID: 1347669261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &87010833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87010829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c592c8193b9db984387c7d7d3a203894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OxigenTarget: {fileID: 672929160}
+  ChlorineTarget: {fileID: 2053292045}
+--- !u!114 &87010834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2006,14 +2021,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Oxigenio
+  mTrackableName: oxigenio-marcador
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.644628
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 0.08512563
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: afd7ec868f78c92498dac70b731f814e, type: 3}
+  mWidth: 0.049
+  mHeight: 0.049
+  mRuntimeTexture: {fileID: 2800000, guid: f3a4ae1aaf914884885dea1c316383a2, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -2123,7 +2138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 672929162}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Oxigenio
+  mTargetName: oxigenio-marcador
   mDatasetName: 
   mCastedBehaviour: {fileID: 672929162}
   mMeshFilter: {fileID: 0}
@@ -2392,7 +2407,7 @@ Transform:
   m_GameObject: {fileID: 791868125}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.002, z: -0.005300004}
+  m_LocalPosition: {x: 0, y: 0.002, z: -0.042}
   m_LocalScale: {x: 0.009, y: 0.0139999995, z: 0.0145}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3443,7 +3458,7 @@ Transform:
   m_GameObject: {fileID: 1117456200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.002, z: -0.006}
+  m_LocalPosition: {x: 0, y: 0.002, z: -0.042}
   m_LocalScale: {x: 0.009, y: 0.0139999995, z: 0.0145}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3921,7 +3936,6 @@ GameObject:
   - component: {fileID: 1493626480}
   - component: {fileID: 1493626479}
   - component: {fileID: 1493626478}
-  - component: {fileID: 1493626481}
   m_Layer: 0
   m_Name: Hidrogen
   m_TagString: Hidrogen2
@@ -4017,21 +4031,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493626476}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1493626481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493626476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7207bbf6c47d0944bb66f86e8d7583a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ImageTarget: {fileID: 87010831}
-  OxigenTarget: {fileID: 672929160}
-  ChlorineTarget: {fileID: 2053292045}
 --- !u!1 &1540883866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4063,7 +4062,7 @@ Transform:
   m_GameObject: {fileID: 1540883866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0.0009999983}
+  m_LocalPosition: {x: 0, y: 0.025, z: -0.035}
   m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4444,6 +4443,7 @@ GameObject:
   - component: {fileID: 1746815424}
   - component: {fileID: 1746815423}
   - component: {fileID: 1746815426}
+  - component: {fileID: 1746815427}
   m_Layer: 0
   m_Name: HidrogenTarget1
   m_TagString: Untagged
@@ -4458,7 +4458,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746815422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
@@ -4510,18 +4510,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Hidrogenio
+  mTrackableName: hidrogenio1-marcador
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.644628
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 0.08512563
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: f856ad017cd06cd4a9dfa735f2d56346, type: 3}
+  mWidth: 0.049
+  mHeight: 0.049
+  mRuntimeTexture: {fileID: 2800000, guid: 36da1913e3aa6b34896b51507764b679, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1746815426}
+  mPreview: {fileID: 1746815427}
 --- !u!4 &1746815425
 Transform:
   m_ObjectHideFlags: 0
@@ -4548,12 +4548,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746815422}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c592c8193b9db984387c7d7d3a203894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OxigenTarget: {fileID: 672929160}
+  ChlorineTarget: {fileID: 2053292045}
+--- !u!114 &1746815427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746815422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1746815424}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Hidrogenio
+  mTargetName: hidrogenio1-marcador
   mDatasetName: 
   mCastedBehaviour: {fileID: 1746815424}
   mMeshFilter: {fileID: 0}
@@ -4731,14 +4745,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Sodio
+  mTrackableName: sodio-marcador
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.6404958
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 0.08534005
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: 3949af6462970ac46b5ba1a2a459e4fa, type: 3}
+  mWidth: 0.049
+  mHeight: 0.049
+  mRuntimeTexture: {fileID: 2800000, guid: 78e058194e086ad4dba2db6384afcc29, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -4788,7 +4802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1848406488}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Sodio
+  mTargetName: sodio-marcador
   mDatasetName: 
   mCastedBehaviour: {fileID: 1848406488}
   mMeshFilter: {fileID: 0}
@@ -4805,7 +4819,6 @@ GameObject:
   - component: {fileID: 1937070797}
   - component: {fileID: 1937070796}
   - component: {fileID: 1937070795}
-  - component: {fileID: 1937070798}
   m_Layer: 0
   m_Name: Hidrogen
   m_TagString: Hidrogen1
@@ -4822,7 +4835,7 @@ Transform:
   m_GameObject: {fileID: 1937070793}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0.0035}
+  m_LocalPosition: {x: 0, y: 0.025, z: -0.035}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4901,21 +4914,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937070793}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1937070798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937070793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7207bbf6c47d0944bb66f86e8d7583a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ImageTarget: {fileID: 1746815424}
-  OxigenTarget: {fileID: 672929160}
-  ChlorineTarget: {fileID: 2053292045}
 --- !u!1 &1966865077
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,7 +5178,7 @@ Transform:
   m_GameObject: {fileID: 2039636185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.002, z: -0.0034999996}
+  m_LocalPosition: {x: 0, y: 0.002, z: -0.042}
   m_LocalScale: {x: 0.009, y: 0.014, z: 0.0145}
   m_ConstrainProportionsScale: 0
   m_Children: []

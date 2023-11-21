@@ -54,4 +54,14 @@ public static class RenderHandler
       ChangeSelfIncludingChildren(child, shouldRender);
     }
   }
+
+  public static bool GetRendererEnabledValue(Transform objectTransform)
+  {
+    if (objectTransform.TryGetComponent<Renderer>(out var renderer))
+    {
+      return renderer.enabled;
+    }
+
+    return false;
+  }
 }

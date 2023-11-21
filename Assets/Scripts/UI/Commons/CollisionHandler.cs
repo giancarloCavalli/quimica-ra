@@ -81,6 +81,8 @@ public class CollisionHandler : MonoBehaviour
   {
     if (IsMoleculeFormed()) return;
 
+    if (RenderHandler.GetRendererEnabledValue(other.transform) == false) return;
+
     if (other.gameObject.CompareTag("Untagged") || other.gameObject.CompareTag("CardPlane")) return;
 
     if (other != null && !AtomsByName.ContainsKey(other.gameObject.tag))
