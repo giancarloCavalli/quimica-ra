@@ -13,6 +13,8 @@ public class StatusEventHandler : MonoBehaviour
 
   void Awake()
   {
+    RenderHandler.ChangeChildrenIncludingChildren(transform, false);
+
     if (TryGetComponent<ObserverBehaviour>(out var mObserverBehaviour))
       mObserverBehaviour.OnTargetStatusChanged += OnStatusChanged;
 
