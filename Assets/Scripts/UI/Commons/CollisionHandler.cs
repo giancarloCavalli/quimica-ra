@@ -77,17 +77,17 @@ public class CollisionHandler : MonoBehaviour
   {
     if (IsMoleculeFormed()) return;
 
-    if (RenderHandler.GetRendererEnabledValue(other.transform) == false) return;
+    if (RenderHelper.GetRendererEnabledValue(other.transform) == false) return;
 
     if (other.gameObject.CompareTag("Untagged") || other.gameObject.CompareTag("CardPlane")) return;
 
     if (other != null && !AtomsByName.ContainsKey(other.gameObject.tag))
     {
       AtomsByName.Add(other.gameObject.tag, IntantiateNewSphere(other.transform, other.gameObject.tag, transform.parent.transform));
-      RenderHandler.ChangeSelfIncludingChildren(other.transform, false);
+      RenderHelper.ChangeSelfIncludingChildren(other.transform, false);
       CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToBond;
 
-      RenderHandler.ChangeChildrenIncludingChildren(transform, false);
+      RenderHelper.ChangeChildrenIncludingChildren(transform, false);
     }
   }
 
@@ -114,7 +114,7 @@ public class CollisionHandler : MonoBehaviour
 
   private void DestroyAtom(string atomName)
   {
-    RenderHandler.ChangeSelfIncludingChildren(GameObject.FindWithTag(atomName).transform, true);
+    RenderHelper.ChangeSelfIncludingChildren(GameObject.FindWithTag(atomName).transform, true);
     GameObject atom = AtomsByName[atomName];
     AtomsByName.Remove(atomName);
     Destroy(atom, 0f);
@@ -181,7 +181,7 @@ public class CollisionHandler : MonoBehaviour
           ElapsedTimeByAtomName[atom.name] = 0f;
           CommandByAtomName[atom.name] = AtomCommand.QueueToDestroy;
 
-          if (!HasAnyAtomBonded()) RenderHandler.ChangeChildrenIncludingChildren(transform, true);
+          if (!HasAnyAtomBonded()) RenderHelper.ChangeChildrenIncludingChildren(transform, true);
         }
         break;
       case AtomCommand.QueueToDestroy:
@@ -224,7 +224,7 @@ public class CollisionHandler : MonoBehaviour
 
   private void HandleElementRendering()
   {
-    RenderHandler.ChangeSiblingsIncludingChildren(transform, false, "CardPlane");
+    RenderHelper.ChangeSiblingsIncludingChildren(transform, false, "CardPlane");
 
     if (Molecule == Molecule.H2O)
     {
@@ -252,7 +252,7 @@ public class CollisionHandler : MonoBehaviour
     if (IsShowingElement)
     {
       GetComponent<Renderer>().enabled = true;
-      RenderHandler.ChangeSiblingsIncludingChildren(transform, true);
+      RenderHelper.ChangeSiblingsIncludingChildren(transform, true);
     }
   }
 

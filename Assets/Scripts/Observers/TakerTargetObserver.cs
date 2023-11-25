@@ -11,7 +11,7 @@ public class TakerTargetObserver : MonoBehaviour
 
   void Awake()
   {
-    RenderHandler.ChangeChildrenIncludingChildren(transform, false);
+    RenderHelper.ChangeChildrenIncludingChildren(transform, false);
 
     if (TryGetComponent<ObserverBehaviour>(out var mObserverBehaviour))
       mObserverBehaviour.OnTargetStatusChanged += OnStatusChanged;
@@ -46,18 +46,18 @@ public class TakerTargetObserver : MonoBehaviour
   {
     GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
     imageTargetChild.GetComponent<Renderer>().enabled = true;
-    RenderHandler.ChangeSiblingsIncludingChildren(imageTargetChild.transform, true);
+    RenderHelper.ChangeSiblingsIncludingChildren(imageTargetChild.transform, true);
   }
 
   private void RenderWithEletrons()
   {
     GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
-    RenderHandler.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, true);
+    RenderHelper.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, true);
   }
 
   private void HideAll()
   {
     GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
-    RenderHandler.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, false);
+    RenderHelper.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, false);
   }
 }

@@ -13,7 +13,7 @@ public class GiverTargetObserver : MonoBehaviour
 
   void Awake()
   {
-    RenderHandler.ChangeChildrenIncludingChildren(transform, false);
+    RenderHelper.ChangeChildrenIncludingChildren(transform, false);
 
     if (TryGetComponent<ObserverBehaviour>(out var mObserverBehaviour))
       mObserverBehaviour.OnTargetStatusChanged += OnStatusChanged;
@@ -28,7 +28,7 @@ public class GiverTargetObserver : MonoBehaviour
     if (status.Status == Status.TRACKED)
     {
       // Debug.Log($"MY TAG IS {imageTargetChild.tag}");
-      RenderHandler.ChangeSiblingsIncludingChildren(imageTargetChild.transform, true);
+      RenderHelper.ChangeSiblingsIncludingChildren(imageTargetChild.transform, true);
       bool shouldRender = true;
 
       foreach (Transform child in OxigenTarget.transform)
@@ -51,12 +51,12 @@ public class GiverTargetObserver : MonoBehaviour
         }
       }
 
-      RenderHandler.ChangeSelfIncludingChildren(imageTargetChild.transform, shouldRender);
+      RenderHelper.ChangeSelfIncludingChildren(imageTargetChild.transform, shouldRender);
     }
 
     else
     {
-      RenderHandler.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, false);
+      RenderHelper.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, false);
     }
   }
   void OnDestroy()

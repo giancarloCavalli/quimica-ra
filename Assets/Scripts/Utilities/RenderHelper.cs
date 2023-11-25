@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public static class RenderHandler
+public static class RenderHelper
 {
   public static void ChangeSelfIncludingChildren(Transform objectTransform, bool shouldRender)
   {
