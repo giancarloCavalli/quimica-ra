@@ -1,7 +1,7 @@
 using UnityEngine;
 using Vuforia;
 
-public class StatusEventHandler : MonoBehaviour
+public class GiverCustomObserver : MonoBehaviour
 {
   private readonly ObserverBehaviour mObserverBehaviour;
 

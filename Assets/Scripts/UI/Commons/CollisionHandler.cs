@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Vuforia;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class CollisionHandler : MonoBehaviour
 
   private Transform MainCameraTransform;
 
-  private readonly Dictionary<string, GameObject> AtomsByName = new();
+  public Dictionary<string, GameObject> AtomsByName { get; private set; }
 
   private readonly Dictionary<string, AtomCommand> CommandByAtomName = new();
 
@@ -29,17 +28,14 @@ public class CollisionHandler : MonoBehaviour
 
   private bool IsShowingElement;
 
-  private ObserverBehaviour mObserverBehaviour;
-
   void Start()
   {
+    AtomsByName = new Dictionary<string, GameObject>();
+
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
 
     WaterAnimation = GameObject.FindWithTag("WaterAnimation");
     WaterAnimation.GetComponent<Renderer>().enabled = false;
-
-    mObserverBehaviour = transform.parent.GetComponent<ObserverBehaviour>();
-    mObserverBehaviour.OnTargetStatusChanged += OnTargetStatusChanged;
   }
 
   // TODO - style - on camera proximity
@@ -209,7 +205,7 @@ public class CollisionHandler : MonoBehaviour
     return atomsBonded >= ATOMS_NECESSARY_TO_FORM_MOLECULE;
   }
 
-  private bool HasAnyAtomBonded()
+  public bool HasAnyAtomBonded()
   {
     return CommandByAtomName.ContainsValue(AtomCommand.KeepBonded);
   }
@@ -282,17 +278,6 @@ public class CollisionHandler : MonoBehaviour
       else if (AtomsByName.ContainsKey("Hidrogen1") || AtomsByName.ContainsKey("Hidrogen2"))
       {
         Molecule = Molecule.HCl;
-      }
-    }
-  }
-
-  private void OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
-  {
-    if (status.Status == Status.TRACKED)
-    {
-      if (AtomsByName.Count > 0)
-      {
-        RenderHandler.ChangeChildrenIncludingChildren(transform, false);
       }
     }
   }
