@@ -1,7 +1,7 @@
 using UnityEngine;
 using Vuforia;
 
-public class TakerCustomObserver : MonoBehaviour
+public class TakerTargetObserver : MonoBehaviour
 {
   private readonly ObserverBehaviour mObserverBehaviour;
 
