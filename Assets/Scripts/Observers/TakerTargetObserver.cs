@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using Vuforia;
 
@@ -24,22 +25,26 @@ public class TakerTargetObserver : MonoBehaviour
   {
     Debug.LogFormat("TargetName: {0}, Status is: {1}, StatusInfo is: {2}", behaviour.TargetName, status.Status, status.StatusInfo);
 
-    if (status.Status == Status.TRACKED)
+    switch (status.Status)
     {
-      if (mCollisionHandler.HasAnyAtomBonded())
-        RenderWithoutEletrons();
-      else
-        RenderWithEletrons();
+      case Status.TRACKED:
+        if (mCollisionHandler.HasAnyAtomBonded())
+          RenderWithoutEletrons();
+        else
+          RenderWithEletrons();
+        break;
+      case Status.NO_POSE:
+        HideAll();
+
+        foreach (string atomName in mCollisionHandler.CommandByAtomName.Keys.ToList())
+        {
+          mCollisionHandler.CommandByAtomName[atomName] = AtomCommand.QueueToDestroy;
+        }
+        break;
+      default:
+        HideAll();
+        break;
     }
-    else
-    {
-      HideAll();
-    }
-  }
-  void OnDestroy()
-  {
-    if (mObserverBehaviour != null)
-      mObserverBehaviour.OnTargetStatusChanged -= OnStatusChanged;
   }
 
   private void RenderWithoutEletrons()
@@ -59,5 +64,11 @@ public class TakerTargetObserver : MonoBehaviour
   {
     GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
     RenderHelper.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, false);
+  }
+
+  void OnDestroy()
+  {
+    if (mObserverBehaviour != null)
+      mObserverBehaviour.OnTargetStatusChanged -= OnStatusChanged;
   }
 }

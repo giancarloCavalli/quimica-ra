@@ -12,7 +12,7 @@ public class CollisionHandler : MonoBehaviour
 
   public Dictionary<string, GameObject> AtomsByName { get; private set; }
 
-  private readonly Dictionary<string, AtomCommand> CommandByAtomName = new();
+  public Dictionary<string, AtomCommand> CommandByAtomName { get; private set; }
 
   private readonly Queue DestroyBondedAtomsQueue = new();
 
@@ -31,6 +31,7 @@ public class CollisionHandler : MonoBehaviour
   void Start()
   {
     AtomsByName = new Dictionary<string, GameObject>();
+    CommandByAtomName = new Dictionary<string, AtomCommand>();
 
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
 
@@ -93,6 +94,8 @@ public class CollisionHandler : MonoBehaviour
 
   private void OnTriggerExit(Collider other)
   {
+    if (other.gameObject.CompareTag("Untagged") || other.gameObject.CompareTag("CardPlane")) return;
+
     CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
   }
 
@@ -226,22 +229,21 @@ public class CollisionHandler : MonoBehaviour
   {
     RenderHelper.ChangeSiblingsIncludingChildren(transform, false, "CardPlane");
 
-    if (Molecule == Molecule.H2O)
+    switch (Molecule)
     {
-      GetComponent<Renderer>().enabled = false;
-      WaterAnimation.GetComponent<Renderer>().enabled = true;
-    }
-    else if (Molecule == Molecule.NaCl)
-    {
-      // GetComponent<Renderer>().material.color = Color.white;
-    }
-    else if (Molecule == Molecule.NaOH)
-    {
-      // GetComponent<Renderer>().material.color = Color.blue;
-    }
-    else if (Molecule == Molecule.HCl)
-    {
-      // GetComponent<Renderer>().material.color = Color.black;
+      case Molecule.H2O:
+        GetComponent<Renderer>().enabled = false;
+        WaterAnimation.GetComponent<Renderer>().enabled = true;
+        break;
+      case Molecule.NaCl:
+        // GetComponent<Renderer>().material.color = Color.white;
+        break;
+      case Molecule.NaOH:
+        // GetComponent<Renderer>().material.color = Color.blue;
+        break;
+      case Molecule.HCl:
+        // GetComponent<Renderer>().material.color = Color.black;
+        break;
     }
   }
 
