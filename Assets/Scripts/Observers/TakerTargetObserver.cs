@@ -12,7 +12,7 @@ public class TakerTargetObserver : MonoBehaviour
 
   void Awake()
   {
-    RenderHelper.ChangeChildrenIncludingChildren(transform, false);
+    RenderHelper.ChangeChildrenIgnoringTags(transform, false, ElementTags.GetAll());
 
     if (TryGetComponent<ObserverBehaviour>(out var mObserverBehaviour))
       mObserverBehaviour.OnTargetStatusChanged += OnStatusChanged;
@@ -29,9 +29,12 @@ public class TakerTargetObserver : MonoBehaviour
     {
       case Status.TRACKED:
         if (mCollisionHandler.HasAnyAtomBonded())
-          RenderWithoutEletrons();
+        {
+          string[] tagsToIgnore = new string[] { "Oxigen", "Chlorine" };
+          ChangeAllRenderExcept(tagsToIgnore);
+        }
         else
-          RenderWithEletrons();
+          RenderAll();
         break;
       case Status.NO_POSE:
         HideAll();
@@ -47,23 +50,21 @@ public class TakerTargetObserver : MonoBehaviour
     }
   }
 
-  private void RenderWithoutEletrons()
+  private void ChangeAllRenderExcept(string[] tagsToIgnore)
   {
     GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
     imageTargetChild.GetComponent<Renderer>().enabled = true;
-    RenderHelper.ChangeSiblingsIncludingChildren(imageTargetChild.transform, true);
+    RenderHelper.ChangeChildrenIgnoringTags(transform, true, ElementTags.GetAll().Concat(tagsToIgnore).ToArray());
   }
 
-  private void RenderWithEletrons()
+  private void RenderAll()
   {
-    GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
-    RenderHelper.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, true);
+    RenderHelper.ChangeChildrenIgnoringTags(transform, true, ElementTags.GetAll());
   }
 
   private void HideAll()
   {
-    GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
-    RenderHelper.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, false);
+    RenderHelper.ChangeChildrenIgnoringTags(transform, false, ElementTags.GetAll());
   }
 
   void OnDestroy()

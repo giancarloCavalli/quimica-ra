@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
@@ -11,17 +12,15 @@ public class CollisionHandler : MonoBehaviour
   private Transform MainCameraTransform;
 
   public Dictionary<string, GameObject> AtomsByName { get; private set; }
-
   public Dictionary<string, AtomCommand> CommandByAtomName { get; private set; }
-
   private readonly Queue DestroyBondedAtomsQueue = new();
 
   private readonly Dictionary<string, float> ElapsedTimeByAtomName = new();
 
-  private GameObject WaterAnimation;
+  private Renderer WaterAnimationRenderer;
+  private Renderer HclElementPlaneRenderer;
 
   public Material HidrogenOnBondMaterial;
-
   public Material SodiumOnBondMaterial;
 
   private Molecule Molecule;
@@ -35,8 +34,11 @@ public class CollisionHandler : MonoBehaviour
 
     MainCameraTransform = GameObject.FindWithTag("MainCamera").transform;
 
-    WaterAnimation = GameObject.FindWithTag("WaterAnimation");
-    WaterAnimation.GetComponent<Renderer>().enabled = false;
+    WaterAnimationRenderer = GameObject.FindWithTag("WaterAnimation").GetComponent<Renderer>();
+    WaterAnimationRenderer.enabled = false;
+
+    HclElementPlaneRenderer = GameObject.FindWithTag("HCLElementPlane").GetComponent<Renderer>();
+    HclElementPlaneRenderer.enabled = false;
   }
 
   // TODO - style - on camera proximity
@@ -47,24 +49,22 @@ public class CollisionHandler : MonoBehaviour
   {
     lock (AtomsByName)
     {
+      bool shouldShowElement = ShouldShowElement();
       // refactor - make a queue of Maps (string hidrogenName, Commmand command) for commands and iterate through it
       foreach (GameObject atom in AtomsByName.Values)
       {
-        // Debug.Log($"Executing {CommandByHidrogenName[hidrogen.name]} for hidrogen {hidrogen.name}");
         HandleAtomCommand(CommandByAtomName[atom.name], atom);
       }
-
-      if (ShouldShowElement())
+      if (shouldShowElement)
       {
-        HandleElementRendering();
+        RenderElement();
         IsShowingElement = true;
       }
       else
       {
-        HandleMoleculeRendering();
+        RenderMolecule();
         IsShowingElement = false;
       }
-
 
       while (DestroyBondedAtomsQueue.Count > 0)
       {
@@ -120,6 +120,7 @@ public class CollisionHandler : MonoBehaviour
     RenderHelper.ChangeSelfIncludingChildren(GameObject.FindWithTag(atomName).transform, true);
     GameObject atom = AtomsByName[atomName];
     AtomsByName.Remove(atomName);
+    Molecule = Molecule.None;
     Destroy(atom, 0f);
   }
 
@@ -171,7 +172,7 @@ public class CollisionHandler : MonoBehaviour
 
           if (IsMoleculeFormed())
           {
-            SetMoleculeType();
+            Molecule = MoleculeClassifier.GetMoleculeBasedOn(transform, AtomsByName.Keys.ToList());
           }
         }
         break;
@@ -222,18 +223,17 @@ public class CollisionHandler : MonoBehaviour
 
     bool hasReachedTriggerDistance = Vector3.Distance(transform.position, MainCameraTransform.position) <= PROXIMITY_TRIGGER_DISTANCE;
 
-    return hasReachedTriggerDistance && IsMoleculeFormed();
+    return hasReachedTriggerDistance && Molecule != Molecule.None;
   }
 
-  private void HandleElementRendering()
+  private void RenderElement()
   {
-    RenderHelper.ChangeSiblingsIncludingChildren(transform, false, "CardPlane");
+    RenderHelper.ChangeChildrenIgnoringTags(transform.parent, false, ElementTags.GetAll().Append("CardPlane").ToArray());
 
     switch (Molecule)
     {
       case Molecule.H2O:
-        GetComponent<Renderer>().enabled = false;
-        WaterAnimation.GetComponent<Renderer>().enabled = true;
+        WaterAnimationRenderer.enabled = true;
         break;
       case Molecule.NaCl:
         // GetComponent<Renderer>().material.color = Color.white;
@@ -242,45 +242,23 @@ public class CollisionHandler : MonoBehaviour
         // GetComponent<Renderer>().material.color = Color.blue;
         break;
       case Molecule.HCl:
-        // GetComponent<Renderer>().material.color = Color.black;
+        HclElementPlaneRenderer.enabled = true;
         break;
     }
   }
 
-  private void HandleMoleculeRendering()
+  private void RenderMolecule()
   {
-    WaterAnimation.GetComponent<Renderer>().enabled = false;
+    WaterAnimationRenderer.enabled = false;
+    HclElementPlaneRenderer.enabled = false;
 
     if (IsShowingElement)
     {
-      GetComponent<Renderer>().enabled = true;
-      RenderHelper.ChangeSiblingsIncludingChildren(transform, true);
-    }
-  }
-
-  private void SetMoleculeType()
-  {
-    if (transform.name.StartsWith("Oxigen"))
-    {
-      if (AtomsByName.ContainsKey("Hidrogen1") && AtomsByName.ContainsKey("Hidrogen2"))
-      {
-        Molecule = Molecule.H2O;
-      }
-      else if (AtomsByName.ContainsKey("Sodium") && (AtomsByName.ContainsKey("Hidrogen1") || AtomsByName.ContainsKey("Hidrogen2")))
-      {
-        Molecule = Molecule.NaOH;
-      }
-    }
-    else if (transform.name.StartsWith("Chlorine"))
-    {
-      if (AtomsByName.ContainsKey("Sodium"))
-      {
-        Molecule = Molecule.NaCl;
-      }
-      else if (AtomsByName.ContainsKey("Hidrogen1") || AtomsByName.ContainsKey("Hidrogen2"))
-      {
-        Molecule = Molecule.HCl;
-      }
+      transform.GetComponent<Renderer>().enabled = true;
+      RenderHelper.ChangeChildrenIgnoringTags(transform.parent, true, ElementTags.GetAll()
+      .Append("Oxigen")
+      .Append("Chlorine")
+      .ToArray());
     }
   }
 }
