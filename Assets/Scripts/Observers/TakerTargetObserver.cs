@@ -28,6 +28,8 @@ public class TakerTargetObserver : MonoBehaviour
     switch (status.Status)
     {
       case Status.TRACKED:
+        mCollisionHandler.CanBond = true;
+
         if (mCollisionHandler.HasAnyAtomBonded())
         {
           string[] tagsToIgnore = new string[] { "Oxigen", "Chlorine" };
@@ -37,6 +39,8 @@ public class TakerTargetObserver : MonoBehaviour
           RenderAll();
         break;
       case Status.NO_POSE:
+        mCollisionHandler.CanBond = false;
+
         HideAll();
 
         foreach (string atomName in mCollisionHandler.CommandByAtomName.Keys.ToList())
@@ -45,6 +49,7 @@ public class TakerTargetObserver : MonoBehaviour
         }
         break;
       default:
+        mCollisionHandler.CanBond = false;
         HideAll();
         break;
     }

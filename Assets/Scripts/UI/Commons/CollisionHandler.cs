@@ -18,14 +18,17 @@ public class CollisionHandler : MonoBehaviour
   private readonly Dictionary<string, float> ElapsedTimeByAtomName = new();
 
   private Renderer WaterAnimationRenderer;
-  private Renderer HclElementPlaneRenderer;
+  private Renderer OxigenElementPlaneRenderer;
+  private Renderer ChlorineElementPlaneRenderer;
 
   public Material HidrogenOnBondMaterial;
   public Material SodiumOnBondMaterial;
 
-  private Molecule Molecule;
+  private Molecule Molecule = Molecule.None;
 
   private bool IsShowingElement;
+
+  public bool CanBond { get; set; } = false;
 
   void Start()
   {
@@ -37,14 +40,14 @@ public class CollisionHandler : MonoBehaviour
     WaterAnimationRenderer = GameObject.FindWithTag("WaterAnimation").GetComponent<Renderer>();
     WaterAnimationRenderer.enabled = false;
 
-    HclElementPlaneRenderer = GameObject.FindWithTag("HCLElementPlane").GetComponent<Renderer>();
-    HclElementPlaneRenderer.enabled = false;
+    OxigenElementPlaneRenderer = GameObject.FindWithTag("OxigenElementPanel").GetComponent<Renderer>();
+    OxigenElementPlaneRenderer.enabled = false;
+
+    ChlorineElementPlaneRenderer = GameObject.FindWithTag("ChlorineElementPanel").GetComponent<Renderer>();
+    ChlorineElementPlaneRenderer.enabled = false;
   }
 
-  // TODO - style - on camera proximity
-  // TODO - style - keep eletrons rotating in a fixed axis
-  // TODO - style - change border when forming molecule
-  // TODO - style - make atoms go to opposite poles when forming molecules
+  // TODO - fix - eletrons rotation for oxigen and chlorine
   void Update()
   {
     lock (AtomsByName)
@@ -78,7 +81,11 @@ public class CollisionHandler : MonoBehaviour
   {
     if (IsMoleculeFormed()) return;
 
+    if (CanBond == false) return;
+
     if (RenderHelper.GetRendererEnabledValue(other.transform) == false) return;
+
+    if (other.gameObject.CompareTag("Oxigen") || other.gameObject.CompareTag("Chlorine")) return;
 
     if (other.gameObject.CompareTag("Untagged") || other.gameObject.CompareTag("CardPlane")) return;
 
@@ -228,29 +235,38 @@ public class CollisionHandler : MonoBehaviour
 
   private void RenderElement()
   {
-    RenderHelper.ChangeChildrenIgnoringTags(transform.parent, false, ElementTags.GetAll().Append("CardPlane").ToArray());
+    RenderHelper.ChangeChildrenIgnoringTags(transform.parent, false, ElementTags.GetAll().Append("CardPlane").Append("Light").ToArray());
 
     switch (Molecule)
     {
       case Molecule.H2O:
         WaterAnimationRenderer.enabled = true;
         break;
-      case Molecule.NaCl:
-        // GetComponent<Renderer>().material.color = Color.white;
-        break;
       case Molecule.NaOH:
-        // GetComponent<Renderer>().material.color = Color.blue;
+        OxigenElementPlaneRenderer.enabled = true;
+        break;
+      case Molecule.NaCl:
+        ChlorineElementPlaneRenderer.material = Resources.Load<Material>("Materials/Salt");
+        ChlorineElementPlaneRenderer.enabled = true;
         break;
       case Molecule.HCl:
-        HclElementPlaneRenderer.enabled = true;
+        ChlorineElementPlaneRenderer.material = Resources.Load<Material>("Materials/MuriaticAcid");
+        ChlorineElementPlaneRenderer.enabled = true;
         break;
     }
   }
 
   private void RenderMolecule()
   {
-    WaterAnimationRenderer.enabled = false;
-    HclElementPlaneRenderer.enabled = false;
+    if (transform.name == "Oxigen")
+    {
+      WaterAnimationRenderer.enabled = false;
+      OxigenElementPlaneRenderer.enabled = false;
+    }
+    else if (transform.name == "Chlorine")
+    {
+      ChlorineElementPlaneRenderer.enabled = false;
+    }
 
     if (IsShowingElement)
     {
@@ -258,6 +274,7 @@ public class CollisionHandler : MonoBehaviour
       RenderHelper.ChangeChildrenIgnoringTags(transform.parent, true, ElementTags.GetAll()
       .Append("Oxigen")
       .Append("Chlorine")
+      .Append("Light")
       .ToArray());
     }
   }

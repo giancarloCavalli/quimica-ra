@@ -10,9 +10,10 @@ TagManager:
   - WaterAnimation
   - Sodium
   - CardPlane
-  - HCLElementPlane
   - Oxigen
   - Chlorine
+  - ChlorineElementPanel
+  - OxigenElementPanel
   layers:
   - Default
   - TransparentFX
