@@ -24,7 +24,7 @@ public class CollisionHandler : MonoBehaviour
     public Material HidrogenOnBondMaterial;
     public Material SodiumOnBondMaterial;
 
-    private Molecule Molecule = Molecule.None;
+    public Molecule Molecule = Molecule.None;
 
     private bool IsShowingElement;
 
