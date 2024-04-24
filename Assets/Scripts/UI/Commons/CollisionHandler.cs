@@ -104,9 +104,10 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Untagged") || other.gameObject.CompareTag("CardPlane")) return;
-
-        CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
+        if (other.GetComponent<GiverAtom>().CanBond == true)
+        {
+            CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
+        }
     }
 
     private GameObject IntantiateNewSphere(Transform original, string name, Transform parent)

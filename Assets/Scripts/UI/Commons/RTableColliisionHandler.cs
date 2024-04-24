@@ -4,19 +4,19 @@ public class RTableCollisionHandler : MonoBehaviour
 {
     public GameObject ReactionTableGameObject;
 
-    private ReactionTable ReactionTable;
+    private ReactionTable _reactionTable;
     public TableSide TableSide;
 
     void Start()
     {
-        ReactionTable = ReactionTableGameObject.GetComponent<ReactionTable>();
+        _reactionTable = ReactionTableGameObject.GetComponent<ReactionTable>();
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Oxigen" || other.tag == "Chlorine")
         {
-            ReactionTable.HandleCollision(other.gameObject.GetComponent<CollisionHandler>().Molecule, TableSide);
+            _reactionTable.HandleCollision(other.gameObject.GetComponent<CollisionHandler>().Molecule, TableSide);
         }
     }
 

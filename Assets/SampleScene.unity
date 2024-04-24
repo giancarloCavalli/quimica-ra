@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 84351106}
   - component: {fileID: 84351105}
   - component: {fileID: 84351104}
+  - component: {fileID: 84351107}
   m_Layer: 0
   m_Name: Sodium
   m_TagString: Sodium
@@ -438,6 +439,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84351102}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &84351107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84351102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBond: 0
 --- !u!1 &87010829
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OxigenTarget: {fileID: 672929160}
   ChlorineTarget: {fileID: 2053292045}
+  GiverAtomGameObject: {fileID: 1493626476}
 --- !u!114 &87010834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5543,6 +5558,7 @@ GameObject:
   - component: {fileID: 1493626480}
   - component: {fileID: 1493626479}
   - component: {fileID: 1493626478}
+  - component: {fileID: 1493626481}
   m_Layer: 0
   m_Name: Hidrogen
   m_TagString: Hidrogen2
@@ -5638,6 +5654,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493626476}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1493626481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493626476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBond: 0
 --- !u!1 &1540883866
 GameObject:
   m_ObjectHideFlags: 0
@@ -6740,6 +6769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OxigenTarget: {fileID: 672929160}
   ChlorineTarget: {fileID: 2053292045}
+  GiverAtomGameObject: {fileID: 1937070793}
 --- !u!114 &1746815427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7171,6 +7201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OxigenTarget: {fileID: 672929160}
   ChlorineTarget: {fileID: 2053292045}
+  GiverAtomGameObject: {fileID: 84351102}
 --- !u!114 &1848406491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7321,6 +7352,7 @@ GameObject:
   - component: {fileID: 1937070797}
   - component: {fileID: 1937070796}
   - component: {fileID: 1937070795}
+  - component: {fileID: 1937070798}
   m_Layer: 0
   m_Name: Hidrogen
   m_TagString: Hidrogen1
@@ -7416,6 +7448,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937070793}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1937070798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937070793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBond: 0
 --- !u!1 &1966865077
 GameObject:
   m_ObjectHideFlags: 0
