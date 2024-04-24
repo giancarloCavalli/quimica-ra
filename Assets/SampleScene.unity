@@ -2706,14 +2706,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: oxigenio-fundo-carta
+  mTrackableName: oxigenio-marcador
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.6453333
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 0.08508915
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: 376968f5c2718c540971f424093da8a3, type: 3}
+  mWidth: 0.049
+  mHeight: 0.049
+  mRuntimeTexture: {fileID: 2800000, guid: f3a4ae1aaf914884885dea1c316383a2, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -2837,7 +2837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 672929162}
   mHiddenRoot: {fileID: 0}
-  mTargetName: oxigenio-fundo-carta
+  mTargetName: oxigenio-marcador
   mDatasetName: 
   mCastedBehaviour: {fileID: 672929162}
   mMeshFilter: {fileID: 0}

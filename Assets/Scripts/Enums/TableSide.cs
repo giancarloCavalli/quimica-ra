@@ -1,5 +1,6 @@
 public enum TableSide
 {
     Left,
-    Right
+    Right,
+    None
 }
