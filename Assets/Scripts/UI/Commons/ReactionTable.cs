@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ReactionTable : MonoBehaviour
 {
-    private readonly Dictionary<int, Molecule> _tableSlots = new();
+    private readonly Dictionary<Molecule, int> _slotByMolecule = new();
 
     public GameObject NaOHPanel;
     public GameObject HClPanel;
@@ -15,22 +15,24 @@ public class ReactionTable : MonoBehaviour
     public GameObject Slot3Anchor;
     public GameObject Slot4Anchor;
 
+    public GameObject CorrectAnswerText;
+    public GameObject WrongAnswerText;
+
     void Start()
     {
         NaOHPanel.SetActive(false);
         HClPanel.SetActive(false);
         NaClPanel.SetActive(false);
         H2OAnimation.SetActive(false);
+
+        CorrectAnswerText.SetActive(false);
+        WrongAnswerText.SetActive(false);
     }
-
-    // void Update()
-    // {
-
-    // }
 
     public void HandleCollision(Molecule molecule, TableSide tableSide)
     {
-        // molecule = Molecule.H2O;
+        if (molecule == Molecule.None) return;
+
         HandleMoleculePosicioning(molecule, tableSide);
     }
 
@@ -57,6 +59,11 @@ public class ReactionTable : MonoBehaviour
         }
 
         AddMoleculeToTable(molecule, tableSide);
+
+        if (_slotByMolecule.Count == 4)
+        {
+            PresentReactionResult();
+        }
     }
 
     private void RemoveMoleculeFromTable(Molecule molecule)
@@ -67,8 +74,8 @@ public class ReactionTable : MonoBehaviour
             return;
         }
 
-        GetMoleculeObject(_tableSlots[slotOccupiedByMolecule]).SetActive(false);
-        _tableSlots.Remove(slotOccupiedByMolecule);
+        GetMoleculeObject(molecule).SetActive(false);
+        _slotByMolecule.Remove(molecule);
     }
 
     private void AddMoleculeToTable(Molecule molecule, TableSide tableSide)
@@ -76,7 +83,7 @@ public class ReactionTable : MonoBehaviour
         GameObject moleculeObject = GetMoleculeObject(molecule);
         int slot = GetFreeSlotPosition(tableSide);
 
-        _tableSlots.Add(slot, molecule);
+        _slotByMolecule.Add(molecule, slot);
         moleculeObject.transform.position = GetSlotPosition(slot);
         moleculeObject.SetActive(true);
     }
@@ -101,7 +108,7 @@ public class ReactionTable : MonoBehaviour
         {
             for (int i = 0; i < 2; i++)
             {
-                if (!_tableSlots.ContainsKey(i))
+                if (!_slotByMolecule.ContainsValue(i))
                 {
                     slot = i;
                     return slot;
@@ -112,7 +119,7 @@ public class ReactionTable : MonoBehaviour
         {
             for (int i = 2; i < 4; i++)
             {
-                if (!_tableSlots.ContainsKey(i))
+                if (!_slotByMolecule.ContainsValue(i))
                 {
                     slot = i;
                     return slot;
@@ -139,26 +146,19 @@ public class ReactionTable : MonoBehaviour
 
     private TableSide GetMoleculeTableSide(Molecule molecule)
     {
-        foreach (KeyValuePair<int, Molecule> slot in _tableSlots)
+        if (_slotByMolecule.ContainsKey(molecule))
         {
-            if (slot.Value == molecule)
-            {
-                return GetTableSideBySlot(slot.Key);
-            }
+            return GetTableSideBySlot(_slotByMolecule[molecule]);
         }
         return TableSide.None;
     }
 
     private int GetSlotPositionByMolecule(Molecule molecule)
     {
-        foreach (KeyValuePair<int, Molecule> slot in _tableSlots)
+        if (_slotByMolecule.ContainsKey(molecule))
         {
-            if (slot.Value == molecule)
-            {
-                return slot.Key;
-            }
+            return _slotByMolecule[molecule];
         }
-
         return -1;
     }
 
@@ -172,5 +172,24 @@ public class ReactionTable : MonoBehaviour
             3 => TableSide.Right,
             _ => throw new System.Exception("Slot inválido"),
         };
+    }
+
+    private void PresentReactionResult()
+    {
+        TableSide h2oSide = GetMoleculeTableSide(Molecule.H2O);
+        TableSide naohSide = GetMoleculeTableSide(Molecule.NaOH);
+        TableSide hclSide = GetMoleculeTableSide(Molecule.HCl);
+        TableSide naclSide = GetMoleculeTableSide(Molecule.NaCl);
+
+        bool isCorrect = (naohSide == TableSide.Left && hclSide == TableSide.Left && h2oSide == TableSide.Right && naclSide == TableSide.Right);
+
+        if (isCorrect)
+        {
+            CorrectAnswerText.SetActive(true);
+        }
+        else
+        {
+            WrongAnswerText.SetActive(true);
+        }
     }
 }
