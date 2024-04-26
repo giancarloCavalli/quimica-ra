@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class GiverAtom : MonoBehaviour
 {
-    public bool CanBond = false;
+    public bool IsVisible = false;
 }

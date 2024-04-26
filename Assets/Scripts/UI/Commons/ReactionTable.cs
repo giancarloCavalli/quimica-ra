@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class ReactionTable : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class ReactionTable : MonoBehaviour
 
     public GameObject CorrectAnswerText;
     public GameObject WrongAnswerText;
+    public GameObject ResetTableText;
 
     void Start()
     {
@@ -27,11 +29,20 @@ public class ReactionTable : MonoBehaviour
 
         CorrectAnswerText.SetActive(false);
         WrongAnswerText.SetActive(false);
+        ResetTableText.SetActive(false);
     }
 
-    public void HandleCollision(Molecule molecule, TableSide tableSide)
+    public void HandleCollision(Molecule molecule, TableSide tableSide, bool resetCommand = false)
     {
-        if (molecule == Molecule.None) return;
+        if (resetCommand && IsReactionDone())
+        {
+            ResetTable();
+            return;
+        }
+        else if (molecule == Molecule.None)
+        {
+            return;
+        }
 
         HandleMoleculePosicioning(molecule, tableSide);
     }
@@ -191,5 +202,27 @@ public class ReactionTable : MonoBehaviour
         {
             WrongAnswerText.SetActive(true);
         }
+
+        ResetTableText.SetActive(true);
+    }
+
+    private bool IsReactionDone()
+    {
+        return _slotByMolecule.Count >= 4;
+    }
+
+    private void ResetTable()
+    {
+        Molecule[] molecules = new Molecule[_slotByMolecule.Count];
+        _slotByMolecule.Keys.CopyTo(molecules, 0);
+
+        foreach (Molecule molecule in molecules)
+        {
+            RemoveMoleculeFromTable(molecule);
+        }
+
+        CorrectAnswerText.SetActive(false);
+        WrongAnswerText.SetActive(false);
+        ResetTableText.SetActive(false);
     }
 }

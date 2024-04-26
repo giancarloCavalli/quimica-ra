@@ -33,7 +33,7 @@ public class GiverTargetObserver : MonoBehaviour
         GameObject imageTargetChild = mImageTargetBehaviour.transform.GetChild(0).gameObject;
         if (status.Status == Status.TRACKED)
         {
-            _giverAtom.CanBond = true;
+            _giverAtom.IsVisible = true;
             // Debug.Log($"MY TAG IS {imageTargetChild.tag}");
             RenderHelper.ChangeSiblingsIncludingChildren(imageTargetChild.transform, true);
             bool shouldRender = true;
@@ -62,7 +62,7 @@ public class GiverTargetObserver : MonoBehaviour
 
         else
         {
-            _giverAtom.CanBond = false;
+            _giverAtom.IsVisible = false;
             RenderHelper.ChangeSelfAndSiblingsIncludingChildren(imageTargetChild.transform, false);
         }
     }

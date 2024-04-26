@@ -18,6 +18,12 @@ public class RTableCollisionHandler : MonoBehaviour
         {
             _reactionTable.HandleCollision(other.gameObject.GetComponent<CollisionHandler>().Molecule, TableSide);
         }
+
+        // Aproximar um hidrogenio da mesa representa um comando de reset
+        if (other.name.ToLower() == "hidrogen")
+        {
+            _reactionTable.HandleCollision(Molecule.None, TableSide, true);
+        }
     }
 
     public void OnTriggerExit(Collider other)

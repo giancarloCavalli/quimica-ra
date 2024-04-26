@@ -28,7 +28,7 @@ public class CollisionHandler : MonoBehaviour
 
     private bool IsShowingElement;
 
-    public bool CanBond { get; set; } = false;
+    public bool IsVisible { get; set; } = false;
 
     void Start()
     {
@@ -58,12 +58,12 @@ public class CollisionHandler : MonoBehaviour
             {
                 HandleAtomCommand(CommandByAtomName[atom.name], atom);
             }
-            if (shouldShowElement)
+            if (shouldShowElement && IsVisible)
             {
                 RenderElement();
                 IsShowingElement = true;
             }
-            else
+            else if (!shouldShowElement && IsVisible)
             {
                 RenderMolecule();
                 IsShowingElement = false;
@@ -84,7 +84,7 @@ public class CollisionHandler : MonoBehaviour
 
         if (IsMoleculeFormed()) return;
 
-        if (CanBond == false) return;
+        if (IsVisible == false) return;
 
         if (RenderHelper.GetRendererEnabledValue(other.transform) == false) return;
 
@@ -104,7 +104,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<GiverAtom>().CanBond == true)
+        if (other.GetComponent<GiverAtom>().IsVisible == true)
         {
             CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
         }
