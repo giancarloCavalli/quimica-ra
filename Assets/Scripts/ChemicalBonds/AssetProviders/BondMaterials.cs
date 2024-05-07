@@ -7,8 +7,6 @@ public class BondMaterials : MonoBehaviour
 
     public Material GetMaterial(AtomType type)
     {
-        Debug.Log("Get material for " + type);
-
         return type switch
         {
             AtomType.Hydrogen => HydrogenMaterial,

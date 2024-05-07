@@ -10,4 +10,9 @@ public class Atom : MonoBehaviour
     {
         get => transform.Find("ElectronsContainer").gameObject;
     }
+
+    public GameObject Canvas
+    {
+        get => transform.Find("Canvas").gameObject;
+    }
 }

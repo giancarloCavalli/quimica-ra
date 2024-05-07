@@ -23,4 +23,15 @@ public static class AtomHelpers
     {
         return transform.GetComponent<Atom>() != null;
     }
+
+    public static bool ShouldApproximateClonedAtom(Transform self, GameObject clonedAtom)
+    {
+        return Vector3.Distance(clonedAtom.transform.position, self.position) >= GetSumOfRadiusOfTakerAndGiverAtom(self, clonedAtom.transform);
+    }
+
+    public static float GetSumOfRadiusOfTakerAndGiverAtom(Transform taker, Transform giver)
+    {
+        float ajustedScaleOfGiver = giver.localScale.x * taker.localScale.x;
+        return (taker.localScale.x / 2) + (ajustedScaleOfGiver / 2);
+    }
 }
