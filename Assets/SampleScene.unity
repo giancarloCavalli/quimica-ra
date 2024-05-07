@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 84351105}
   - component: {fileID: 84351104}
   - component: {fileID: 84351107}
+  - component: {fileID: 84351108}
   m_Layer: 0
   m_Name: Sodium
   m_TagString: Sodium
@@ -452,6 +453,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsVisible: 0
+--- !u!114 &84351108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84351102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f42a873470787641b4670af3ba0c210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 3
 --- !u!1 &87010829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,14 +2837,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: oxigenio-marcador
+  mTrackableName: oxigenio-fundo-carta
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 1.6453333
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: f3a4ae1aaf914884885dea1c316383a2, type: 3}
+  mWidth: 0.08508915
+  mHeight: 0.14
+  mRuntimeTexture: {fileID: 2800000, guid: 376968f5c2718c540971f424093da8a3, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -2940,6 +2954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9d02846210c054f947acafe836135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AtomGameObject: {fileID: 1540883866}
 --- !u!114 &672929167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,7 +2969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 672929162}
   mHiddenRoot: {fileID: 0}
-  mTargetName: oxigenio-marcador
+  mTargetName: oxigenio-fundo-carta
   mDatasetName: 
   mCastedBehaviour: {fileID: 672929162}
   mMeshFilter: {fileID: 0}
@@ -3691,7 +3706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusFilter: 1
+  StatusFilter: 0
   UsePoseSmoothing: 0
   AnimationCurve:
     serializedVersion: 2
@@ -4740,6 +4755,7 @@ GameObject:
   - component: {fileID: 1097953283}
   - component: {fileID: 1097953286}
   - component: {fileID: 1097953287}
+  - component: {fileID: 1097953288}
   m_Layer: 0
   m_Name: Chlorine
   m_TagString: Chlorine
@@ -4886,6 +4902,19 @@ MonoBehaviour:
   SodiumOnBondMaterial: {fileID: 2100000, guid: 4c895b3bb267d0f46b4ab856b9bc536e,
     type: 2}
   Molecule: 4
+--- !u!114 &1097953288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097953281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f42a873470787641b4670af3ba0c210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 4
 --- !u!1 &1117456200
 GameObject:
   m_ObjectHideFlags: 0
@@ -5931,6 +5960,7 @@ GameObject:
   - component: {fileID: 1493626478}
   - component: {fileID: 1493626481}
   - component: {fileID: 1493626482}
+  - component: {fileID: 1493626483}
   m_Layer: 0
   m_Name: Hidrogen
   m_TagString: Hidrogen2
@@ -6066,6 +6096,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1493626483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493626476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f42a873470787641b4670af3ba0c210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
 --- !u!1 &1540883866
 GameObject:
   m_ObjectHideFlags: 0
@@ -6079,8 +6122,8 @@ GameObject:
   - component: {fileID: 1540883869}
   - component: {fileID: 1540883868}
   - component: {fileID: 1540883872}
-  - component: {fileID: 1540883873}
   - component: {fileID: 1540883874}
+  - component: {fileID: 1540883875}
   m_Layer: 0
   m_Name: Oxigen
   m_TagString: Oxigen
@@ -6208,24 +6251,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1540883873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540883866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a7402713cd6613428aebea968ff0aa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ATOMS_NECESSARY_TO_FORM_MOLECULE: 2
-  HidrogenOnBondMaterial: {fileID: 2100000, guid: 90352b5d4ff68ee4f8e9b8b55b525b28,
-    type: 2}
-  SodiumOnBondMaterial: {fileID: 2100000, guid: 4c895b3bb267d0f46b4ab856b9bc536e,
-    type: 2}
-  Molecule: 4
 --- !u!95 &1540883874
 Animator:
   serializedVersion: 5
@@ -6247,6 +6272,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1540883875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540883866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f42a873470787641b4670af3ba0c210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2
 --- !u!1 &1549204148
 GameObject:
   m_ObjectHideFlags: 0
@@ -7756,6 +7794,7 @@ GameObject:
   - component: {fileID: 1937070795}
   - component: {fileID: 1937070798}
   - component: {fileID: 1937070799}
+  - component: {fileID: 1937070800}
   m_Layer: 0
   m_Name: Hidrogen
   m_TagString: Hidrogen1
@@ -7891,6 +7930,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1937070800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937070793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f42a873470787641b4670af3ba0c210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
 --- !u!1 &1966865077
 GameObject:
   m_ObjectHideFlags: 0
@@ -8489,6 +8541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9d02846210c054f947acafe836135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AtomGameObject: {fileID: 0}
 --- !u!114 &2053292050
 MonoBehaviour:
   m_ObjectHideFlags: 0

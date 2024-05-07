@@ -15,6 +15,7 @@ TagManager:
   - ChlorineElementPanel
   - OxigenElementPanel
   - Light
+  - AtomMaterials
   layers:
   - Default
   - TransparentFX
