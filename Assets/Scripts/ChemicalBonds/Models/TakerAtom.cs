@@ -75,7 +75,8 @@ public class TakerAtom : Atom
         Canvas.SetActive(false);
 
         // Adiciona comando de mover para ligar
-        GameObject newAtom = CloneAtom(other, GetAtomName(other.name), _bondedAtomsContainer.transform, other.GetComponent<Atom>().Type);
+        AtomType atomType = other.GetComponent<Atom>().Type;
+        GameObject newAtom = CloneAtom(other, _bondedAtomsContainer.transform, atomType);
         _commandByAtomName[newAtom.name] = AtomCommand.MoveToBond;
 
         // Salva clone e referencia ao game object original
@@ -106,17 +107,19 @@ public class TakerAtom : Atom
         return atomName + qtOfAtomsOfSameType;
     }
 
-    private GameObject CloneAtom(Transform original, string cloneName, Transform parent, AtomType atomType)
+    private GameObject CloneAtom(Transform original, Transform parent, AtomType atomType)
     {
         GameObject sphereModel = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 
-        Vector3 ajustedScale = new Vector3(original.localScale.x / transform.localScale.x, original.localScale.y / transform.localScale.y, original.localScale.z / transform.localScale.z);
+        Vector3 originalAjustedScale = new Vector3(original.localScale.x * original.transform.parent.localScale.x, original.localScale.y * original.transform.parent.localScale.y, original.localScale.z * original.transform.parent.localScale.z);
+
+        Vector3 ajustedScale = new Vector3(originalAjustedScale.x / transform.localScale.x, originalAjustedScale.y / transform.localScale.y, originalAjustedScale.z / transform.localScale.z);
         sphereModel.transform.localScale = ajustedScale;
 
         sphereModel.GetComponent<Renderer>().material = GameObject.FindWithTag("AtomMaterials").GetComponent<BondMaterials>().GetMaterial(atomType);
 
         GameObject sphere = Instantiate(sphereModel, original.position, transform.rotation, parent);
-        sphere.name = cloneName;
+        sphere.name = GetAtomName(atomType.ToString());
 
         Destroy(sphereModel, 0f);
 

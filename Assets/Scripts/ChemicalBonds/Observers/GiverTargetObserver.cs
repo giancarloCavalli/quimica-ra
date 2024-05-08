@@ -9,9 +9,9 @@ public class GiverTargetObserver : MonoBehaviour
 
     public GameObject ChlorineTarget;
 
-    public GameObject AtomGameObject;
+    public GameObject AtomCardGameObject;
 
-    private Atom _atom;
+    private AtomCard _atomCard;
 
     void Awake()
     {
@@ -20,7 +20,7 @@ public class GiverTargetObserver : MonoBehaviour
             mObserverBehaviour.OnTargetStatusChanged += OnStatusChanged;
         }
 
-        _atom = AtomGameObject.GetComponent<Atom>();
+        _atomCard = AtomCardGameObject.GetComponent<AtomCard>();
     }
     void OnStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
     {
@@ -28,13 +28,13 @@ public class GiverTargetObserver : MonoBehaviour
 
         if (status.Status == Status.TRACKED)
         {
-            AtomGameObject.SetActive(true);
-            _atom.IsTracked = true;
+            AtomCardGameObject.SetActive(true);
+            _atomCard.Atom.IsTracked = true;
         }
         else
         {
-            AtomGameObject.SetActive(false);
-            _atom.IsTracked = false;
+            AtomCardGameObject.SetActive(false);
+            _atomCard.Atom.IsTracked = false;
         }
     }
     void OnDestroy()
