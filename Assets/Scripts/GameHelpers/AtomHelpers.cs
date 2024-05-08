@@ -34,4 +34,9 @@ public static class AtomHelpers
         float ajustedScaleOfGiver = giver.localScale.x * taker.localScale.x;
         return (taker.localScale.x / 2) + (ajustedScaleOfGiver / 2);
     }
+
+    public static Vector3 GetAjustedVectorForGiverAtom(Transform giverAtomTransform)
+    {
+        return new Vector3(giverAtomTransform.localScale.x * giverAtomTransform.transform.parent.localScale.x, giverAtomTransform.localScale.y * giverAtomTransform.transform.parent.localScale.y, giverAtomTransform.localScale.z * giverAtomTransform.transform.parent.localScale.z);
+    }
 }

@@ -93,7 +93,7 @@ public class TakerAtom : Atom
 
         Transform giverAtomTransform = giverAtomCard.AtomGameObject.transform;
 
-        Vector3 giverAtomAjustedScale = new(giverAtomTransform.localScale.x * giverAtomTransform.transform.parent.localScale.x, giverAtomTransform.localScale.y * giverAtomTransform.transform.parent.localScale.y, giverAtomTransform.localScale.z * giverAtomTransform.transform.parent.localScale.z);
+        Vector3 giverAtomAjustedScale = AtomHelpers.GetAjustedVectorForGiverAtom(giverAtomTransform);
 
         Vector3 ajustedScale = new(giverAtomAjustedScale.x / transform.localScale.x, giverAtomAjustedScale.y / transform.localScale.y, giverAtomAjustedScale.z / transform.localScale.z);
         sphereModel.transform.localScale = ajustedScale;
@@ -109,18 +109,18 @@ public class TakerAtom : Atom
         return sphere;
     }
 
-    private void HandleAtomCommand(AtomCommand command, GameObject atom)
+    private void HandleAtomCommand(AtomCommand command, GameObject giverAtom)
     {
-        // Debug.Log("Handling atom command: " + command + " for atom: " + atom.name);
         switch (command)
         {
             case AtomCommand.MoveToBond:
-                Transition.ApproximateTo(atom, transform.position, _elapsedTimeByAtomName);
+                // O ultimo parametro serve para o atomo clonado se aproximar do Taker Atom sem sobrepo-lo visualmente 
+                Transition.ApproximateTo(giverAtom, transform.position, _elapsedTimeByAtomName, AtomHelpers.GetSumOfRadiusOfTakerAndGiverAtom(transform, giverAtom.transform));
 
-                if (!AtomHelpers.ShouldApproximateClonedAtom(transform, atom))
+                if (!AtomHelpers.ShouldApproximateClonedAtom(transform, giverAtom))
                 {
-                    _elapsedTimeByAtomName[atom.name] = 0f;
-                    _commandByAtomName[atom.name] = AtomCommand.KeepBonded;
+                    _elapsedTimeByAtomName[giverAtom.name] = 0f;
+                    _commandByAtomName[giverAtom.name] = AtomCommand.KeepBonded;
 
                     if (IsMoleculeFormed())
                     {
@@ -129,14 +129,14 @@ public class TakerAtom : Atom
                 }
                 break;
             case AtomCommand.MoveToTarget:
-                Vector3 originalAtomPosition = _clonedAtomNameAndOriginalAtomRef[atom.name].transform.position;
-                Transition.ApproximateTo(atom, originalAtomPosition, _elapsedTimeByAtomName);
+                Vector3 originalAtomPosition = _clonedAtomNameAndOriginalAtomRef[giverAtom.name].transform.position;
+                Transition.ApproximateTo(giverAtom, originalAtomPosition, _elapsedTimeByAtomName);
 
-                float distanceBetweenCloneAndOriginal = Vector3.Distance(originalAtomPosition, atom.transform.position);
+                float distanceBetweenCloneAndOriginal = Vector3.Distance(originalAtomPosition, giverAtom.transform.position);
                 if (distanceBetweenCloneAndOriginal <= 0.001)
                 {
-                    _elapsedTimeByAtomName[atom.name] = 0f;
-                    _commandByAtomName[atom.name] = AtomCommand.QueueToDestroy;
+                    _elapsedTimeByAtomName[giverAtom.name] = 0f;
+                    _commandByAtomName[giverAtom.name] = AtomCommand.QueueToDestroy;
 
                     if (!HasAnyAtomBonded())
                     {
@@ -146,7 +146,7 @@ public class TakerAtom : Atom
                 }
                 break;
             case AtomCommand.QueueToDestroy:
-                _destroyBondedAtomsQueue.Enqueue(atom.name);
+                _destroyBondedAtomsQueue.Enqueue(giverAtom.name);
                 break;
             default:
                 break;

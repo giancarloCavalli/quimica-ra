@@ -15,11 +15,6 @@ public static class Transition
         return Mathf.Lerp(MinSpeed, MaxSpeed, t) * deltaTime;
     }
 
-    public static float GetAtomsDistanceToFormMolecule(Transform atomA, Transform atomB)
-    {
-        return (atomA.localScale.x / 2) + (atomB.localScale.x / 2);
-    }
-
     public static void ApproximateTo(GameObject @object, Vector3 toPosition, Dictionary<string, float> elapsedTimeByAtomName, float maxDistanceToGetClose = 0f)
     {
         if (elapsedTimeByAtomName.ContainsKey(@object.name) == false)
