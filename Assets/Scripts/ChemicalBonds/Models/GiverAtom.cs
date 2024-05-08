@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class GiverAtom : MonoBehaviour
+public class GiverAtom : Atom
 {
-    public bool IsVisible = false;
+    public AtomCard AtomCard => transform.parent.GetComponent<AtomCard>();
 }

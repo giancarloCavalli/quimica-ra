@@ -104,10 +104,10 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<GiverAtom>().IsVisible == true)
-        {
-            CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
-        }
+        // if (other.GetComponent<GiverAtom>().IsVisible == true)
+        // {
+        //     CommandByAtomName[other.gameObject.tag] = AtomCommand.MoveToTarget;
+        // }
     }
 
     private GameObject IntantiateNewSphere(Transform original, string name, Transform parent)

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -38,24 +37,21 @@ public class TakerAtom : Atom
         }
     }
 
-    public bool CanBondWith(Atom other)
+    public bool CanBondWith(GiverAtom giverAtom)
     {
-        return AtomHelpers.CanBond(this, other);
+        return AtomHelpers.CanBond(this, giverAtom);
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!AtomHelpers.IsAtom(other.transform))
+        GiverAtom giverAtom = other.GetComponent<GiverAtom>();
+
+        if (giverAtom == null || !CanBondWith(giverAtom))
         {
             return;
         }
 
-        if (!CanBondWith(other.GetComponent<Atom>()))
-        {
-            return;
-        }
-
-        StartBondingWith(other.transform);
+        StartBondingWith(giverAtom);
     }
 
     public void OnTriggerExit(Collider other)
@@ -68,58 +64,45 @@ public class TakerAtom : Atom
         }
     }
 
-    private void StartBondingWith(Transform other)
+    private void StartBondingWith(GiverAtom giverAtom)
     {
-        // Esconde os eletrons e o canvas do atomo Taker
+        // Desativa os eletrons e o canvas do atomo Taker
         ElectronsContainer.SetActive(false);
         Canvas.SetActive(false);
 
         // Adiciona comando de mover para ligar
-        AtomType atomType = other.GetComponent<Atom>().Type;
-        GameObject newAtom = CloneAtom(other, _bondedAtomsContainer.transform, atomType);
+        GameObject newAtom = CloneAtom(giverAtom.AtomCard, _bondedAtomsContainer.transform);
         _commandByAtomName[newAtom.name] = AtomCommand.MoveToBond;
 
         // Salva clone e referencia ao game object original
-        _clonedAtomNameAndOriginalAtomRef.Add(newAtom.name, other.gameObject);
+        _clonedAtomNameAndOriginalAtomRef.Add(newAtom.name, giverAtom.gameObject);
 
-        // Esconde o atomo ligante original para exibir o clonado
-        other.gameObject.SetActive(false);
+        // Desativa o atomo ligante original para exibir o clonado
+        giverAtom.gameObject.SetActive(false);
     }
 
     private void StartUnbondingWith(string atomName)
     {
+        Debug.Log("Unbonding with: " + atomName);
         _commandByAtomName[atomName] = AtomCommand.MoveToTarget;
     }
 
-    private string GetAtomName(string atomName)
-    {
-        int qtOfAtomsOfSameType = 1;
-
-        // Checa se já existe, por exemplo, um Hydrogen1 para então no caso de mais um criar o Hydrogen2
-        foreach (var child in _bondedAtomsContainer.GetComponentsInChildren<Transform>())
-        {
-            if (child.name.Contains(atomName))
-            {
-                qtOfAtomsOfSameType++;
-            }
-        }
-
-        return atomName + qtOfAtomsOfSameType;
-    }
-
-    private GameObject CloneAtom(Transform original, Transform parent, AtomType atomType)
+    private GameObject CloneAtom(AtomCard giverAtomCard, Transform parent)
     {
         GameObject sphereModel = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 
-        Vector3 originalAjustedScale = new Vector3(original.localScale.x * original.transform.parent.localScale.x, original.localScale.y * original.transform.parent.localScale.y, original.localScale.z * original.transform.parent.localScale.z);
+        Transform giverAtomTransform = giverAtomCard.AtomGameObject.transform;
 
-        Vector3 ajustedScale = new Vector3(originalAjustedScale.x / transform.localScale.x, originalAjustedScale.y / transform.localScale.y, originalAjustedScale.z / transform.localScale.z);
+        Vector3 giverAtomAjustedScale = new(giverAtomTransform.localScale.x * giverAtomTransform.transform.parent.localScale.x, giverAtomTransform.localScale.y * giverAtomTransform.transform.parent.localScale.y, giverAtomTransform.localScale.z * giverAtomTransform.transform.parent.localScale.z);
+
+        Vector3 ajustedScale = new(giverAtomAjustedScale.x / transform.localScale.x, giverAtomAjustedScale.y / transform.localScale.y, giverAtomAjustedScale.z / transform.localScale.z);
         sphereModel.transform.localScale = ajustedScale;
 
+        AtomType atomType = giverAtomCard.Atom.Type;
         sphereModel.GetComponent<Renderer>().material = GameObject.FindWithTag("AtomMaterials").GetComponent<BondMaterials>().GetMaterial(atomType);
 
-        GameObject sphere = Instantiate(sphereModel, original.position, transform.rotation, parent);
-        sphere.name = GetAtomName(atomType.ToString());
+        GameObject sphere = Instantiate(sphereModel, giverAtomTransform.position, transform.rotation, parent);
+        sphere.name = giverAtomCard.AtomCardVariant.ToString();
 
         Destroy(sphereModel, 0f);
 

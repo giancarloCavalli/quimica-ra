@@ -452,7 +452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsVisible: 0
+  Type: 0
+  IsTracked: 0
 --- !u!114 &84351108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +482,7 @@ GameObject:
   - component: {fileID: 87010833}
   - component: {fileID: 87010834}
   m_Layer: 0
-  m_Name: HidrogenTarget2
+  m_Name: Hydrogen2Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,14 +547,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: hidrogenio2-marcador
+  mTrackableName: Hidrogenio
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 1.644628
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: 329ee64e6e06f53469a7ba9a3396a0c8, type: 3}
+  mWidth: 0.08512563
+  mHeight: 0.14
+  mRuntimeTexture: {fileID: 2800000, guid: f856ad017cd06cd4a9dfa735f2d56346, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -571,7 +572,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1493626477}
   - {fileID: 1347669261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OxigenTarget: {fileID: 672929160}
   ChlorineTarget: {fileID: 2053292045}
-  AtomCardGameObject: {fileID: 0}
+  AtomCardGameObject: {fileID: 1347669260}
 --- !u!114 &87010834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 87010831}
   mHiddenRoot: {fileID: 0}
-  mTargetName: hidrogenio2-marcador
+  mTargetName: Hidrogenio
   mDatasetName: 
   mCastedBehaviour: {fileID: 87010831}
   mMeshFilter: {fileID: 0}
@@ -2887,9 +2887,9 @@ MonoBehaviour:
   mTrackableName: oxigenio-fundo-carta
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.6453333
+  mAspectRatio: 1.6453334
   mImageTargetType: 3
-  mWidth: 0.08508915
+  mWidth: 0.08508914
   mHeight: 0.14
   mRuntimeTexture: {fileID: 2800000, guid: 376968f5c2718c540971f424093da8a3, type: 3}
   mMotionHint: 1
@@ -5570,10 +5570,11 @@ GameObject:
   - component: {fileID: 1347669261}
   - component: {fileID: 1347669264}
   - component: {fileID: 1347669263}
-  - component: {fileID: 1347669262}
+  - component: {fileID: 1347669266}
+  - component: {fileID: 1347669265}
   m_Layer: 0
-  m_Name: HidrogenPlane
-  m_TagString: Untagged
+  m_Name: AtomCard
+  m_TagString: CardPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5590,31 +5591,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.002, z: -0.042}
   m_LocalScale: {x: 0.009, y: 0.0139999995, z: 0.0145}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1493626477}
   m_Father: {fileID: 87010832}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!64 &1347669262
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347669260}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1347669263
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5665,6 +5645,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347669260}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1347669265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347669260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AtomCardVariant: 2
+--- !u!65 &1347669266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347669260}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 1
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 14, y: 2.220446e-16, z: 12}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1380853532
 GameObject:
   m_ObjectHideFlags: 0
@@ -6004,11 +6018,10 @@ GameObject:
   - component: {fileID: 1493626480}
   - component: {fileID: 1493626479}
   - component: {fileID: 1493626478}
-  - component: {fileID: 1493626481}
   - component: {fileID: 1493626482}
   - component: {fileID: 1493626483}
   m_Layer: 0
-  m_Name: Hidrogen
+  m_Name: Atom
   m_TagString: Hidrogen2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6022,14 +6035,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493626476}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: -0.035}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.6428572, z: -0.4827586}
+  m_LocalScale: {x: 1.6666666, y: 1.0714285, z: 1.0344828}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 788045406}
   - {fileID: 174609788}
-  m_Father: {fileID: 87010832}
+  m_Father: {fileID: 1347669261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1493626478
 SphereCollider:
@@ -6102,19 +6115,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493626476}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1493626481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493626476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsVisible: 0
 --- !u!54 &1493626482
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6151,7 +6151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493626476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f42a873470787641b4670af3ba0c210, type: 3}
+  m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
@@ -7184,7 +7184,7 @@ GameObject:
   - component: {fileID: 1746815426}
   - component: {fileID: 1746815427}
   m_Layer: 0
-  m_Name: HydrogenTarget1
+  m_Name: Hydrogen1Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7249,14 +7249,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Hidrogenio
+  mTrackableName: hidrogenio1-marcador
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.644628
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 0.08512563
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: f856ad017cd06cd4a9dfa735f2d56346, type: 3}
+  mWidth: 0.049
+  mHeight: 0.049
+  mRuntimeTexture: {fileID: 2800000, guid: 36da1913e3aa6b34896b51507764b679, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -7306,7 +7306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1746815424}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Hidrogenio
+  mTargetName: hidrogenio1-marcador
   mDatasetName: 
   mCastedBehaviour: {fileID: 1746815424}
   mMeshFilter: {fileID: 0}
@@ -8007,7 +8007,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1937070793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f42a873470787641b4670af3ba0c210, type: 3}
+  m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
@@ -8293,7 +8293,7 @@ GameObject:
   - component: {fileID: 2039636190}
   - component: {fileID: 2039636191}
   m_Layer: 0
-  m_Name: Hydrogen1Card
+  m_Name: AtomCard
   m_TagString: CardPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

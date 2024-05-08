@@ -9,7 +9,7 @@ public static class AtomHelpers
         { AtomType.Chlorine, new List<AtomType> { AtomType.Hydrogen, AtomType.Sodium } }
     };
 
-    public static bool CanBond(Atom taker, Atom giver)
+    public static bool CanBond(TakerAtom taker, GiverAtom giver)
     {
         if (!taker.IsTracked || !giver.IsTracked)
         {
