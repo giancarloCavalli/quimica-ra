@@ -16,6 +16,7 @@ TagManager:
   - OxigenElementPanel
   - Light
   - AtomMaterials
+  - ElementObjects
   layers:
   - Default
   - TransparentFX

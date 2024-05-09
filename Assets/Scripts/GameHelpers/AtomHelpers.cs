@@ -3,40 +3,32 @@ using UnityEngine;
 
 public static class AtomHelpers
 {
-    private static Dictionary<AtomType, List<AtomType>> _bondingPossibilities = new()
+    public static Dictionary<AtomType, List<AtomType>> BondingPossibilities = new()
     {
         { AtomType.Oxygen, new List<AtomType> { AtomType.Hydrogen, AtomType.Sodium } },
         { AtomType.Chlorine, new List<AtomType> { AtomType.Hydrogen, AtomType.Sodium } }
     };
-
-    public static bool CanBond(TakerAtom taker, GiverAtom giver)
-    {
-        if (!taker.IsTracked || !giver.IsTracked)
-        {
-            return false;
-        }
-
-        return _bondingPossibilities.ContainsKey(taker.Type) && _bondingPossibilities[taker.Type].Contains(giver.Type);
-    }
 
     public static bool IsAtom(Transform transform)
     {
         return transform.GetComponent<Atom>() != null;
     }
 
-    public static bool ShouldApproximateClonedAtom(Transform self, GameObject clonedAtom)
+    public static bool ShouldApproximateClonedAtom(TakerAtom takerAtom, GameObject clonedAtom)
     {
-        return Vector3.Distance(clonedAtom.transform.position, self.position) >= GetSumOfRadiusOfTakerAndGiverAtom(self, clonedAtom.transform);
+        return Vector3.Distance(clonedAtom.transform.position, takerAtom.transform.position) >= GetSumOfRadiusOfTakerAndGiverAtom(takerAtom, clonedAtom.transform);
     }
 
-    public static float GetSumOfRadiusOfTakerAndGiverAtom(Transform taker, Transform giver)
+    public static float GetSumOfRadiusOfTakerAndGiverAtom(TakerAtom takerAtom, Transform giver)
     {
-        float ajustedScaleOfGiver = giver.localScale.x * taker.localScale.x;
-        return (taker.localScale.x / 2) + (ajustedScaleOfGiver / 2);
+        // Necessario pegar a escala ajustada para esse calculo devido ao fato do Atom possuir um elemento pai
+        Vector3 takerPosition = takerAtom.GetVector3WithAdjustedScale();
+        float ajustedScaleOfGiver = giver.localScale.x * takerPosition.x;
+        return (takerPosition.x / 2) + (ajustedScaleOfGiver / 2);
     }
 
-    public static Vector3 GetAjustedVectorForGiverAtom(Transform giverAtomTransform)
+    public static Vector3 GetAjustedVectorForAtom(Transform atomTransform)
     {
-        return new Vector3(giverAtomTransform.localScale.x * giverAtomTransform.transform.parent.localScale.x, giverAtomTransform.localScale.y * giverAtomTransform.transform.parent.localScale.y, giverAtomTransform.localScale.z * giverAtomTransform.transform.parent.localScale.z);
+        return new Vector3(atomTransform.localScale.x * atomTransform.transform.parent.localScale.x, atomTransform.localScale.y * atomTransform.transform.parent.localScale.y, atomTransform.localScale.z * atomTransform.transform.parent.localScale.z);
     }
 }

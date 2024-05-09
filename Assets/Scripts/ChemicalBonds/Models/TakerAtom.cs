@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class TakerAtom : Atom
 {
+    private const float PROXIMITY_TRIGGER_DISTANCE = 0.3f;
+
+    public int NR_OF_ATOMS_NECESSARY_TO_FORM_MOLECULE;
+
     private Dictionary<string, AtomCommand> _commandByAtomName;
 
-    private Dictionary<string, GameObject> _clonedAtomNameAndOriginalAtomRef = new();
+    private readonly Dictionary<string, GameObject> _clonedAtomNameAndOriginalAtomRef = new();
 
     private GameObject _bondedAtomsContainer;
 
@@ -16,10 +20,20 @@ public class TakerAtom : Atom
 
     private readonly Queue<string> _destroyBondedAtomsQueue = new();
 
+    private readonly Queue<KeyValuePair<Molecule, bool>> _elementActiveCommandQueue = new();
+
+    private List<GiverAtom> BondedGiverAtoms => _clonedAtomNameAndOriginalAtomRef.Values.Select(atomGameObj => atomGameObj.GetComponent<GiverAtom>()).ToList();
+
+    private ElementObjects _elementObjects;
+
+    private bool _isElementStatusActive = false;
+
     void Start()
     {
         _commandByAtomName = new Dictionary<string, AtomCommand>();
         _bondedAtomsContainer = transform.Find("BondedAtomsContainer").gameObject;
+
+        _elementObjects = GameObject.FindWithTag("ElementObjects").GetComponent<ElementObjects>();
     }
 
     // Update is called once per frame
@@ -27,7 +41,21 @@ public class TakerAtom : Atom
     {
         for (int i = 0; i < _bondedAtomsContainer.transform.childCount; i++)
         {
-            HandleAtomCommand(_commandByAtomName[_bondedAtomsContainer.transform.GetChild(i).name], _bondedAtomsContainer.transform.GetChild(i).gameObject);
+            Transform bondedAtomTransform = _bondedAtomsContainer.transform.GetChild(i);
+            HandleAtomCommand(_commandByAtomName[bondedAtomTransform.name], bondedAtomTransform.gameObject);
+        }
+
+        // Se deveria estar mostrando o elemento E não está mostrando, adiciona comando para mostrar
+        if (ShouldShowElement() && !_isElementStatusActive)
+        {
+            HandleElementActiveCommand(_moleculeType, true);
+            _isElementStatusActive = true;
+        }
+        // Se não deveria estar mostrando o elemento E está mostrando, adiciona comando para esconder
+        else if (!ShouldShowElement() && _isElementStatusActive)
+        {
+            HandleElementActiveCommand(_moleculeType, false);
+            _isElementStatusActive = false;
         }
 
         while (_destroyBondedAtomsQueue.Count > 0)
@@ -39,7 +67,10 @@ public class TakerAtom : Atom
 
     public bool CanBondWith(GiverAtom giverAtom)
     {
-        return AtomHelpers.CanBond(this, giverAtom);
+        if (!this.IsTracked || !giverAtom.IsTracked) return false;
+        if (HasReachedBondedAtomsCountLimit()) return false;
+
+        return AtomHelpers.BondingPossibilities.ContainsKey(this.Type) && AtomHelpers.BondingPossibilities[this.Type].Contains(giverAtom.Type);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -93,9 +124,10 @@ public class TakerAtom : Atom
 
         Transform giverAtomTransform = giverAtomCard.AtomGameObject.transform;
 
-        Vector3 giverAtomAjustedScale = AtomHelpers.GetAjustedVectorForGiverAtom(giverAtomTransform);
+        Vector3 giverAtomAdjustedScale = AtomHelpers.GetAjustedVectorForAtom(giverAtomTransform);
+        Vector3 takerAtomAdjustedScale = AtomHelpers.GetAjustedVectorForAtom(transform);
 
-        Vector3 ajustedScale = new(giverAtomAjustedScale.x / transform.localScale.x, giverAtomAjustedScale.y / transform.localScale.y, giverAtomAjustedScale.z / transform.localScale.z);
+        Vector3 ajustedScale = new(giverAtomAdjustedScale.x / takerAtomAdjustedScale.x, giverAtomAdjustedScale.y / takerAtomAdjustedScale.y, giverAtomAdjustedScale.z / takerAtomAdjustedScale.z);
         sphereModel.transform.localScale = ajustedScale;
 
         AtomType atomType = giverAtomCard.Atom.Type;
@@ -109,34 +141,34 @@ public class TakerAtom : Atom
         return sphere;
     }
 
-    private void HandleAtomCommand(AtomCommand command, GameObject giverAtom)
+    private void HandleAtomCommand(AtomCommand command, GameObject clonedAtom)
     {
         switch (command)
         {
             case AtomCommand.MoveToBond:
-                // O ultimo parametro serve para o atomo clonado se aproximar do Taker Atom sem sobrepo-lo visualmente 
-                Transition.ApproximateTo(giverAtom, transform.position, _elapsedTimeByAtomName, AtomHelpers.GetSumOfRadiusOfTakerAndGiverAtom(transform, giverAtom.transform));
+                float maxDistance = AtomHelpers.GetSumOfRadiusOfTakerAndGiverAtom(this, clonedAtom.transform);
+                Transition.ApproximateTo(clonedAtom, transform.position, _elapsedTimeByAtomName, maxDistance);
 
-                if (!AtomHelpers.ShouldApproximateClonedAtom(transform, giverAtom))
+                if (!AtomHelpers.ShouldApproximateClonedAtom(this, clonedAtom))
                 {
-                    _elapsedTimeByAtomName[giverAtom.name] = 0f;
-                    _commandByAtomName[giverAtom.name] = AtomCommand.KeepBonded;
+                    _elapsedTimeByAtomName[clonedAtom.name] = 0f;
+                    _commandByAtomName[clonedAtom.name] = AtomCommand.KeepBonded;
 
-                    if (IsMoleculeFormed())
+                    if (HasReachedBondedAtomsCountLimit())
                     {
-                        _moleculeType = MoleculeClassifier.GetMoleculeBasedOn(transform, _commandByAtomName.Keys.ToList());
+                        _moleculeType = MoleculeClassifier.GetMoleculeBasedOn(this, BondedGiverAtoms);
                     }
                 }
                 break;
             case AtomCommand.MoveToTarget:
-                Vector3 originalAtomPosition = _clonedAtomNameAndOriginalAtomRef[giverAtom.name].transform.position;
-                Transition.ApproximateTo(giverAtom, originalAtomPosition, _elapsedTimeByAtomName);
+                Vector3 originalAtomPosition = _clonedAtomNameAndOriginalAtomRef[clonedAtom.name].transform.position;
+                Transition.ApproximateTo(clonedAtom, originalAtomPosition, _elapsedTimeByAtomName);
 
-                float distanceBetweenCloneAndOriginal = Vector3.Distance(originalAtomPosition, giverAtom.transform.position);
+                float distanceBetweenCloneAndOriginal = Vector3.Distance(originalAtomPosition, clonedAtom.transform.position);
                 if (distanceBetweenCloneAndOriginal <= 0.001)
                 {
-                    _elapsedTimeByAtomName[giverAtom.name] = 0f;
-                    _commandByAtomName[giverAtom.name] = AtomCommand.QueueToDestroy;
+                    _elapsedTimeByAtomName[clonedAtom.name] = 0f;
+                    _commandByAtomName[clonedAtom.name] = AtomCommand.QueueToDestroy;
 
                     if (!HasAnyAtomBonded())
                     {
@@ -146,32 +178,17 @@ public class TakerAtom : Atom
                 }
                 break;
             case AtomCommand.QueueToDestroy:
-                _destroyBondedAtomsQueue.Enqueue(giverAtom.name);
+                _destroyBondedAtomsQueue.Enqueue(clonedAtom.name);
                 break;
             default:
                 break;
         }
     }
 
-    private bool IsMoleculeFormed()
+    private bool HasReachedBondedAtomsCountLimit()
     {
-        int atomsBonded = 0;
-
-        foreach (AtomCommand command in _commandByAtomName.Values)
-        {
-            if (command == AtomCommand.KeepBonded)
-            {
-                atomsBonded++;
-            }
-        }
-
-        // TODO refatorar
-        return Type switch
-        {
-            AtomType.Oxygen => atomsBonded >= 2,
-            AtomType.Chlorine => atomsBonded >= 1,
-            _ => false,
-        };
+        int atomsBonded = _commandByAtomName.Values.Count(command => command == AtomCommand.KeepBonded);
+        return atomsBonded >= NR_OF_ATOMS_NECESSARY_TO_FORM_MOLECULE;
     }
 
     private bool HasAnyAtomBonded()
@@ -193,5 +210,46 @@ public class TakerAtom : Atom
 
         // Destrói o objeto clonado do grafo de cena
         Destroy(_bondedAtomsContainer.transform.Find(atomName).gameObject, 0f);
+    }
+
+    private void HandleElementActiveCommand(Molecule molecule, bool active)
+    {
+        switch (molecule)
+        {
+            case Molecule.H2O:
+                // Seta active para animação da água
+                _elementObjects.GetObjectFor(molecule).SetActive(active);
+                break;
+            default:
+                // Obtem o painel do elemento, seta o material e ativa o painel
+                // TODO ajustar o CardVariant dinamico
+                GameObject elementPanel = _elementObjects.GetPanelFor(CardVariant.Oxygen);
+                elementPanel.GetComponent<Renderer>().material = _elementObjects.GetMaterialFor(molecule);
+                elementPanel.SetActive(active);
+                break;
+        }
+
+        // Se ativar o elemento, desativa o objeto do atomo
+        if (active == true)
+        {
+
+        }
+        // Se desativar o elemento, ativa o objeto do atomo (POR GARANTIA, se false, desativa todos)
+        else
+        {
+
+        }
+    }
+
+    private bool ShouldShowElement()
+    {
+        if (Camera.main.transform == null)
+        {
+            return false;
+        }
+
+        bool hasReachedTriggerDistance = Vector3.Distance(transform.position, Camera.main.transform.position) <= PROXIMITY_TRIGGER_DISTANCE;
+
+        return hasReachedTriggerDistance && _moleculeType != Molecule.None;
     }
 }

@@ -17,6 +17,7 @@ public class TakerTargetObserver : MonoBehaviour
         }
 
         _atom = AtomGameObject.GetComponent<Atom>();
+        AtomGameObject.SetActive(false);
     }
     void OnStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
     {
@@ -27,10 +28,6 @@ public class TakerTargetObserver : MonoBehaviour
             case Status.TRACKED:
                 AtomGameObject.SetActive(true);
                 _atom.IsTracked = true;
-                break;
-            case Status.NO_POSE:
-                AtomGameObject.SetActive(false);
-                _atom.IsTracked = false;
                 break;
             default:
                 AtomGameObject.SetActive(false);

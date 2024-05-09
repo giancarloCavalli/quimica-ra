@@ -21,6 +21,7 @@ public class GiverTargetObserver : MonoBehaviour
         }
 
         _atomCard = AtomCardGameObject.GetComponent<AtomCard>();
+        AtomCardGameObject.SetActive(false);
     }
     void OnStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
     {

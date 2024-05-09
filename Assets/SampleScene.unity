@@ -883,6 +883,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152179151}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &160496505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160496506}
+  - component: {fileID: 160496507}
+  m_Layer: 0
+  m_Name: ElementObjects
+  m_TagString: ElementObjects
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160496506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160496505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.036202755, y: -0.0017197132, z: -0.04495263}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &160496507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160496505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b844ba105ec75147b37be57377d6431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Water: {fileID: 471061884}
+  Salt: {fileID: 2100000, guid: 1f03c5866f89a5f40a56484bf5eec299, type: 2}
+  MuriaticAcid: {fileID: 2100000, guid: 203ba873d1e773e4a9c53ce222db77dc, type: 2}
+  SodiumHydroxide: {fileID: 2100000, guid: 872dafd5a9057b449b77a64af8d03d00, type: 2}
+  OxygenPanel: {fileID: 1462638060}
+  ChlorinePanel: {fileID: 1310953500}
 --- !u!1 &174130212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,12 +2353,12 @@ GameObject:
   - component: {fileID: 471061886}
   - component: {fileID: 471061885}
   m_Layer: 0
-  m_Name: Animation
+  m_Name: WaterAnimation
   m_TagString: WaterAnimation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &471061885
 Animator:
   serializedVersion: 5
@@ -2390,12 +2440,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471061884}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.69553304, y: -0.00074145984, z: -0.0023194952, w: 0.71849}
-  m_LocalPosition: {x: -0.0006, y: 0.0039, z: -0.0353}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_LocalRotation: {x: 0.0023194952, y: -0.71849, z: 0.69553304, w: -0.00074145984}
+  m_LocalPosition: {x: 0.06666667, y: 0.13571426, z: -0.46206886}
+  m_LocalScale: {x: 8.88877, y: 5.5174527, z: 5.7141085}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 672929163}
+  m_Father: {fileID: 1117456204}
   m_LocalEulerAnglesHint: {x: 88.123, y: -7.531, z: -7.659}
 --- !u!1 &484200445
 GameObject:
@@ -2900,14 +2950,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: oxigenio-marcador
+  mTrackableName: oxigenio-fundo-carta
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 1.6453333
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: f3a4ae1aaf914884885dea1c316383a2, type: 3}
+  mWidth: 0.08508915
+  mHeight: 0.14
+  mRuntimeTexture: {fileID: 2800000, guid: 376968f5c2718c540971f424093da8a3, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -2925,8 +2975,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1540883867}
-  - {fileID: 471061887}
+  - {fileID: 1117456204}
   - {fileID: 1704102201}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3030,7 +3079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 672929162}
   mHiddenRoot: {fileID: 0}
-  mTargetName: oxigenio-marcador
+  mTargetName: oxigenio-fundo-carta
   mDatasetName: 
   mCastedBehaviour: {fileID: 672929162}
   mMeshFilter: {fileID: 0}
@@ -4968,6 +5017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 4
   IsTracked: 0
+  NR_OF_ATOMS_NECESSARY_TO_FORM_MOLECULE: 1
 --- !u!1 &1117456200
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,7 +5031,7 @@ GameObject:
   - component: {fileID: 1117456202}
   - component: {fileID: 1117456201}
   m_Layer: 0
-  m_Name: OxigenPlane
+  m_Name: AtomCard
   m_TagString: CardPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5068,11 +5118,14 @@ Transform:
   m_GameObject: {fileID: 1117456200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.92, z: -0.27999997}
-  m_LocalScale: {x: 0.35999998, y: 0.56, z: 0.58}
+  m_LocalPosition: {x: 0, y: 0.0020000003, z: -0.042}
+  m_LocalScale: {x: 0.009, y: 0.014, z: 0.0145}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1540883867}
+  m_Children:
+  - {fileID: 1540883867}
+  - {fileID: 1462638061}
+  - {fileID: 471061887}
+  m_Father: {fileID: 672929163}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1128415031
 GameObject:
@@ -5478,7 +5531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1310953501
 Transform:
   m_ObjectHideFlags: 0
@@ -5925,7 +5978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1462638061
 Transform:
   m_ObjectHideFlags: 0
@@ -5934,12 +5987,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462638060}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7327714, z: -0.68047494, w: 0}
-  m_LocalPosition: {x: -0.12000024, y: 0.997658, z: 2.4517865}
-  m_LocalScale: {x: 0.21586628, y: 0.55999994, z: 0.27604407}
+  m_LocalRotation: {x: 0.68047494, y: -0, z: -0, w: 0.7327714}
+  m_LocalPosition: {x: 0.33333403, y: 3.4243896, z: -4.7099776}
+  m_LocalScale: {x: 0.59962857, y: 0.96569914, z: 0.49283978}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1540883867}
+  m_Father: {fileID: 1117456204}
   m_LocalEulerAnglesHint: {x: 85.762, y: 180, z: 0}
 --- !u!64 &1462638062
 MeshCollider:
@@ -6216,7 +6269,7 @@ GameObject:
   - component: {fileID: 1540883874}
   - component: {fileID: 1540883875}
   m_Layer: 0
-  m_Name: Oxygen
+  m_Name: Atom
   m_TagString: Oxigen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6230,17 +6283,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540883866}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: -0.035}
-  m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.6428576, z: -0.4827586}
+  m_LocalScale: {x: 2.777778, y: 1.785715, z: 1.7241387}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1504509049}
   - {fileID: 2003514066}
   - {fileID: 1685903134}
-  - {fileID: 1462638061}
-  - {fileID: 1117456204}
-  m_Father: {fileID: 672929163}
+  m_Father: {fileID: 1117456204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1540883868
 SphereCollider:
@@ -6375,6 +6426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   IsTracked: 0
+  NR_OF_ATOMS_NECESSARY_TO_FORM_MOLECULE: 2
 --- !u!1 &1549204148
 GameObject:
   m_ObjectHideFlags: 0
@@ -7256,14 +7308,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: hidrogenio1-marcador
+  mTrackableName: Hidrogenio
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 1.644628
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: 36da1913e3aa6b34896b51507764b679, type: 3}
+  mWidth: 0.08512563
+  mHeight: 0.14
+  mRuntimeTexture: {fileID: 2800000, guid: f856ad017cd06cd4a9dfa735f2d56346, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -7313,7 +7365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1746815424}
   mHiddenRoot: {fileID: 0}
-  mTargetName: hidrogenio1-marcador
+  mTargetName: Hidrogenio
   mDatasetName: 
   mCastedBehaviour: {fileID: 1746815424}
   mMeshFilter: {fileID: 0}
@@ -8968,3 +9020,4 @@ SceneRoots:
   - {fileID: 2053292048}
   - {fileID: 845130063}
   - {fileID: 373123299}
+  - {fileID: 160496506}
