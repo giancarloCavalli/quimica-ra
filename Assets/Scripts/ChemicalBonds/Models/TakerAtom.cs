@@ -222,8 +222,7 @@ public class TakerAtom : Atom
                 break;
             default:
                 // Obtem o painel do elemento, seta o material e ativa o painel
-                // TODO ajustar o CardVariant dinamico
-                GameObject elementPanel = _elementObjects.GetPanelFor(CardVariant.Oxygen);
+                GameObject elementPanel = _elementObjects.GetPanelFor(this.AtomCard.AtomCardVariant);
                 elementPanel.GetComponent<Renderer>().material = _elementObjects.GetMaterialFor(molecule);
                 elementPanel.SetActive(active);
                 break;
@@ -232,12 +231,14 @@ public class TakerAtom : Atom
         // Se ativar o elemento, desativa o objeto do atomo
         if (active == true)
         {
-
+            //TODO mudar para SetActive
+            GetComponent<Renderer>().enabled = false;
         }
         // Se desativar o elemento, ativa o objeto do atomo (POR GARANTIA, se false, desativa todos)
         else
         {
-
+            //TODO mudar para SetActive
+            GetComponent<Renderer>().enabled = true;
         }
     }
 

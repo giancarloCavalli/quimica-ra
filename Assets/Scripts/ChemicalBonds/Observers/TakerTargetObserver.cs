@@ -5,7 +5,10 @@ public class TakerTargetObserver : MonoBehaviour
 {
     private readonly ObserverBehaviour _observerBehaviour;
 
-    public GameObject AtomGameObject;
+    private AtomCard AtomCard
+    {
+        get => transform.Find("AtomCard").GetComponent<AtomCard>();
+    }
 
     private Atom _atom;
 
@@ -16,8 +19,8 @@ public class TakerTargetObserver : MonoBehaviour
             mObserverBehaviour.OnTargetStatusChanged += OnStatusChanged;
         }
 
-        _atom = AtomGameObject.GetComponent<Atom>();
-        AtomGameObject.SetActive(false);
+        _atom = AtomCard.Atom;
+        AtomCard.gameObject.SetActive(false);
     }
     void OnStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
     {
@@ -26,11 +29,11 @@ public class TakerTargetObserver : MonoBehaviour
         switch (status.Status)
         {
             case Status.TRACKED:
-                AtomGameObject.SetActive(true);
+                AtomCard.gameObject.SetActive(true);
                 _atom.IsTracked = true;
                 break;
             default:
-                AtomGameObject.SetActive(false);
+                AtomCard.gameObject.SetActive(false);
                 _atom.IsTracked = false;
                 break;
         }

@@ -2950,14 +2950,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: oxigenio-fundo-carta
+  mTrackableName: oxigenio-marcador
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.6453333
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 0.08508915
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: 376968f5c2718c540971f424093da8a3, type: 3}
+  mWidth: 0.049
+  mHeight: 0.049
+  mRuntimeTexture: {fileID: 2800000, guid: f3a4ae1aaf914884885dea1c316383a2, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -3064,7 +3064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9d02846210c054f947acafe836135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtomGameObject: {fileID: 1540883866}
 --- !u!114 &672929167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3079,7 +3078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 672929162}
   mHiddenRoot: {fileID: 0}
-  mTargetName: oxigenio-fundo-carta
+  mTargetName: oxigenio-marcador
   mDatasetName: 
   mCastedBehaviour: {fileID: 672929162}
   mMeshFilter: {fileID: 0}
@@ -3666,7 +3665,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 2.220446e-16, z: 12}
+  m_Size: {x: 14, y: 2.220446e-16, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &791868131
 MonoBehaviour:
@@ -4535,8 +4534,9 @@ GameObject:
   - component: {fileID: 1035299551}
   - component: {fileID: 1035299550}
   - component: {fileID: 1035299549}
+  - component: {fileID: 1035299552}
   m_Layer: 0
-  m_Name: ChlorinePlane
+  m_Name: AtomCard
   m_TagString: CardPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4551,11 +4551,13 @@ Transform:
   m_GameObject: {fileID: 1035299547}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.7666667, z: -0.23333333}
-  m_LocalScale: {x: 0.3, y: 0.4666667, z: 0.48333335}
+  m_LocalPosition: {x: 0, y: 0.0022623315, z: -0.04026594}
+  m_LocalScale: {x: 0.009, y: 0.0139999995, z: 0.014500002}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1097953282}
+  m_Children:
+  - {fileID: 1097953282}
+  - {fileID: 1310953501}
+  m_Father: {fileID: 2053292048}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!64 &1035299549
 MeshCollider:
@@ -4629,6 +4631,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035299547}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1035299552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035299547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AtomCardVariant: 5
 --- !u!1 &1043351529
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,7 +4895,7 @@ GameObject:
   - component: {fileID: 1097953286}
   - component: {fileID: 1097953288}
   m_Layer: 0
-  m_Name: Chlorine
+  m_Name: Atom
   m_TagString: Chlorine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4894,16 +4909,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097953281}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: -0.035}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.6241181, z: -0.3631677}
+  m_LocalScale: {x: 3.3333333, y: 2.1428568, z: 2.0689657}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1982598538}
   - {fileID: 543034401}
   - {fileID: 29405654}
-  - {fileID: 1035299548}
-  m_Father: {fileID: 2053292048}
+  m_Father: {fileID: 1035299548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1097953283
 SphereCollider:
@@ -5030,6 +5044,7 @@ GameObject:
   - component: {fileID: 1117456203}
   - component: {fileID: 1117456202}
   - component: {fileID: 1117456201}
+  - component: {fileID: 1117456205}
   m_Layer: 0
   m_Name: AtomCard
   m_TagString: CardPlane
@@ -5127,6 +5142,19 @@ Transform:
   - {fileID: 471061887}
   m_Father: {fileID: 672929163}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1117456205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117456200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AtomCardVariant: 3
 --- !u!1 &1128415031
 GameObject:
   m_ObjectHideFlags: 0
@@ -5540,12 +5568,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310953500}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7327714, z: -0.68047494, w: 0}
-  m_LocalPosition: {x: -0.003000006, y: 0.05185855, z: 0.026305363}
-  m_LocalScale: {x: 0.005396657, y: 0.0139999995, z: 0.006901102}
+  m_LocalRotation: {x: 0.68047494, y: -0, z: -0, w: 0.7327714}
+  m_LocalPosition: {x: 0.33333403, y: 3.5425873, z: -4.5911236}
+  m_LocalScale: {x: 0.59962857, y: 0.965699, z: 0.49283978}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2053292048}
+  m_Father: {fileID: 1035299548}
   m_LocalEulerAnglesHint: {x: 85.762, y: 180, z: 0}
 --- !u!64 &1310953502
 MeshCollider:
@@ -5737,7 +5765,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 2.220446e-16, z: 12}
+  m_Size: {x: 14, y: 2.220446e-16, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1380853532
 GameObject:
@@ -5973,7 +6001,7 @@ GameObject:
   - component: {fileID: 1462638063}
   - component: {fileID: 1462638062}
   m_Layer: 0
-  m_Name: OxigenElementPanel
+  m_Name: OxygenElementPanel
   m_TagString: OxigenElementPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7308,14 +7336,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Hidrogenio
+  mTrackableName: hidrogenio1-marcador
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.644628
+  mAspectRatio: 1
   mImageTargetType: 3
-  mWidth: 0.08512563
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: f856ad017cd06cd4a9dfa735f2d56346, type: 3}
+  mWidth: 0.049
+  mHeight: 0.049
+  mRuntimeTexture: {fileID: 2800000, guid: 36da1913e3aa6b34896b51507764b679, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -7365,7 +7393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1746815424}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Hidrogenio
+  mTargetName: hidrogenio1-marcador
   mDatasetName: 
   mCastedBehaviour: {fileID: 1746815424}
   mMeshFilter: {fileID: 0}
@@ -8480,7 +8508,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 2.2204463e-16, z: 12}
+  m_Size: {x: 14, y: 2.2204463e-16, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2039636191
 MonoBehaviour:
@@ -8733,9 +8761,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1097953282}
+  - {fileID: 1035299548}
   - {fileID: 1817720349}
-  - {fileID: 1310953501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2053292049
@@ -8750,7 +8777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9d02846210c054f947acafe836135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtomGameObject: {fileID: 1097953281}
 --- !u!114 &2053292050
 MonoBehaviour:
   m_ObjectHideFlags: 0
