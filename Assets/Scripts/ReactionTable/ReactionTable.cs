@@ -16,6 +16,11 @@ public class ReactionTable : MonoBehaviour
     public GameObject Slot3Anchor;
     public GameObject Slot4Anchor;
 
+    public GameObject Slot1AnchorLow;
+    public GameObject Slot2AnchorLow;
+    public GameObject Slot3AnchorLow;
+    public GameObject Slot4AnchorLow;
+
     public GameObject CorrectAnswerText;
     public GameObject WrongAnswerText;
     public GameObject ResetTableText;
@@ -95,7 +100,7 @@ public class ReactionTable : MonoBehaviour
         int slot = GetFreeSlotPosition(tableSide);
 
         _slotByMolecule.Add(molecule, slot);
-        moleculeObject.transform.position = GetSlotPosition(slot);
+        moleculeObject.transform.position = GetSlotPosition(slot, molecule);
         moleculeObject.SetActive(true);
     }
 
@@ -142,8 +147,20 @@ public class ReactionTable : MonoBehaviour
         return -1;
     }
 
-    private Vector3 GetSlotPosition(int slot)
+    private Vector3 GetSlotPosition(int slot, Molecule molecule)
     {
+        if (molecule == Molecule.H2O)
+        {
+            return slot switch
+            {
+                0 => Slot1AnchorLow.transform.position,
+                1 => Slot2AnchorLow.transform.position,
+                2 => Slot3AnchorLow.transform.position,
+                3 => Slot4AnchorLow.transform.position,
+                _ => throw new System.Exception("Slot inválido"),
+            };
+        }
+
         return slot switch
         {
             0 => Slot1Anchor.transform.position,

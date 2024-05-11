@@ -14,13 +14,14 @@ public class RTableCollisionHandler : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Oxigen" || other.tag == "Chlorine")
+        if (other.gameObject.TryGetComponent<TakerAtomCard>(out var takerAtomCard))
         {
-            _reactionTable.HandleCollision(other.gameObject.GetComponent<CollisionHandler>().Molecule, TableSide);
+            _reactionTable.HandleCollision(takerAtomCard.TakerAtom.MoleculeType, TableSide);
         }
 
         // Aproximar um hidrogenio da mesa representa um comando de reset
-        if (other.name.ToLower() == "hidrogen")
+        AtomCard atomCard = other.gameObject.GetComponent<AtomCard>();
+        if (atomCard != null && atomCard.Atom.Type == AtomType.Hydrogen)
         {
             _reactionTable.HandleCollision(Molecule.None, TableSide, true);
         }
