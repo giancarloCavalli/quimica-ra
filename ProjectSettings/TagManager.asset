@@ -4,17 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - OxigenioTarget
-  - Hidrogen1
-  - Hidrogen2
-  - WaterAnimation
-  - Sodium
-  - CardPlane
-  - Oxigen
-  - Chlorine
-  - ChlorineElementPanel
-  - OxigenElementPanel
-  - Light
   - AtomMaterials
   - ElementObjects
   layers:

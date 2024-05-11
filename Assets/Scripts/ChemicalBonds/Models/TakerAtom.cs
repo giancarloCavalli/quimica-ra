@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TakerAtom : Atom
 {
-    private const float PROXIMITY_TRIGGER_DISTANCE = 0.3f;
-
     public int NR_OF_ATOMS_NECESSARY_TO_FORM_MOLECULE;
 
     private Dictionary<string, AtomCommand> _commandByAtomName;
@@ -14,48 +12,26 @@ public class TakerAtom : Atom
 
     private GameObject _bondedAtomsContainer;
 
-    private Molecule _moleculeType = Molecule.None;
+    public Molecule MoleculeType { get; private set; } = Molecule.None;
 
     private readonly Dictionary<string, float> _elapsedTimeByAtomName = new();
 
     private readonly Queue<string> _destroyBondedAtomsQueue = new();
 
-    private readonly Queue<KeyValuePair<Molecule, bool>> _elementActiveCommandQueue = new();
-
     private List<GiverAtom> BondedGiverAtoms => _clonedAtomNameAndOriginalAtomRef.Values.Select(atomGameObj => atomGameObj.GetComponent<GiverAtom>()).ToList();
-
-    private ElementObjects _elementObjects;
-
-    private bool _isElementStatusActive = false;
 
     void Start()
     {
         _commandByAtomName = new Dictionary<string, AtomCommand>();
         _bondedAtomsContainer = transform.Find("BondedAtomsContainer").gameObject;
-
-        _elementObjects = GameObject.FindWithTag("ElementObjects").GetComponent<ElementObjects>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         for (int i = 0; i < _bondedAtomsContainer.transform.childCount; i++)
         {
             Transform bondedAtomTransform = _bondedAtomsContainer.transform.GetChild(i);
             HandleAtomCommand(_commandByAtomName[bondedAtomTransform.name], bondedAtomTransform.gameObject);
-        }
-
-        // Se deveria estar mostrando o elemento E não está mostrando, adiciona comando para mostrar
-        if (ShouldShowElement() && !_isElementStatusActive)
-        {
-            HandleElementActiveCommand(_moleculeType, true);
-            _isElementStatusActive = true;
-        }
-        // Se não deveria estar mostrando o elemento E está mostrando, adiciona comando para esconder
-        else if (!ShouldShowElement() && _isElementStatusActive)
-        {
-            HandleElementActiveCommand(_moleculeType, false);
-            _isElementStatusActive = false;
         }
 
         while (_destroyBondedAtomsQueue.Count > 0)
@@ -156,7 +132,7 @@ public class TakerAtom : Atom
 
                     if (HasReachedBondedAtomsCountLimit())
                     {
-                        _moleculeType = MoleculeClassifier.GetMoleculeBasedOn(this, BondedGiverAtoms);
+                        MoleculeType = MoleculeClassifier.GetMoleculeBasedOn(this, BondedGiverAtoms);
                     }
                 }
                 break;
@@ -206,51 +182,9 @@ public class TakerAtom : Atom
         _commandByAtomName.Remove(atomName);
 
         // Tira a classificação de molécula caso houver
-        _moleculeType = Molecule.None;
+        MoleculeType = Molecule.None;
 
         // Destrói o objeto clonado do grafo de cena
         Destroy(_bondedAtomsContainer.transform.Find(atomName).gameObject, 0f);
-    }
-
-    private void HandleElementActiveCommand(Molecule molecule, bool active)
-    {
-        switch (molecule)
-        {
-            case Molecule.H2O:
-                // Seta active para animação da água
-                _elementObjects.GetObjectFor(molecule).SetActive(active);
-                break;
-            default:
-                // Obtem o painel do elemento, seta o material e ativa o painel
-                GameObject elementPanel = _elementObjects.GetPanelFor(this.AtomCard.AtomCardVariant);
-                elementPanel.GetComponent<Renderer>().material = _elementObjects.GetMaterialFor(molecule);
-                elementPanel.SetActive(active);
-                break;
-        }
-
-        // Se ativar o elemento, desativa o objeto do atomo
-        if (active == true)
-        {
-            //TODO mudar para SetActive
-            GetComponent<Renderer>().enabled = false;
-        }
-        // Se desativar o elemento, ativa o objeto do atomo (POR GARANTIA, se false, desativa todos)
-        else
-        {
-            //TODO mudar para SetActive
-            GetComponent<Renderer>().enabled = true;
-        }
-    }
-
-    private bool ShouldShowElement()
-    {
-        if (Camera.main.transform == null)
-        {
-            return false;
-        }
-
-        bool hasReachedTriggerDistance = Vector3.Distance(transform.position, Camera.main.transform.position) <= PROXIMITY_TRIGGER_DISTANCE;
-
-        return hasReachedTriggerDistance && _moleculeType != Molecule.None;
     }
 }

@@ -9,11 +9,6 @@ public static class AtomHelpers
         { AtomType.Chlorine, new List<AtomType> { AtomType.Hydrogen, AtomType.Sodium } }
     };
 
-    public static bool IsAtom(Transform transform)
-    {
-        return transform.GetComponent<Atom>() != null;
-    }
-
     public static bool ShouldApproximateClonedAtom(TakerAtom takerAtom, GameObject clonedAtom)
     {
         return Vector3.Distance(clonedAtom.transform.position, takerAtom.transform.position) >= GetSumOfRadiusOfTakerAndGiverAtom(takerAtom, clonedAtom.transform);

@@ -172,7 +172,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 84351107}
   m_Layer: 0
   m_Name: Atom
-  m_TagString: Sodium
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -594,6 +594,59 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 87010831}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
+--- !u!1 &89981682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89981683}
+  - component: {fileID: 89981684}
+  m_Layer: 0
+  m_Name: Slot3AnchorLow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &89981683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89981682}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.625, y: 0.38, z: -0.1933336}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1605932514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &89981684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89981682}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &98311673
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +696,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2354,7 +2407,7 @@ GameObject:
   - component: {fileID: 471061885}
   m_Layer: 0
   m_Name: WaterAnimation
-  m_TagString: WaterAnimation
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2886,7 +2939,7 @@ GameObject:
   - component: {fileID: 672929167}
   m_Layer: 0
   m_Name: OxygenTarget
-  m_TagString: OxigenioTarget
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3575,7 +3628,7 @@ GameObject:
   - component: {fileID: 791868130}
   m_Layer: 0
   m_Name: AtomCard
-  m_TagString: CardPlane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3665,7 +3718,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 2.220446e-16, z: 13}
+  m_Size: {x: 12.5, y: 2.220446e-16, z: 12.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &791868131
 MonoBehaviour:
@@ -3883,7 +3936,7 @@ MonoBehaviour:
   mImageTargetType: 3
   mWidth: 0.085125625
   mHeight: 0.14
-  mRuntimeTexture: {fileID: 0}
+  mRuntimeTexture: {fileID: 2800000, guid: f856ad017cd06cd4a9dfa735f2d56346, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -4086,7 +4139,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907405021}
   m_LocalRotation: {x: -0.0030748844, y: 0.0021424745, z: 0.0011574212, w: 0.9999923}
-  m_LocalPosition: {x: 0, y: 0, z: 0.352}
+  m_LocalPosition: {x: 0, y: 0, z: 0.003}
   m_LocalScale: {x: 0.41483185, y: 0.41497356, z: 0.4146911}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4095,7 +4148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 87.787, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.16, y: -0.658}
+  m_AnchoredPosition: {x: 0.158, y: -0.836}
   m_SizeDelta: {x: 2.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907405023
@@ -4533,11 +4586,12 @@ GameObject:
   - component: {fileID: 1035299548}
   - component: {fileID: 1035299551}
   - component: {fileID: 1035299550}
-  - component: {fileID: 1035299549}
   - component: {fileID: 1035299552}
+  - component: {fileID: 1035299553}
+  - component: {fileID: 1035299554}
   m_Layer: 0
   m_Name: AtomCard
-  m_TagString: CardPlane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4559,28 +4613,6 @@ Transform:
   - {fileID: 1310953501}
   m_Father: {fileID: 2053292048}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!64 &1035299549
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035299547}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1035299550
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4640,10 +4672,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 1035299547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1195af5bbcdcd0c4095818c4a9bab80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AtomCardVariant: 5
+--- !u!65 &1035299553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035299547}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.5, y: 1.5, z: 12.5}
+  m_Center: {x: 0, y: 0, z: -0.00000023841858}
+--- !u!54 &1035299554
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035299547}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1043351529
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,6 +4960,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050818340}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1090852015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1090852016}
+  - component: {fileID: 1090852017}
+  m_Layer: 0
+  m_Name: Slot1AnchorLow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1090852016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090852015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.67, y: 0.38, z: -0.1933336}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1605932514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1090852017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090852015}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1097953281
 GameObject:
   m_ObjectHideFlags: 0
@@ -4896,7 +5029,7 @@ GameObject:
   - component: {fileID: 1097953288}
   m_Layer: 0
   m_Name: Atom
-  m_TagString: Chlorine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5043,37 +5176,16 @@ GameObject:
   - component: {fileID: 1117456204}
   - component: {fileID: 1117456203}
   - component: {fileID: 1117456202}
-  - component: {fileID: 1117456201}
   - component: {fileID: 1117456205}
+  - component: {fileID: 1117456206}
+  - component: {fileID: 1117456207}
   m_Layer: 0
   m_Name: AtomCard
-  m_TagString: CardPlane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1117456201
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117456200}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1117456202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5151,10 +5263,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 1117456200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1195af5bbcdcd0c4095818c4a9bab80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AtomCardVariant: 3
+--- !u!65 &1117456206
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117456200}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.5, y: 1.5, z: 12.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1117456207
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117456200}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1128415031
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,7 +5715,7 @@ GameObject:
   - component: {fileID: 1310953502}
   m_Layer: 0
   m_Name: ChlorineElementPanel
-  m_TagString: ChlorineElementPanel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5647,6 +5807,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310953500}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1344702764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344702765}
+  - component: {fileID: 1344702766}
+  m_Layer: 0
+  m_Name: Slot2AnchorLow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344702765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344702764}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7, y: 0.38, z: -0.1933336}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1605932514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1344702766
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344702764}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1347669260
 GameObject:
   m_ObjectHideFlags: 0
@@ -5662,7 +5875,7 @@ GameObject:
   - component: {fileID: 1347669265}
   m_Layer: 0
   m_Name: AtomCard
-  m_TagString: CardPlane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5765,7 +5978,60 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 2.220446e-16, z: 13}
+  m_Size: {x: 12.5, y: 2.220446e-16, z: 12.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1357897444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357897445}
+  - component: {fileID: 1357897446}
+  m_Layer: 0
+  m_Name: ' Slot4AnchorLow'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357897445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357897444}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.7, y: 0.38, z: -0.1933336}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1605932514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1357897446
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357897444}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1380853532
 GameObject:
@@ -5835,8 +6101,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 12, y: 2.5, z: 10}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!23 &1380853536
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6002,7 +6268,7 @@ GameObject:
   - component: {fileID: 1462638062}
   m_Layer: 0
   m_Name: OxygenElementPanel
-  m_TagString: OxigenElementPanel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6110,7 +6376,7 @@ GameObject:
   - component: {fileID: 1493626483}
   m_Layer: 0
   m_Name: Atom
-  m_TagString: Hidrogen2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6298,7 +6564,7 @@ GameObject:
   - component: {fileID: 1540883875}
   m_Layer: 0
   m_Name: Atom
-  m_TagString: Oxigen
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6608,12 +6874,16 @@ Transform:
   m_Children:
   - {fileID: 703865050}
   - {fileID: 545163973}
+  - {fileID: 1090852016}
   - {fileID: 943608427}
   - {fileID: 47106487}
+  - {fileID: 1344702765}
   - {fileID: 1688607557}
   - {fileID: 98311674}
+  - {fileID: 89981683}
   - {fileID: 1719785656}
   - {fileID: 20980949}
+  - {fileID: 1357897445}
   - {fileID: 1380853533}
   - {fileID: 1861977940}
   m_Father: {fileID: 845130063}
@@ -6710,6 +6980,10 @@ MonoBehaviour:
   Slot2Anchor: {fileID: 47106486}
   Slot3Anchor: {fileID: 98311673}
   Slot4Anchor: {fileID: 20980948}
+  Slot1AnchorLow: {fileID: 1090852015}
+  Slot2AnchorLow: {fileID: 1344702764}
+  Slot3AnchorLow: {fileID: 89981682}
+  Slot4AnchorLow: {fileID: 1357897444}
   CorrectAnswerText: {fileID: 1682647612}
   WrongAnswerText: {fileID: 1128415031}
   ResetTableText: {fileID: 922511669}
@@ -7068,7 +7342,7 @@ GameObject:
   - component: {fileID: 1704102202}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7177,7 +7451,7 @@ Transform:
   m_GameObject: {fileID: 1719785655}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0023194952, y: -0.71849, z: 0.69553304, w: -0.00074145984}
-  m_LocalPosition: {x: -3.58, y: 1.56, z: 0.59}
+  m_LocalPosition: {x: -3.58, y: 0.23, z: 0.23}
   m_LocalScale: {x: 1.8079809, y: 2.4116251, z: 4.0147786}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7512,7 +7786,7 @@ GameObject:
   - component: {fileID: 1817720350}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7897,8 +8171,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 12, y: 2.5, z: 10}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!23 &1861977943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7964,7 +8238,7 @@ GameObject:
   - component: {fileID: 1937070800}
   m_Layer: 0
   m_Name: Atom
-  m_TagString: Hidrogen1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8418,7 +8692,7 @@ GameObject:
   - component: {fileID: 2039636191}
   m_Layer: 0
   m_Name: AtomCard
-  m_TagString: CardPlane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8508,7 +8782,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 2.2204463e-16, z: 13}
+  m_Size: {x: 12.5, y: 2.2204463e-16, z: 12.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2039636191
 MonoBehaviour:
