@@ -5,7 +5,7 @@ public class BondMaterials : MonoBehaviour
     public Material HydrogenMaterial;
     public Material SodiumMaterial;
 
-    public Material GetMaterial(AtomType type)
+    public Material GetMaterialFor(AtomType type)
     {
         return type switch
         {

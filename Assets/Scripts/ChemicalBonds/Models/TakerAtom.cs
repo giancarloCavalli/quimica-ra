@@ -90,7 +90,6 @@ public class TakerAtom : Atom
 
     private void StartUnbondingWith(string atomName)
     {
-        Debug.Log("Unbonding with: " + atomName);
         _commandByAtomName[atomName] = AtomCommand.MoveToTarget;
     }
 
@@ -100,14 +99,14 @@ public class TakerAtom : Atom
 
         Transform giverAtomTransform = giverAtomCard.AtomGameObject.transform;
 
-        Vector3 giverAtomAdjustedScale = AtomHelpers.GetAjustedVectorForAtom(giverAtomTransform);
-        Vector3 takerAtomAdjustedScale = AtomHelpers.GetAjustedVectorForAtom(transform);
+        Vector3 giverAtomAdjustedScale = AtomHelpers.GetAdjustedVectorForAtom(giverAtomTransform);
+        Vector3 takerAtomAdjustedScale = AtomHelpers.GetAdjustedVectorForAtom(transform);
 
         Vector3 ajustedScale = new(giverAtomAdjustedScale.x / takerAtomAdjustedScale.x, giverAtomAdjustedScale.y / takerAtomAdjustedScale.y, giverAtomAdjustedScale.z / takerAtomAdjustedScale.z);
         sphereModel.transform.localScale = ajustedScale;
 
         AtomType atomType = giverAtomCard.Atom.Type;
-        sphereModel.GetComponent<Renderer>().material = GameObject.FindWithTag("AtomMaterials").GetComponent<BondMaterials>().GetMaterial(atomType);
+        sphereModel.GetComponent<Renderer>().material = GameObject.FindWithTag("AtomMaterials").GetComponent<BondMaterials>().GetMaterialFor(atomType);
 
         GameObject sphere = Instantiate(sphereModel, giverAtomTransform.position, transform.rotation, parent);
         sphere.name = giverAtomCard.AtomCardVariant.ToString();

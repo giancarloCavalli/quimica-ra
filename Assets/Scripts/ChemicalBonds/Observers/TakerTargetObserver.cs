@@ -5,12 +5,12 @@ public class TakerTargetObserver : MonoBehaviour
 {
     private readonly ObserverBehaviour _observerBehaviour;
 
+    private Atom _atom;
+
     private AtomCard AtomCard
     {
         get => transform.Find("AtomCard").GetComponent<AtomCard>();
     }
-
-    private Atom _atom;
 
     void Awake()
     {

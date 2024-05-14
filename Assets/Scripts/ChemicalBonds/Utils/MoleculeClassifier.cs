@@ -9,13 +9,13 @@ public class MoleculeClassifier
 
         return takerAtom.Type switch
         {
-            AtomType.Oxygen => GetMoleculeBasedOnOxigen(atomTypes),
+            AtomType.Oxygen => GetMoleculeBasedOnOxygen(atomTypes),
             AtomType.Chlorine => GetMoleculeBasedOnChlorine(atomTypes),
             _ => Molecule.None,
         };
     }
 
-    private static Molecule GetMoleculeBasedOnOxigen(List<AtomType> atomTypes)
+    private static Molecule GetMoleculeBasedOnOxygen(List<AtomType> atomTypes)
     {
         // Checa se há 2 hidrogenios
         if (atomTypes.Count(atomType => atomType == AtomType.Hydrogen) == 2)

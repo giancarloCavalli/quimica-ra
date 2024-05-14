@@ -22,7 +22,7 @@ public static class AtomHelpers
         return (takerPosition.x / 2) + (ajustedScaleOfGiver / 2);
     }
 
-    public static Vector3 GetAjustedVectorForAtom(Transform atomTransform)
+    public static Vector3 GetAdjustedVectorForAtom(Transform atomTransform)
     {
         return new Vector3(atomTransform.localScale.x * atomTransform.transform.parent.localScale.x, atomTransform.localScale.y * atomTransform.transform.parent.localScale.y, atomTransform.localScale.z * atomTransform.transform.parent.localScale.z);
     }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 
 public class ReactionTable : MonoBehaviour
 {
@@ -49,10 +48,10 @@ public class ReactionTable : MonoBehaviour
             return;
         }
 
-        HandleMoleculePosicioning(molecule, tableSide);
+        HandleMoleculePositioning(molecule, tableSide);
     }
 
-    public void HandleMoleculePosicioning(Molecule molecule, TableSide tableSide)
+    public void HandleMoleculePositioning(Molecule molecule, TableSide tableSide)
     {
         TableSide moleculeTableSide = GetMoleculeTableSide(molecule);
 
@@ -67,7 +66,7 @@ public class ReactionTable : MonoBehaviour
             RemoveMoleculeFromTable(molecule);
         }
 
-        int slot = GetFreeSlotPosition(tableSide);
+        int slot = GetFreeSlotPositionOn(tableSide);
         // Não há slots disponíveis neste lado da mesa
         if (slot == -1)
         {
@@ -90,21 +89,21 @@ public class ReactionTable : MonoBehaviour
             return;
         }
 
-        GetMoleculeObject(molecule).SetActive(false);
+        GetMoleculeObjectFor(molecule).SetActive(false);
         _slotByMolecule.Remove(molecule);
     }
 
     private void AddMoleculeToTable(Molecule molecule, TableSide tableSide)
     {
-        GameObject moleculeObject = GetMoleculeObject(molecule);
-        int slot = GetFreeSlotPosition(tableSide);
+        GameObject moleculeObject = GetMoleculeObjectFor(molecule);
+        int slot = GetFreeSlotPositionOn(tableSide);
 
         _slotByMolecule.Add(molecule, slot);
         moleculeObject.transform.position = GetSlotPosition(slot, molecule);
         moleculeObject.SetActive(true);
     }
 
-    private GameObject GetMoleculeObject(Molecule molecule)
+    private GameObject GetMoleculeObjectFor(Molecule molecule)
     {
         return molecule switch
         {
@@ -117,7 +116,7 @@ public class ReactionTable : MonoBehaviour
 
     }
 
-    private int GetFreeSlotPosition(TableSide tableSide)
+    private int GetFreeSlotPositionOn(TableSide tableSide)
     {
         int slot;
         if (tableSide == TableSide.Left)

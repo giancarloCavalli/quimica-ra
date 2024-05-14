@@ -5,10 +5,6 @@ public class GiverTargetObserver : MonoBehaviour
 {
     private readonly ObserverBehaviour _observerBehaviour;
 
-    public GameObject OxigenTarget;
-
-    public GameObject ChlorineTarget;
-
     public GameObject AtomCardGameObject;
 
     private AtomCard _atomCard;
