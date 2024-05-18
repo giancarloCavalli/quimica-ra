@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
+  Type: 2
   IsTracked: 0
 --- !u!1 &87010829
 GameObject:
@@ -532,14 +532,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: hidrogenio2-marcador
+  mTrackableName: anchor-hydrogen2
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 0.525463
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: 329ee64e6e06f53469a7ba9a3396a0c8, type: 3}
+  mWidth: 0.074
+  mHeight: 0.03888426
+  mRuntimeTexture: {fileID: 2800000, guid: 6d0eda7c2514e584a85801c33bde365d, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -572,8 +572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592c8193b9db984387c7d7d3a203894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OxigenTarget: {fileID: 672929160}
-  ChlorineTarget: {fileID: 2053292045}
   AtomCardGameObject: {fileID: 1347669260}
 --- !u!114 &87010834
 MonoBehaviour:
@@ -589,7 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 87010831}
   mHiddenRoot: {fileID: 0}
-  mTargetName: hidrogenio2-marcador
+  mTargetName: anchor-hydrogen2
   mDatasetName: 
   mCastedBehaviour: {fileID: 87010831}
   mMeshFilter: {fileID: 0}
@@ -714,7 +712,7 @@ GameObject:
   - component: {fileID: 147803605}
   - component: {fileID: 147803604}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2514,7 +2512,7 @@ GameObject:
   - component: {fileID: 484200448}
   - component: {fileID: 484200447}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3003,14 +3001,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: oxigenio-marcador
+  mTrackableName: anchor-oxygen
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 0.525463
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: f3a4ae1aaf914884885dea1c316383a2, type: 3}
+  mWidth: 0.074
+  mHeight: 0.03888426
+  mRuntimeTexture: {fileID: 2800000, guid: 8d5273781bfb26a4bba27f7386b9a651, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -3131,7 +3129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 672929162}
   mHiddenRoot: {fileID: 0}
-  mTargetName: oxigenio-marcador
+  mTargetName: anchor-oxygen
   mDatasetName: 
   mCastedBehaviour: {fileID: 672929162}
   mMeshFilter: {fileID: 0}
@@ -3284,7 +3282,7 @@ GameObject:
   - component: {fileID: 689790263}
   - component: {fileID: 689790262}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3509,7 +3507,7 @@ GameObject:
   - component: {fileID: 788045408}
   - component: {fileID: 788045411}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3642,7 +3640,7 @@ Transform:
   m_GameObject: {fileID: 791868125}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.002, z: -0.042}
+  m_LocalPosition: {x: 0, y: 0.002, z: -0.0366}
   m_LocalScale: {x: 0.009, y: 0.0139999995, z: 0.0145}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3732,7 +3730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtomCardVariant: 4
+  AtomCardVariant: 3
 --- !u!1 &797169733
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,7 +4603,7 @@ Transform:
   m_GameObject: {fileID: 1035299547}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0022623315, z: -0.04026594}
+  m_LocalPosition: {x: 0, y: 0.0022623315, z: -0.0366}
   m_LocalScale: {x: 0.009, y: 0.0139999995, z: 0.014500002}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4675,7 +4673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1195af5bbcdcd0c4095818c4a9bab80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtomCardVariant: 5
+  AtomCardVariant: 4
 --- !u!65 &1035299553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4738,7 +4736,7 @@ GameObject:
   - component: {fileID: 1043351532}
   - component: {fileID: 1043351531}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4856,7 +4854,7 @@ GameObject:
   - component: {fileID: 1050818343}
   - component: {fileID: 1050818342}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5162,7 +5160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9deb2273972333840b28ebac87612050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 4
+  Type: 3
   IsTracked: 0
   NR_OF_ATOMS_NECESSARY_TO_FORM_MOLECULE: 1
 --- !u!1 &1117456200
@@ -5245,7 +5243,7 @@ Transform:
   m_GameObject: {fileID: 1117456200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0020000003, z: -0.042}
+  m_LocalPosition: {x: 0, y: 0.0020000003, z: -0.0366}
   m_LocalScale: {x: 0.009, y: 0.014, z: 0.0145}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5266,7 +5264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1195af5bbcdcd0c4095818c4a9bab80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtomCardVariant: 3
+  AtomCardVariant: 2
 --- !u!65 &1117456206
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5889,7 +5887,7 @@ Transform:
   m_GameObject: {fileID: 1347669260}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.002, z: -0.042}
+  m_LocalPosition: {x: 0, y: 0.002, z: -0.0366}
   m_LocalScale: {x: 0.009, y: 0.0139999995, z: 0.0145}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5958,7 +5956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtomCardVariant: 2
+  AtomCardVariant: 1
 --- !u!65 &1347669266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6508,7 +6506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 0
   IsTracked: 0
 --- !u!1 &1504509048
 GameObject:
@@ -6718,7 +6716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9deb2273972333840b28ebac87612050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 1
   IsTracked: 0
   NR_OF_ATOMS_NECESSARY_TO_FORM_MOLECULE: 2
 --- !u!1 &1549204148
@@ -6735,7 +6733,7 @@ GameObject:
   - component: {fileID: 1549204151}
   - component: {fileID: 1549204154}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7610,14 +7608,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: hidrogenio1-marcador
+  mTrackableName: anchor-hydrogen1
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 0.525463
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: 36da1913e3aa6b34896b51507764b679, type: 3}
+  mWidth: 0.074
+  mHeight: 0.03888426
+  mRuntimeTexture: {fileID: 2800000, guid: 60166ae69472ba34f82b0ec87ac98f64, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -7650,8 +7648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592c8193b9db984387c7d7d3a203894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OxigenTarget: {fileID: 672929160}
-  ChlorineTarget: {fileID: 2053292045}
   AtomCardGameObject: {fileID: 2039636185}
 --- !u!114 &1746815427
 MonoBehaviour:
@@ -7667,7 +7663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1746815424}
   mHiddenRoot: {fileID: 0}
-  mTargetName: hidrogenio1-marcador
+  mTargetName: anchor-hydrogen1
   mDatasetName: 
   mCastedBehaviour: {fileID: 1746815424}
   mMeshFilter: {fileID: 0}
@@ -8041,14 +8037,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: sodio-marcador
+  mTrackableName: anchor-sodium
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 0.525463
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: 78e058194e086ad4dba2db6384afcc29, type: 3}
+  mWidth: 0.074
+  mHeight: 0.03888426
+  mRuntimeTexture: {fileID: 2800000, guid: 1c80fd771da667d42854879317da00a5, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -8081,8 +8077,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592c8193b9db984387c7d7d3a203894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OxigenTarget: {fileID: 672929160}
-  ChlorineTarget: {fileID: 2053292045}
   AtomCardGameObject: {fileID: 791868125}
 --- !u!114 &1848406491
 MonoBehaviour:
@@ -8098,7 +8092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1848406488}
   mHiddenRoot: {fileID: 0}
-  mTargetName: sodio-marcador
+  mTargetName: anchor-sodium
   mDatasetName: 
   mCastedBehaviour: {fileID: 1848406488}
   mMeshFilter: {fileID: 0}
@@ -8370,7 +8364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66f4c754e62e2d4696a9598abee601e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 0
   IsTracked: 0
 --- !u!1 &1966865077
 GameObject:
@@ -8386,7 +8380,7 @@ GameObject:
   - component: {fileID: 1966865080}
   - component: {fileID: 1966865079}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8504,7 +8498,7 @@ GameObject:
   - component: {fileID: 1980909716}
   - component: {fileID: 1980909715}
   m_Layer: 0
-  m_Name: Eletron
+  m_Name: Electron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8706,7 +8700,7 @@ Transform:
   m_GameObject: {fileID: 2039636185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.002, z: -0.042}
+  m_LocalPosition: {x: 0, y: 0.002, z: -0.0366}
   m_LocalScale: {x: 0.009, y: 0.014, z: 0.0145}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8796,7 +8790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343fce354a7546c448ec258114cbc48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtomCardVariant: 1
+  AtomCardVariant: 0
 --- !u!1 &2048708379
 GameObject:
   m_ObjectHideFlags: 0
@@ -9010,14 +9004,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: cloro-marcador
+  mTrackableName: anchor-chlorine
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1
+  mAspectRatio: 0.525463
   mImageTargetType: 3
-  mWidth: 0.049
-  mHeight: 0.049
-  mRuntimeTexture: {fileID: 2800000, guid: 600e503b9309f4c4d9603ae3c17ab9f3, type: 3}
+  mWidth: 0.074
+  mHeight: 0.03888426
+  mRuntimeTexture: {fileID: 2800000, guid: 079860b3d442b0242914b3d611e4e84e, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -9065,7 +9059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 2053292047}
   mHiddenRoot: {fileID: 0}
-  mTargetName: cloro-marcador
+  mTargetName: anchor-chlorine
   mDatasetName: 
   mCastedBehaviour: {fileID: 2053292047}
   mMeshFilter: {fileID: 0}
