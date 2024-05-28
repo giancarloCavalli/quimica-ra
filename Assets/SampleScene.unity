@@ -3927,14 +3927,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Hidrogenio
+  mTrackableName: anchor-rtable
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 1.6446282
+  mAspectRatio: 0.52732503
   mImageTargetType: 3
-  mWidth: 0.085125625
-  mHeight: 0.14
-  mRuntimeTexture: {fileID: 2800000, guid: f856ad017cd06cd4a9dfa735f2d56346, type: 3}
+  mWidth: 0.074
+  mHeight: 0.039022055
+  mRuntimeTexture: {fileID: 2800000, guid: 5a83592c1d72e554ea5d6a0f429015bb, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -3971,7 +3971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 845130062}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Hidrogenio
+  mTargetName: anchor-rtable
   mDatasetName: 
   mCastedBehaviour: {fileID: 845130062}
   mMeshFilter: {fileID: 0}
