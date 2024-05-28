@@ -28,12 +28,14 @@ public class TakerAtom : Atom
 
     void Update()
     {
+        // Varre a lista de atomos ligados e executa os comandos
         for (int i = 0; i < _bondedAtomsContainer.transform.childCount; i++)
         {
             Transform bondedAtomTransform = _bondedAtomsContainer.transform.GetChild(i);
             HandleAtomCommand(_commandByAtomName[bondedAtomTransform.name], bondedAtomTransform.gameObject);
         }
 
+        // Realiza desligamento dos atomos que estão na fila de destruição
         while (_destroyBondedAtomsQueue.Count > 0)
         {
             string atomName = _destroyBondedAtomsQueue.Dequeue();

@@ -17,13 +17,15 @@ public class TakerAtomCard : AtomCard
 
     void Update()
     {
-        // Se deveria estar mostrando o elemento E não está mostrando, adiciona comando para mostrar
+        // Se deveria estar mostrando o elemento E não está mostrando, aciona rotina
+        // para mostrar e atualiza status
         if (ShouldShowElement() && !_isElementStatusActive)
         {
             HandleElementActiveCommand(TakerAtom.MoleculeType, true);
             _isElementStatusActive = true;
         }
-        // Se não deveria estar mostrando o elemento E está mostrando, adiciona comando para esconder
+        // Se não deveria estar mostrando o elemento E está mostrando, aciona rotina
+        // para esconder e atualiza status
         else if (!ShouldShowElement() && _isElementStatusActive)
         {
             HandleElementActiveCommand(TakerAtom.MoleculeType, false);
